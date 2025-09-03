@@ -93,10 +93,17 @@ export function useVoiceAssistant(config: VoiceAssistantConfig = {}): UseVoiceAs
 
   // Check browser support and initialize
   useEffect(() => {
+    console.log('Checking voice support...');
     const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
     const speechSynthesis = window.speechSynthesis;
     
+    console.log('Voice APIs available:', { 
+      SpeechRecognition: !!SpeechRecognition, 
+      speechSynthesis: !!speechSynthesis 
+    });
+    
     if (SpeechRecognition && speechSynthesis) {
+      console.log('Voice support enabled');
       setIsSupported(true);
       
       // Initialize Speech Recognition
@@ -166,6 +173,7 @@ export function useVoiceAssistant(config: VoiceAssistantConfig = {}): UseVoiceAs
       // Initialize Speech Synthesis
       const loadVoices = () => {
         const availableVoices = speechSynthesis.getVoices();
+        console.log('Loading voices:', availableVoices.length, 'voices found');
         setVoices(availableVoices);
         
         // Set default voice to English if available
@@ -175,14 +183,19 @@ export function useVoiceAssistant(config: VoiceAssistantConfig = {}): UseVoiceAs
           voice.lang.startsWith('en')
         ) || availableVoices[0];
         
+        console.log('Selected default voice:', defaultVoice?.name, defaultVoice?.lang);
         setSelectedVoice(defaultVoice || null);
       };
 
       // Load voices immediately and on voices change
       loadVoices();
       speechSynthesis.onvoiceschanged = loadVoices;
+      
+      // Sometimes voices load asynchronously, so try again after a small delay
+      setTimeout(loadVoices, 100);
 
     } else {
+      console.log('Voice APIs not supported');
       setIsSupported(false);
       setError('Speech recognition and/or synthesis not supported in this browser.');
     }
@@ -231,11 +244,15 @@ export function useVoiceAssistant(config: VoiceAssistantConfig = {}): UseVoiceAs
   }, []);
 
   const speak = useCallback((text: string, options?: Partial<SpeechSynthesisUtterance>) => {
+    console.log('Speak function called with:', text.substring(0, 100));
+    
     if (!window.speechSynthesis) {
+      console.error('Speech synthesis not supported');
       setError('Speech synthesis not supported.');
       return;
     }
 
+    console.log('Speech synthesis available, cancelling any ongoing speech...');
     // Cancel any ongoing speech
     window.speechSynthesis.cancel();
 
@@ -246,25 +263,31 @@ export function useVoiceAssistant(config: VoiceAssistantConfig = {}): UseVoiceAs
     utterance.pitch = voicePitch;
     utterance.voice = selectedVoice;
     
+    console.log('Utterance settings:', { rate: voiceRate, pitch: voicePitch, voice: selectedVoice?.name });
+    
     // Apply custom options
     if (options) {
       Object.assign(utterance, options);
     }
 
     utterance.onstart = () => {
+      console.log('Speech started');
       setIsSpeaking(true);
     };
 
     utterance.onend = () => {
+      console.log('Speech ended');
       setIsSpeaking(false);
     };
 
     utterance.onerror = (event) => {
+      console.error('Speech synthesis error:', event.error);
       setIsSpeaking(false);
       setError(`Speech synthesis error: ${event.error}`);
     };
 
     utteranceRef.current = utterance;
+    console.log('Starting speech synthesis...');
     window.speechSynthesis.speak(utterance);
   }, [selectedVoice, voiceRate, voicePitch]);
 

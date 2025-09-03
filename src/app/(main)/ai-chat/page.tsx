@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { User, CornerDownLeft, Sparkles, AlertTriangle, Brain, Send, Trash2 } from 'lucide-react';
+import { User, CornerDownLeft, Sparkles, AlertTriangle, Brain, Send, Trash2, Mic, MicOff, Loader2, AlertCircle, VolumeX, Volume2 } from 'lucide-react';
 import { Logo } from '@/components/shared/logo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/shared/page-header';
 import { useProfile, profileToFinancialSituation } from '@/hooks/use-profile';
 import { useToast } from '@/hooks/use-toast';
-import { VoiceAssistantControls, useVoiceAssistantSpeaker } from '@/components/shared/voice-assistant-controls';
+import { useVoiceAssistant } from '@/hooks/use-voice-assistant';
 
 interface Message {
   id: number;
@@ -74,13 +74,42 @@ export default function AIChatPage() {
   const { profile } = useProfile();
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const { speak } = useVoiceAssistantSpeaker();
+  
+  // Voice Assistant for input
+  const {
+    isListening,
+    transcript,
+    isSupported,
+    startListening,
+    stopListening,
+    resetTranscript,
+    speak,
+    stopSpeaking,
+    isSpeaking,
+    error,
+  } = useVoiceAssistant({
+    continuous: false,
+    interimResults: true,
+  });
+
+  // Debug voice support
+  console.log('Voice support status:', { isSupported, error });
+  console.log('Voice button should be visible now');
 
   useEffect(() => {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
   }, [messages]);
+
+  // Handle transcript changes from voice input
+  useEffect(() => {
+    if (transcript) {
+      console.log('Voice transcript received:', transcript);
+      setInput(transcript);
+      resetTranscript();
+    }
+  }, [transcript, resetTranscript]);
 
   const isFinancialQuery = (query: string): boolean => {
     const financialKeywords = [
@@ -261,12 +290,7 @@ What specific financial goal or challenge can I help you with today?`;
       
       setMessages(prev => [...prev, assistantMessage]);
 
-      // Auto-speak the response if it's a valid financial response
-      setTimeout(() => {
-        if (assistantMessage.type === 'financial' || assistantMessage.type === 'normal') {
-          speak(response);
-        }
-      }, 500);
+      // Note: Auto-speak removed - users can now click the speak button on each message
 
     } catch (error) {
       console.error('Chat error:', error);
@@ -310,6 +334,32 @@ What specific financial goal or challenge can I help you with today?`;
   const handleSpeakResponse = (text: string) => {
     speak(text);
   };
+
+  const handleVoiceToggle = () => {
+    console.log('Voice button clicked! Current state:', { isListening, isSupported });
+    
+    if (!isSupported) {
+      toast({
+        title: "Voice input not supported",
+        description: "Your browser doesn't support voice input. Please try Chrome, Edge, or Safari.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (isListening) {
+      console.log('Stopping voice input...');
+      stopListening();
+    } else {
+      console.log('Starting voice input...');
+      startListening();
+    }
+  };
+
+  // Get the last assistant message for voice controls
+  const lastAssistantMessage = messages.length > 1 
+    ? messages.slice().reverse().find(msg => msg.role === 'assistant')?.content || ''
+    : '';
 
   const suggestionQueries = [
     "How should I start investing with ₹10,000 monthly?",
@@ -361,7 +411,7 @@ What specific financial goal or challenge can I help you with today?`;
                     </Avatar>
                   )}
                   
-                  <div className={`rounded-lg p-3 max-w-[80%] ${
+                  <div className={`rounded-lg p-3 max-w-[80%] relative ${
                     message.role === 'user' 
                       ? 'bg-primary text-primary-foreground' 
                       : message.type === 'rejected'
@@ -371,8 +421,35 @@ What specific financial goal or challenge can I help you with today?`;
                     <div className="whitespace-pre-wrap text-sm leading-relaxed">
                       {message.content}
                     </div>
-                    <div className="text-xs opacity-70 mt-2">
-                      {message.timestamp.toLocaleTimeString()}
+                    <div className="flex items-center justify-between mt-2">
+                      <div className="text-xs opacity-70">
+                        {message.timestamp.toLocaleTimeString()}
+                      </div>
+                      
+                      {/* Speak Button for Assistant Messages */}
+                      {message.role === 'assistant' && (
+                        <button
+                          onClick={() => {
+                            if (isSpeaking) {
+                              stopSpeaking();
+                            } else {
+                              speak(message.content);
+                            }
+                          }}
+                          className={`flex items-center justify-center w-7 h-7 rounded-full transition-all duration-200 hover:scale-105 ${
+                            isSpeaking 
+                              ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse' 
+                              : 'bg-blue-500 hover:bg-blue-600 text-white'
+                          }`}
+                          title={isSpeaking ? 'Stop speaking' : 'Speak this message'}
+                        >
+                          {isSpeaking ? (
+                            <VolumeX className="h-3 w-3" />
+                          ) : (
+                            <Volume2 className="h-3 w-3" />
+                          )}
+                        </button>
+                      )}
                     </div>
                   </div>
                   
@@ -424,23 +501,38 @@ What specific financial goal or challenge can I help you with today?`;
             </div>
           )}
 
-          {/* Voice Assistant Controls */}
-          <VoiceAssistantControls
-            onTranscriptChange={handleVoiceInput}
-            onSpeakResponse={handleSpeakResponse}
-            autoSpeak={true}
-            compact={false}
-            className="border-t pt-4"
-          />
-
           <form onSubmit={handleSendMessage} className="flex gap-2">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about investments, budgeting, loans, taxes... or use voice input"
-              disabled={isLoading}
-              className="flex-1"
-            />
+            <div className="relative flex-1">
+              <Input
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Ask about investments, budgeting, loans, taxes... or use voice input"
+                disabled={isLoading}
+                className="pr-12"
+              />
+              
+              {/* Voice Control Buttons */}
+              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
+                {/* Voice Input Button */}
+                <button
+                  type="button"
+                  onClick={handleVoiceToggle}
+                  disabled={isLoading}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm border-2 ${
+                    isListening 
+                      ? 'bg-red-500 hover:bg-red-600 text-white border-red-500 animate-pulse' 
+                      : 'bg-white hover:bg-gray-50 text-gray-600 border-gray-300 hover:border-gray-400'
+                  }`}
+                  title={isListening ? 'Stop voice input (recording...)' : 'Start voice input'}
+                >
+                  {isListening ? (
+                    <MicOff className="h-4 w-4" />
+                  ) : (
+                    <Mic className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
+            </div>
             <Button type="submit" disabled={isLoading || !input.trim()} className="shrink-0">
               {isLoading ? (
                 <div className="h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
@@ -449,6 +541,34 @@ What specific financial goal or challenge can I help you with today?`;
               )}
             </Button>
           </form>
+
+          {/* Voice Status Display */}
+          {(isListening || isSpeaking || error) && (
+            <div className="flex items-center gap-2 text-xs">
+              {isListening && (
+                <Badge variant="secondary" className="text-xs">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                    Listening...
+                  </div>
+                </Badge>
+              )}
+              {isSpeaking && (
+                <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-700">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                    AI Speaking...
+                  </div>
+                </Badge>
+              )}
+              {error && (
+                <Badge variant="destructive" className="text-xs">
+                  <AlertCircle className="h-3 w-3 mr-1" />
+                  {error}
+                </Badge>
+              )}
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

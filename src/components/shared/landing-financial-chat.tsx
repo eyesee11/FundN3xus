@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { User, CornerDownLeft, Sparkles, Brain, LogIn, ArrowRight, Mic, MicOff, Loader2 } from 'lucide-react';
+import { User, CornerDownLeft, Sparkles, Brain, LogIn, ArrowRight, Mic, MicOff, Loader2, Volume2, VolumeX } from 'lucide-react';
 import { Logo } from '@/components/shared/logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetTrigger } from '@/components/ui/sheet';
@@ -190,10 +190,15 @@ export function LandingFinancialChatWidget() {
     stopListening,
     resetTranscript,
     speak,
+    isSpeaking,
+    stopSpeaking,
   } = useVoiceAssistant({
     continuous: false,
     interimResults: true,
   });
+  
+  // Add speech enabled state
+  const [isSpeechEnabled, setIsSpeechEnabled] = useState(false);
   
   const MAX_FREE_RESPONSES = 5;
 
@@ -351,10 +356,12 @@ export function LandingFinancialChatWidget() {
       setResponseCount(newResponseCount);
       setIsLoading(false);
 
-      // Auto-speak the response
-      setTimeout(() => {
-        speak(response);
-      }, 500);
+      // Auto-speak the response if enabled
+      if (isSpeechEnabled) {
+        setTimeout(() => {
+          speak(response);
+        }, 500);
+      }
     }, 1500);
   };
 
@@ -364,6 +371,16 @@ export function LandingFinancialChatWidget() {
     } else {
       startListening();
     }
+  };
+
+  const handleSpeechToggle = () => {
+    setIsSpeechEnabled(prev => {
+      const newState = !prev;
+      if (!newState && isSpeaking) {
+        stopSpeaking();
+      }
+      return newState;
+    });
   };
 
   return (
@@ -413,8 +430,29 @@ export function LandingFinancialChatWidget() {
                     <div className="text-sm">
                       {message.content}
                     </div>
-                    <div className="text-xs opacity-70 mt-2">
-                      {message.timestamp}
+                    <div className="flex items-center justify-between mt-2">
+                      <div className="text-xs opacity-70">
+                        {message.timestamp}
+                      </div>
+                      {/* Speak button for advisor messages */}
+                      {message.role === 'advisor' && isSupported && typeof message.content === 'string' && (
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => {
+                            if (isSpeaking) {
+                              stopSpeaking();
+                            } else {
+                              speak(message.content as string);
+                            }
+                          }}
+                          className="ml-2 h-6 w-6 p-0 opacity-60 hover:opacity-100"
+                          title={isSpeaking ? "Stop speaking" : "Read aloud"}
+                        >
+                          <Volume2 className={`h-3 w-3 ${isSpeaking ? 'text-red-500 animate-pulse' : ''}`} />
+                        </Button>
+                      )}
                     </div>
                   </div>
                   
@@ -453,9 +491,28 @@ export function LandingFinancialChatWidget() {
             {responseCount < MAX_FREE_RESPONSES && (
               <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span>Sample responses: {responseCount}/{MAX_FREE_RESPONSES}</span>
-                <Badge variant="outline" className="text-xs">
-                  {MAX_FREE_RESPONSES - responseCount} remaining
-                </Badge>
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="text-xs">
+                    {MAX_FREE_RESPONSES - responseCount} remaining
+                  </Badge>
+                  {/* Voice Toggle Control */}
+                  {isSupported && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleSpeechToggle}
+                      className={`h-6 w-6 p-0 ${isSpeechEnabled ? 'bg-primary/10' : ''}`}
+                      title={isSpeechEnabled ? 'Turn off auto-speech' : 'Turn on auto-speech'}
+                    >
+                      {isSpeechEnabled ? (
+                        <Volume2 className={`h-3 w-3 ${isSpeaking ? 'text-green-600 animate-pulse' : 'text-primary'}`} />
+                      ) : (
+                        <VolumeX className="h-3 w-3 text-muted-foreground" />
+                      )}
+                    </Button>
+                  )}
+                </div>
               </div>
             )}
             

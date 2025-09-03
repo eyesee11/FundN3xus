@@ -1,292 +1,400 @@
-# 💰 FiSight - AI-Powered Financial Advisor
+# 💰 FiSight - AI-Powered Financial Advisor Platform
 
-> Your personal AI financial guru that revolutionizes personal finance management
+> **Your intelligent financial companion powered by Machine Learning and AI** 
 
-## 🚀 Project Overview
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.3-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![Python](https://img.shields.io/badge/Python-3.13-blue?logo=python)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-11.10-orange?logo=firebase)](https://firebase.google.com/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-FiSight is a cutting-edge, AI-powered financial advisory platform that combines advanced machine learning, real-time data processing, and intelligent automation to provide personalized financial guidance. Built with modern web technologies, FiSight serves as your comprehensive financial command center.
+## 🚀 **Quick Start**
 
-## 📋 Quick Start
+Get FiSight running locally in 3 simple steps:
 
 ```bash
-# Install dependencies
+# 1. Clone and install dependencies
+git clone https://github.com/deepanshusingla076/fisight.git
+cd fisight
 npm install
 
-# Set up Python ML environment (optional)
-python -m venv fisight-env
-fisight-env\Scripts\activate  # Windows
-pip install -r requirements.txt
+# 2. Set up ML backend (optional - auto-runs on first start)
+cd ml && pip install -r requirements.txt
 
-# Start development server
-npm run dev  # http://localhost:9002
+# 3. Start the application
+npm run dev        # Frontend only (http://localhost:9002)
+npm run dev:full   # Frontend + ML Backend (recommended)
 ```
 
-## 📚 Documentation
+**🌐 Access Points:**
+- **Frontend**: http://localhost:9002
+- **ML API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
 
-- **📄 [Project Description](./description.txt)** - Comprehensive project overview and future roadmap
-- **⚙️ [Requirements Guide](./REQUIREMENTS_GUIDE.md)** - Detailed installation and setup instructions
-- **📦 [Requirements Summary](./REQUIREMENTS_SUMMARY.md)** - Quick overview of all dependencies
-- **🤖 [AI Setup Guide](./docs/ai-setup-guide.md)** - AI model integration instructions
-- **🔥 [AI Implementation](./docs/ai-implementation-summary.md)** - Complete AI features overview
+## 📋 **Table of Contents**
 
-## ✨ key features
+- [Features](#-features)
+- [Tech Stack](#️-tech-stack)
+- [Project Structure](#-project-structure)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Development](#-development)
+- [ML Backend](#-ml-backend)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-### 🏠 landing page
-- **multilingual support** - english/hindi with smooth switching
-- **interactive AI chat demo** - try before you dive in
-- **modern design** - clean, responsive, and mobile-first
-- **smooth scrolling navigation** - because why not?
+## ✨ **Features**
 
-### 📊 dashboard
-- **financial health score** - get a quick snapshot of your money situation
-- **net worth tracking** - see your total wealth at a glance
-- **recent transactions** - keep tabs on where your money goes
-- **AI-powered insights** - personalized tips based on your spending
+### 🤖 **AI-Powered Financial Analysis**
+- **Machine Learning Predictions**: 4 trained ML models for comprehensive financial analysis
+- **Investment Risk Assessment**: Personalized risk tolerance scoring
+- **Affordability Calculator**: ML-powered purchase capacity analysis
+- **Financial Health Scoring**: Real-time health assessment with recommendations
+- **Scenario Planning**: AI-driven financial strategy recommendations
 
-### 💡 AI advisor chat
-- **real-time advice** - ask anything about your finances
-- **personalized recommendations** - tailored to your actual data
-- **financial health scoring** - track your progress over time
-- **multiple conversation contexts** - remembers your previous chats
+### 💻 **Modern Web Application**
+- **Interactive Dashboard**: Real-time financial metrics and insights
+- **Multilingual Support**: English/Hindi with seamless language switching
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Real-time Chat**: AI financial advisor with conversation memory
+- **Firebase Authentication**: Secure login with Google Sign-In
 
-### 💼 investment tools
-- **portfolio analysis** - see how your investments are performing
-- **rebalancing suggestions** - AI tells you when to buy/sell
-- **risk assessment** - understand your investment risk level
-- **performance tracking** - monitor gains and losses
+### 📊 **Financial Management Tools**
+- **Portfolio Analysis**: Investment performance tracking and insights
+- **Transaction Management**: Categorized expense tracking
+- **Goal Setting**: Financial target planning with progress tracking
+- **Net Worth Calculator**: Complete wealth assessment
+- **Rebalancing Suggestions**: AI-powered portfolio optimization
 
-### 🏦 affordability calculator
-- **big purchase planning** - can you afford that new car?
-- **scenario simulation** - what if you take that loan?
-- **long-term impact analysis** - see how decisions affect your future
+### 🔒 **Security & Privacy**
+- **Bank-level Encryption**: Secure data handling and storage
+- **Firebase Security Rules**: Protected user data access
+- **Environment Configuration**: Secure API key management
+- **Privacy-first**: No sensitive financial data stored permanently
 
-### 📈 scenario planner
-- **financial future modeling** - explore different life paths
-- **goal tracking** - set and monitor financial targets
-- **what-if analysis** - test major life decisions
+## 🛠️ **Tech Stack**
 
-### 👤 profile management
-- **financial data input** - securely store your info
-- **bank account linking** - connect your accounts (coming soon)
-- **investment portfolio setup** - track all your assets
-- **goal setting** - define what you're working toward
+### **Frontend**
+- **Framework**: Next.js 15.3.3 with App Router
+- **Language**: TypeScript 5.0
+- **Styling**: Tailwind CSS + shadcn/ui components
+- **Animations**: Framer Motion
+- **State Management**: React Context + Hooks
+- **Charts**: Recharts for data visualization
 
-## 🛠 Tech Stack
+### **Backend & AI**
+- **ML Backend**: FastAPI + Python 3.13
+- **ML Models**: XGBoost, Scikit-learn, Imbalanced-learn
+- **AI Integration**: Google Genkit + Gemini API
+- **Database**: Firebase Firestore
+- **Authentication**: Firebase Auth
+- **Email**: Nodemailer with SMTP
 
-**Frontend**: Next.js 15 + React 18 + TypeScript + Tailwind CSS + Radix UI
-**Backend**: Node.js + Firebase + Google Genkit AI + TensorFlow.js
-**ML/AI**: TensorFlow + Keras + Scikit-learn + Financial APIs
-**Database**: Firebase Firestore + Authentication
-**Deployment**: Firebase Hosting + Cloud Functions
+### **Machine Learning**
+- **Models**: 4 production-ready ML models
+  - Investment Risk Predictor (XGBoost Regression)
+  - Affordability Analyzer (XGBoost Regression) 
+  - Financial Health Scorer (XGBoost Regression)
+  - Scenario Planner (XGBoost Classification + SMOTE)
+- **Dataset**: 15,000+ synthetic financial records
+- **Performance**: >99% accuracy on core models
 
-## 📋 Complete Requirements
+## 📁 **Project Structure**
 
-All dependencies are consolidated in [`requirements.txt`](./requirements.txt):
-- **Frontend**: Next.js, React, TypeScript, UI components
-- **Backend**: Firebase, AI integration, Node.js services  
-- **Python/ML**: TensorFlow, financial APIs, data science libraries
+```
+FiSight/
+├── 📁 src/                          # Next.js application source
+│   ├── 📁 app/                      # App Router pages
+│   │   ├── 📁 (main)/              # Main application routes
+│   │   │   ├── 📁 dashboard/       # Financial dashboard
+│   │   │   ├── 📁 investments/     # Portfolio management
+│   │   │   ├── 📁 affordability/   # Purchase analysis
+│   │   │   ├── 📁 scenarios/       # Financial planning
+│   │   │   └── 📁 profile/         # User settings
+│   │   ├── 📁 api/                 # API routes
+│   │   └── 📁 login/               # Authentication
+│   ├── 📁 components/              # React components
+│   │   ├── 📁 ui/                  # Base UI components
+│   │   ├── 📁 dashboard/           # Dashboard components
+│   │   ├── 📁 investments/         # Investment tools
+│   │   ├── 📁 landing/             # Landing page
+│   │   └── 📁 shared/              # Shared components
+│   ├── 📁 lib/                     # Utility functions
+│   │   ├── 📄 ml-api.ts            # ML API client
+│   │   ├── 📄 firebase.ts          # Firebase config
+│   │   └── 📄 utils.ts             # Helper functions
+│   ├── 📁 ai/                      # AI flows & configuration
+│   ├── 📁 contexts/                # React contexts
+│   └── 📁 hooks/                   # Custom hooks
+│
+├── 📁 ml/                          # 🤖 Machine Learning Backend
+│   ├── 📄 server.py                # FastAPI ML server
+│   ├── 📄 train_model.py           # ML training pipeline
+│   ├── 📄 requirements.txt         # Python dependencies
+│   ├── 📄 dataset.csv              # Training dataset
+│   └── 📁 models/                  # Trained ML models
+│       ├── 📄 investment_risk_model.pkl
+│       ├── 📄 affordability_model.pkl
+│       ├── 📄 health_score_model.pkl
+│       └── 📄 scenario_planner_model.pkl
+│
+├── 📁 public/                      # Static assets
+├── 📁 docs/                        # Documentation
+├── 📄 package.json                 # Node.js dependencies
+├── 📄 next.config.ts               # Next.js configuration
+├── 📄 tailwind.config.ts           # Tailwind configuration
+└── 📄 .env.local                   # Environment variables
+```
 
-See [`REQUIREMENTS_GUIDE.md`](./REQUIREMENTS_GUIDE.md) for detailed setup instructions.
+## 🔧 **Installation**
 
-- **framework**: Next.js 15.3.3 with App Router
-- **ui**: Tailwind CSS + shadcn/ui components
-- **animations**: Framer Motion for smooth interactions
-- **ai**: Google Genkit for AI flows
-- **language**: TypeScript throughout
-- **email**: Nodemailer for contact forms
-- **charts**: Recharts for data visualization
-
-## 🚀 getting started
-
-### prerequisites
+### **Prerequisites**
 - Node.js 18+ 
+- Python 3.10+ (for ML backend)
 - npm or yarn
+- Git
 
-### installation
-
+### **Step 1: Clone Repository**
 ```bash
-# clone the repo
-git clone https://github.com/eyesee11/FiSight.git
-cd FiSight
-
-# install dependencies
-npm install
-
-# set up environment variables
-cp .env.local.example .env.local
-# edit .env.local with your keys
-
-# run development server
-npm run dev
+git clone https://github.com/deepanshusingla076/fisight.git
+cd fisight
 ```
 
-### environment setup
+### **Step 2: Install Frontend Dependencies**
+```bash
+npm install
+```
 
-create a `.env.local` file:
+### **Step 3: Set Up ML Backend**
+```bash
+cd ml
+pip install -r requirements.txt
+cd ..
+```
+
+### **Step 4: Configure Environment**
+Create `.env.local` file in root directory (see [Configuration](#-configuration))
+
+### **Step 5: Start Development**
+```bash
+# Option 1: Start both frontend and ML backend
+npm run dev:full
+
+# Option 2: Start individually
+npm run dev        # Frontend: http://localhost:9002
+npm run dev:ml     # ML Backend: http://localhost:8000
+```
+
+## ⚙️ **Configuration**
+
+### **Environment Variables**
+
+Create `.env.local` file in the root directory:
 
 ```env
-# AI Configuration
-GEMINI_API_KEY=your-gemini-api-key
-
-# Email Configuration
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-SMTP_FROM=your-email@gmail.com
-SMTP_TO=contact@fisight.com
-
-# App Settings
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
-## 📱 features breakdown
-
-### ai financial advisor
-- natural language processing for financial queries
-- personalized advice based on user financial data
-- multi-turn conversations with context awareness
-- financial health scoring and tracking
-
-### bilingual support
-- seamless english/hindi language switching
-- localized content and cultural context
-- indian financial scenarios and examples
-- region-specific financial advice
-
-### responsive design
-- mobile-first approach
-- works on all screen sizes
-- touch-friendly interactions
-- fast loading times
-
-### security & privacy
-- bank-level encryption for financial data
-- no storage of sensitive banking credentials
-- anonymized data processing
-- gdpr compliant data handling
-
-## 🔧 development
-
-### project structure
-```
-src/
-├── app/                 # next.js app router pages
-├── components/          # reusable react components
-│   ├── ui/             # base ui components
-│   ├── landing/        # landing page components
-│   ├── dashboard/      # dashboard components
-│   └── shared/         # shared components
-├── ai/                 # ai flows and configuration
-├── lib/                # utility functions and types
-├── contexts/           # react contexts
-└── hooks/              # custom react hooks
-```
-
-### available scripts
-
-```bash
-npm run dev          # start development server
-npm run build        # build for production
-npm run start        # start production server
-npm run lint         # run eslint
-npm run type-check   # run typescript compiler
-```
-
-## 🔐 firebase authentication setup
-
-FiSight includes complete Firebase authentication with sample configuration. Here's how to set it up:
-
-### 1. Create Firebase Project
-1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Create a new project
-3. Enable Authentication (Sign-in method: Email/Password & Google)
-4. Get your configuration from Project Settings
-
-### 2. Update Environment Variables
-Replace the sample values in `.env.local` with your actual Firebase config:
-
-```bash
 # Firebase Configuration
-NEXT_PUBLIC_FIREBASE_API_KEY=your_actual_api_key
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
 NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your_measurement_id
+
+# AI Configuration
+GEMINI_API_KEY=your_gemini_api_key
+GOOGLE_GENAI_API_KEY=your_gemini_api_key
+GOOGLE_AI_API_KEY=your_gemini_api_key
+
+# Email Configuration (SMTP)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+SMTP_FROM=your_email@gmail.com
+SMTP_TO=contact@fisight.com
+
+# ML API Configuration
+NEXT_PUBLIC_ML_API_URL=http://localhost:8000
+
+# App Configuration
+NEXTAUTH_URL=http://localhost:9002
+NEXTAUTH_SECRET=your_secret_key_here
+
+# Feature Flags
+FISIGHT_ENABLE_PRETRAINED_MODEL=false
+FISIGHT_ENABLE_MCP_SERVER=false
 ```
 
-### 3. Demo Credentials
-For quick testing with sample config:
-- **Email**: demo@fisight.com
-- **Password**: demo123
+### **Firebase Setup**
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/)
+2. Enable Authentication (Email/Password & Google Sign-in)
+3. Create Firestore database
+4. Copy configuration to `.env.local`
 
-### 4. Features Included
-- ✅ Email/Password Authentication
-- ✅ Google Sign-In
-- ✅ Protected Routes
-- ✅ User Profile Management
-- ✅ Automatic Redirects
-- ✅ Loading States & Error Handling
-- ✅ Responsive Auth Forms
+### **Google AI Setup**
+1. Get Gemini API key from [Google AI Studio](https://aistudio.google.com/)
+2. Add to `.env.local` as `GEMINI_API_KEY`
 
-## 🎨 design system
+## 👩‍💻 **Development**
 
-- **colors**: modern blue/purple gradient theme
-- **typography**: clean, readable fonts
-- **spacing**: consistent 8px grid system
-- **components**: shadcn/ui component library
-- **animations**: subtle framer motion effects
+### **Available Scripts**
 
-## 🌐 deployment
-
-### vercel (recommended)
 ```bash
-# deploy to vercel
-npm i -g vercel
+# Frontend Development
+npm run dev              # Start Next.js dev server
+npm run build            # Build for production
+npm run start            # Start production server
+npm run lint             # Run ESLint
+npm run typecheck        # TypeScript type checking
+
+# ML Backend Development
+npm run dev:ml           # Start ML API server
+npm run train            # Train ML models
+npm run setup:ml         # Install ML dependencies
+
+# Full Stack Development
+npm run dev:full         # Start both frontend and ML backend
+```
+
+### **Development Workflow**
+
+1. **Frontend Development**: Work in `src/` directory
+2. **ML Backend Development**: Work in `ml/` directory
+3. **Component Development**: Use `src/components/` with shadcn/ui
+4. **API Integration**: Use `src/lib/ml-api.ts` for ML predictions
+5. **Styling**: Tailwind CSS with design system in `tailwind.config.ts`
+
+### **Code Standards**
+- **TypeScript**: Strict mode enabled
+- **ESLint**: Configured with Next.js rules
+- **Prettier**: Code formatting
+- **Git Hooks**: Pre-commit linting (optional)
+
+## 🧠 **ML Backend**
+
+The ML backend provides production-ready financial prediction models via REST API.
+
+### **ML Models Performance**
+| Model | Type | Performance | Purpose |
+|-------|------|-------------|---------|
+| **Investment Risk** | XGBoost Regression | R² > 0.35 | Risk tolerance scoring |
+| **Affordability** | XGBoost Regression | R² > 0.99 | Purchase capacity analysis |
+| **Financial Health** | XGBoost Regression | R² > 0.99 | Health scoring & recommendations |
+| **Scenario Planning** | XGBoost Classification | 99.9% accuracy | Strategy recommendations |
+
+### **API Endpoints**
+- `GET /health` - Health check & model status
+- `POST /predict/investment-risk` - Investment risk assessment
+- `POST /predict/affordability` - Affordability analysis  
+- `POST /predict/financial-health` - Financial health scoring
+- `POST /predict/scenario` - Scenario planning recommendations
+
+### **Training Models**
+```bash
+cd ml
+python train_model.py
+```
+
+Models are automatically trained on first server startup if not found.
+
+## 🚀 **Deployment**
+
+### **Vercel (Recommended for Frontend)**
+```bash
+npm install -g vercel
 vercel
 ```
 
-### other platforms
-- works with any node.js hosting platform
-- docker support available
-- static export possible for some features
+### **Railway/Heroku (For ML Backend)**
+1. Create `Procfile`: `web: python ml/server.py`
+2. Deploy `ml/` directory to Python hosting platform
+3. Update `NEXT_PUBLIC_ML_API_URL` in frontend environment
 
-## 🤝 contributing
+### **Firebase Hosting**
+```bash
+npm run build
+firebase deploy
+```
 
-we welcome contributions! here's how:
+### **Docker Deployment**
+```dockerfile
+# Multi-stage build for both frontend and ML backend
+FROM node:18-alpine AS frontend
+# ... frontend build steps
 
-1. fork the repo
-2. create a feature branch
-3. make your changes
-4. test thoroughly
-5. submit a pull request
+FROM python:3.11-alpine AS ml-backend  
+# ... ML backend setup steps
+```
 
-### development guidelines
-- follow typescript best practices
-- use meaningful commit messages
-- test on multiple screen sizes
-- ensure accessibility compliance
+## 🤝 **Contributing**
 
-## 📄 license
+We welcome contributions! Here's how to get started:
 
-MIT License - see [LICENSE](LICENSE) for details
+### **Development Setup**
+1. Fork the repository
+2. Clone your fork: `git clone https://github.com/your-username/fisight.git`
+3. Create a feature branch: `git checkout -b feature/amazing-feature`
+4. Install dependencies: `npm install && cd ml && pip install -r requirements.txt`
+5. Start development: `npm run dev:full`
 
-## 🙋‍♀️ support
+### **Contribution Guidelines**
+- **Code Style**: Follow TypeScript and Python best practices
+- **Commits**: Use conventional commit messages
+- **Testing**: Ensure all features work before submitting
+- **Documentation**: Update README if adding major features
+- **Pull Requests**: Provide clear description of changes
 
-- 📧 email: support@fisight.com
-- 🐛 bugs: [GitHub Issues](https://github.com/eyesee11/FiSight/issues)
-- 💬 discussions: [GitHub Discussions](https://github.com/eyesee11/FiSight/discussions)
+### **Areas for Contribution**
+- 🎨 **UI/UX Improvements**: Enhanced components and user experience
+- 🧠 **ML Models**: Additional financial prediction models
+- 🌐 **Integrations**: Bank APIs, financial data sources
+- 🔧 **Infrastructure**: Performance optimizations, testing
+- 📚 **Documentation**: Tutorials, guides, API documentation
 
-## 🔮 roadmap
+## 📄 **License**
 
-- [ ] bank account integration
-- [ ] cryptocurrency tracking
-- [ ] tax planning features
-- [ ] goal achievement gamification
-- [ ] social sharing of progress
-- [ ] mobile app (react native)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 **Acknowledgments**
+
+- **Next.js Team** - For the amazing React framework
+- **Firebase Team** - For backend infrastructure
+- **Google AI** - For Gemini AI capabilities
+- **Tailwind CSS** - For utility-first CSS framework
+- **shadcn/ui** - For beautiful UI components
+- **XGBoost** - For high-performance ML models
+
+## 📞 **Support & Contact**
+
+- **🐛 Issues**: [GitHub Issues](https://github.com/deepanshusingla076/fisight/issues)
+- **💬 Discussions**: [GitHub Discussions](https://github.com/deepanshusingla076/fisight/discussions)
+- **📧 Email**: singladeepanshu706@gmail.com
+- **🔗 LinkedIn**: [Deepanshu Singla](https://linkedin.com/in/deepanshusingla076)
+
+## 🎯 **Project Status**
+
+**Current Version**: 1.0.0  
+**Status**: Production Ready ✅  
+**Last Updated**: September 2025
+
+### **Recent Updates**
+- ✅ Complete ML backend with 4 trained models
+- ✅ Production-ready FastAPI server
+- ✅ Firebase authentication integration
+- ✅ Responsive dashboard with real-time predictions
+- ✅ Clean project structure and documentation
+
+### **Roadmap**
+- 🔄 **In Progress**: Mobile app (React Native)
+- 📅 **Planned**: Bank API integrations
+- 📅 **Planned**: Advanced portfolio analytics
+- 📅 **Planned**: Social features and sharing
 
 ---
 
-built with ❤️ for better financial futures
+**Built with ❤️ for better financial futures**
+
+*Empowering individuals to make smarter financial decisions through AI and machine learning.*

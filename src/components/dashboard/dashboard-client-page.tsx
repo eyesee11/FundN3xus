@@ -19,6 +19,16 @@ const FinancialHealthSummary = dynamic(
   { ssr: false, loading: () => <Skeleton className="h-[300px] w-full" /> }
 );
 
+const MLFinancialHealthSummary = dynamic(
+  () => import('@/components/dashboard/ml-financial-health-summary').then(mod => mod.MLFinancialHealthSummary),
+  { ssr: false, loading: () => <Skeleton className="h-[400px] w-full" /> }
+);
+
+const MLInvestmentRiskAnalyzer = dynamic(
+  () => import('@/components/investments/ml-investment-risk-analyzer').then(mod => mod.MLInvestmentRiskAnalyzer),
+  { ssr: false, loading: () => <Skeleton className="h-[400px] w-full" /> }
+);
+
 export function DashboardClientPage() {
   return (
     <>
@@ -34,6 +44,22 @@ export function DashboardClientPage() {
           </Suspense>
         </div>
       </div>
+      
+      {/* ML-Powered Components */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <div>
+          <Suspense fallback={<Skeleton className="h-[400px] w-full" />}>
+            <MLFinancialHealthSummary />
+          </Suspense>
+        </div>
+        <div>
+          <Suspense fallback={<Skeleton className="h-[400px] w-full" />}>
+            <MLInvestmentRiskAnalyzer />
+          </Suspense>
+        </div>
+      </div>
+
+      {/* Original Components */}
       <div>
         <Suspense fallback={<Skeleton className="h-[300px] w-full" />}>
           <FinancialHealthSummary />

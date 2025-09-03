@@ -35,6 +35,7 @@ interface VoiceAssistantControlsProps {
   autoSpeak?: boolean;
   compact?: boolean;
   className?: string;
+  lastAssistantMessage?: string;  // Add prop for last assistant message
 }
 
 export function VoiceAssistantControls({
@@ -43,6 +44,7 @@ export function VoiceAssistantControls({
   autoSpeak = false,
   compact = false,
   className = '',
+  lastAssistantMessage = '',  // Add default value
 }: VoiceAssistantControlsProps) {
   const [voiceRate, setVoiceRate] = React.useState([1]);
   const [voicePitch, setVoicePitch] = React.useState([1]);
@@ -94,8 +96,24 @@ export function VoiceAssistantControls({
   };
 
   const handleSpeakToggle = () => {
+    console.log('Voice button clicked:', { isSpeaking, lastAssistantMessage });
+    
     if (isSpeaking) {
+      console.log('Stopping speech...');
       stopSpeaking();
+    } else {
+      // If there's a last assistant message, speak it
+      if (lastAssistantMessage) {
+        console.log('Speaking last assistant message:', lastAssistantMessage.substring(0, 100));
+        speak(lastAssistantMessage);
+      } else if (onSpeakResponse) {
+        // Call the parent's speak response function if provided
+        console.log('Using onSpeakResponse callback');
+        onSpeakResponse('Hello! I can help you with financial questions.');
+      } else {
+        console.log('Using default speak message');
+        speak('Hello! I can help you with financial questions.');
+      }
     }
   };
 
@@ -149,7 +167,6 @@ export function VoiceAssistantControls({
                 variant={isSpeaking ? "destructive" : "outline"}
                 size="sm"
                 onClick={handleSpeakToggle}
-                disabled={!isSpeaking}
                 className="h-8 w-8 p-0"
               >
                 {isSpeaking ? (
@@ -160,7 +177,7 @@ export function VoiceAssistantControls({
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>{isSpeaking ? 'Stop speaking' : 'Text-to-speech'}</p>
+              <p>{isSpeaking ? 'Stop speaking' : 'Speak last message'}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -201,7 +218,6 @@ export function VoiceAssistantControls({
           variant={isSpeaking ? "destructive" : "outline"}
           size="sm"
           onClick={handleSpeakToggle}
-          disabled={!isSpeaking}
           className="flex items-center gap-2"
         >
           {isSpeaking ? (
