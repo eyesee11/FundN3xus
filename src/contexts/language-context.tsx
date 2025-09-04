@@ -2,12 +2,13 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type Language = 'en' | 'hi';
+type Language = 'en' | 'hi' | 'es' | 'fr' | 'de' | 'ja' | 'zh' | 'ar';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  availableLanguages: { code: Language; name: string; nativeName: string; flag: string }[];
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -20,6 +21,16 @@ const translations = {
     'hero.subtitle': 'FundN3xus combines cutting-edge AI with your financial data to provide actionable insights, helping you make smarter decisions and achieve your goals faster.',
     'hero.dashboard': 'Explore Your Dashboard',
     'hero.learnMore': 'Learn More',
+    'hero.features.security': 'Bank-Level Security',
+    'hero.features.securityDesc': 'Your data is protected with military-grade encryption',
+    'hero.features.ai': 'AI-Powered Insights',
+    'hero.features.aiDesc': 'Get personalized recommendations from advanced AI',
+    'hero.features.planning': 'Smart Planning',
+    'hero.features.planningDesc': 'Achieve your financial goals with intelligent planning',
+    'hero.stats.users': 'Active Users',
+    'hero.stats.managed': 'Assets Managed',
+    'hero.stats.satisfaction': 'Satisfaction',
+    'hero.stats.support': 'AI Support',
     
     // about section
     'about.title': 'Our Mission: Financial Empowerment for All',
@@ -103,6 +114,16 @@ const translations = {
     'hero.subtitle': 'FundN3xus आपके वित्तीय डेटा को अत्याधुनिक AI तकनीक के साथ जोड़कर व्यावहारिक सुझाव देता है, जो आपको बेहतर निर्णय लेने और अपने लक्ष्यों को तेज़ी से हासिल करने में मदद करता है।',
     'hero.dashboard': 'अपना डैशबोर्ड देखें',
     'hero.learnMore': 'और जानें',
+    'hero.features.security': 'बैंक-स्तरीय सुरक्षा',
+    'hero.features.securityDesc': 'आपका डेटा सैन्य-ग्रेड एन्क्रिप्शन से सुरक्षित है',
+    'hero.features.ai': 'AI-संचालित अंतर्दृष्टि',
+    'hero.features.aiDesc': 'उन्नत AI से व्यक्तिगत सुझाव प्राप्त करें',
+    'hero.features.planning': 'स्मार्ट योजना',
+    'hero.features.planningDesc': 'बुद्धिमान योजना के साथ अपने वित्तीय लक्ष्य हासिल करें',
+    'hero.stats.users': 'सक्रिय उपयोगकर्ता',
+    'hero.stats.managed': 'प्रबंधित संपत्ति',
+    'hero.stats.satisfaction': 'संतुष्टि',
+    'hero.stats.support': 'AI सहायता',
     
     // About Section
     'about.title': 'हमारा मिशन: सभी के लिए वित्तीय सशक्तिकरण',
@@ -179,8 +200,103 @@ const translations = {
     'common.edit': 'संपादित करें',
     'common.delete': 'हटाएं',
     'common.loading': 'लोड हो रहा है...',
+  },
+  es: {
+    // Spanish translations - basic set
+    'hero.title': 'Navega Tu Futuro Financiero con Claridad Impulsada por IA',
+    'hero.subtitle': 'FundN3xus combina IA de vanguardia con tus datos financieros para brindar información procesable.',
+    'hero.dashboard': 'Explorar Tu Panel',
+    'hero.learnMore': 'Saber Más',
+    'nav.getStarted': 'Comenzar',
+    'nav.contact': 'Contacto',
+    'services.title': 'Nuestros Servicios',
+    'about.title': 'Nuestra Misión',
+    'contact.title': 'Ponerse en Contacto',
+    'faq.title': 'Preguntas Frecuentes',
+    'common.loading': 'Cargando...',
+  },
+  fr: {
+    // French translations - basic set
+    'hero.title': 'Naviguez Votre Avenir Financier avec la Clarté de l\'IA',
+    'hero.subtitle': 'FundN3xus combine l\'IA de pointe avec vos données financières pour fournir des informations exploitables.',
+    'hero.dashboard': 'Explorer Votre Tableau de Bord',
+    'hero.learnMore': 'En Savoir Plus',
+    'nav.getStarted': 'Commencer',
+    'nav.contact': 'Contact',
+    'services.title': 'Nos Services',
+    'about.title': 'Notre Mission',
+    'contact.title': 'Contactez-nous',
+    'faq.title': 'Questions Fréquemment Posées',
+    'common.loading': 'Chargement...',
+  },
+  de: {
+    // German translations - basic set
+    'hero.title': 'Navigiere Deine Finanzielle Zukunft mit KI-gestützter Klarheit',
+    'hero.subtitle': 'FundN3xus kombiniert modernste KI mit Ihren Finanzdaten, um verwertbare Einblicke zu bieten.',
+    'hero.dashboard': 'Dashboard Erkunden',
+    'hero.learnMore': 'Mehr Erfahren',
+    'nav.getStarted': 'Beginnen',
+    'nav.contact': 'Kontakt',
+    'services.title': 'Unsere Dienstleistungen',
+    'about.title': 'Unsere Mission',
+    'contact.title': 'Kontakt Aufnehmen',
+    'faq.title': 'Häufig Gestellte Fragen',
+    'common.loading': 'Laden...',
+  },
+  ja: {
+    // Japanese translations - basic set
+    'hero.title': 'AI駆動の明確性で金融の未来をナビゲート',
+    'hero.subtitle': 'FundN3xusは最先端のAIと金融データを組み合わせて実用的な洞察を提供します。',
+    'hero.dashboard': 'ダッシュボードを探索',
+    'hero.learnMore': 'もっと詳しく',
+    'nav.getStarted': '始める',
+    'nav.contact': 'お問い合わせ',
+    'services.title': '私たちのサービス',
+    'about.title': '私たちの使命',
+    'contact.title': 'お問い合わせ',
+    'faq.title': 'よくある質問',
+    'common.loading': '読み込み中...',
+  },
+  zh: {
+    // Chinese translations - basic set
+    'hero.title': '用AI驱动的洞察力导航您的财务未来',
+    'hero.subtitle': 'FundN3xus将尖端AI与您的财务数据结合，提供可操作的洞察。',
+    'hero.dashboard': '探索您的仪表板',
+    'hero.learnMore': '了解更多',
+    'nav.getStarted': '开始',
+    'nav.contact': '联系',
+    'services.title': '我们的服务',
+    'about.title': '我们的使命',
+    'contact.title': '联系我们',
+    'faq.title': '常见问题',
+    'common.loading': '加载中...',
+  },
+  ar: {
+    // Arabic translations - basic set
+    'hero.title': 'اشتر مستقبلك المالي بوضوح مدعوم بالذكاء الاصطناعي',
+    'hero.subtitle': 'يجمع FundN3xus بين الذكاء الاصطناعي المتطور وبياناتك المالية لتقديم رؤى قابلة للتنفيذ.',
+    'hero.dashboard': 'استكشف لوحة القيادة',
+    'hero.learnMore': 'تعلم أكثر',
+    'nav.getStarted': 'ابدأ',
+    'nav.contact': 'اتصال',
+    'services.title': 'خدماتنا',
+    'about.title': 'مهمتنا',
+    'contact.title': 'تواصل معنا',
+    'faq.title': 'الأسئلة الشائعة',
+    'common.loading': 'جاري التحميل...',
   }
 };
+
+const availableLanguages = [
+  { code: 'en' as Language, name: 'English', nativeName: 'English', flag: '🇺🇸' },
+  { code: 'hi' as Language, name: 'Hindi', nativeName: 'हिंदी', flag: '🇮🇳' },
+  { code: 'es' as Language, name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
+  { code: 'fr' as Language, name: 'French', nativeName: 'Français', flag: '🇫🇷' },
+  { code: 'de' as Language, name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
+  { code: 'ja' as Language, name: 'Japanese', nativeName: '日本語', flag: '🇯🇵' },
+  { code: 'zh' as Language, name: 'Chinese', nativeName: '中文', flag: '🇨🇳' },
+  { code: 'ar' as Language, name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦' },
+];
 
 interface LanguageProviderProps {
   children: ReactNode;
@@ -202,11 +318,20 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   };
 
   const t = (key: string): string => {
-    return translations[language][key as keyof typeof translations['en']] || key;
+    const languageTranslations = translations[language];
+    if (languageTranslations && key in languageTranslations) {
+      return (languageTranslations as any)[key];
+    }
+    // Fallback to English if translation not found
+    const englishTranslations = translations.en;
+    if (englishTranslations && key in englishTranslations) {
+      return (englishTranslations as any)[key];
+    }
+    return key; // Return key if no translation found
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t, availableLanguages }}>
       {children}
     </LanguageContext.Provider>
   );

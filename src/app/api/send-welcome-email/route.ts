@@ -237,8 +237,8 @@ export async function POST(request: NextRequest) {
         
         Contact us:
         Email: contact@FundN3xus.com
-        Phone: +91 98765 43210
-        Address: 123 Fintech Avenue, Mumbai, India
+        Phone: +91 89237 09367
+        Address: Chitkara University, Punjab, India
       `,
     });
 

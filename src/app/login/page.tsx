@@ -36,7 +36,7 @@ export default function LoginPage() {
             <div className="flex-1 flex items-center justify-center p-6 lg:p-8 bg-gradient-to-br from-primary/5 to-primary/10">
               <div className="relative w-full max-w-[320px] aspect-square">
                 <Image
-                  src="/banner.png"
+                  src="/undraw_pay-online_806n.png"
                   alt="FundN3xus Financial Planning"
                   fill
                   className="object-contain drop-shadow-lg"

@@ -95,7 +95,7 @@ export function AboutSection() {
             className="relative"
           >
             <Image
-              src="/banner2.png"
+              src="/undraw_printing-invoices_osgs.png"
               alt="Financial empowerment visualization"
               width={500}
               height={350}

@@ -99,8 +99,8 @@ export function ContactSection() {
           <h2 className="text-3xl font-headline font-bold mb-2 text-background tracking-tight">FundN3xus</h2>
           <div className="text-background/80 text-base mb-5 text-center font-body">
             <div>contact@FundN3xus.com</div>
-            <div>+91 98765 43210</div>
-            <div>123 Fintech Avenue, Mumbai, India</div>
+            <div>+91 89237 09367</div>
+            <div>Chitkara University, Punjab, India</div>
           </div>
         </div>
         {/* Right side: form */}
