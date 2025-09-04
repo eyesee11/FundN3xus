@@ -81,7 +81,7 @@ export default function SettingsPage() {
       clearNewUserFlag();
       toast({
         title: "Welcome setup complete! 🎉",
-        description: "Your account is all set up. Welcome to FiSight!",
+        description: "Your account is all set up. Welcome to FundN3xus!",
       });
       
       // Redirect to dashboard after setup
@@ -117,7 +117,7 @@ export default function SettingsPage() {
         <Alert className="border-blue-200 bg-blue-50">
           <Sparkles className="h-4 w-4" />
           <AlertDescription>
-            <strong>Welcome to FiSight! 🎉</strong> Let's set up your profile to get you started. 
+            <strong>Welcome to FundN3xus! 🎉</strong> Let's set up your profile to get you started. 
             {user?.providerData?.[0]?.providerId === 'google.com' && 
               " We've pre-filled some info from your Google account."}
           </AlertDescription>
@@ -136,7 +136,7 @@ export default function SettingsPage() {
       <PageHeader 
         title={isWelcomeFlow ? "Welcome! Set Up Your Profile" : "Settings"} 
         description={isWelcomeFlow ? 
-          "Let's get your account configured so you can make the most of FiSight" :
+          "Let's get your account configured so you can make the most of FundN3xus" :
           "Manage your account preferences, privacy settings, and financial data"
         }
       />
@@ -277,7 +277,7 @@ export default function SettingsPage() {
               <Button variant="outline" size="sm">Regenerate</Button>
             </div>
             <p className="text-xs text-muted-foreground">
-              Use this key to access FiSight APIs programmatically
+              Use this key to access FundN3xus APIs programmatically
             </p>
           </div>
         </CardContent>

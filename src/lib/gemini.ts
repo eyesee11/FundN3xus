@@ -30,8 +30,8 @@ export async function askGemini(prompt: string, context?: string): Promise<strin
   }
 
   try {
-    // Construct the system prompt for FiSight financial advisor
-    const systemPrompt = `You are FiSight AI - an expert financial advisor and personal finance assistant.
+    // Construct the system prompt for FundN3xus financial advisor
+    const systemPrompt = `You are FundN3xus AI - an expert financial advisor and personal finance assistant.
 
 Your role:
 - Provide helpful, accurate financial guidance based on the user's situation
@@ -48,7 +48,7 @@ Guidelines:
 - Be encouraging but realistic about financial goals
 - Reference the ML analysis when provided to support your recommendations
 
-Context: This is a conversation within the FiSight financial planning app where users can get personalized AI-powered financial advice.`;
+Context: This is a conversation within the FundN3xus financial planning app where users can get personalized AI-powered financial advice.`;
 
     // Combine system prompt, context, and user prompt
     const fullPrompt = [

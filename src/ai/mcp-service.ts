@@ -59,7 +59,7 @@ export class FiMoneyMcpService {
 
       this.client = new Client(
         {
-          name: 'fisight-financial-advisor',
+          name: 'FundN3xus-financial-advisor',
           version: '1.0.0',
         },
         {

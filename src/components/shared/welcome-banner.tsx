@@ -41,7 +41,7 @@ export function WelcomeBanner() {
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="h-5 w-5 text-blue-600" />
               <h3 className="font-semibold text-blue-900">
-                Welcome to FiSight, {user.displayName || 'there'}! 🎉
+                Welcome to FundN3xus, {user.displayName || 'there'}! 🎉
               </h3>
             </div>
             <p className="text-blue-700 mb-4">

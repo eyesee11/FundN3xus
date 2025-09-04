@@ -66,7 +66,7 @@ def test_endpoint(endpoint, name):
 
 def main():
     """Run basic API tests"""
-    print("🔍 Testing FiSight ML API...")
+    print("🔍 Testing FundN3xus ML API...")
     print("-" * 40)
     
     # Wait a moment for server to be ready

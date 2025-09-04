@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
           </div>
           <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;">
           <p style="color: #64748b; font-size: 14px;">
-            This email was sent from the FiSight contact form on ${new Date().toLocaleString()}.
+            This email was sent from the FundN3xus contact form on ${new Date().toLocaleString()}.
           </p>
         </div>
       `,

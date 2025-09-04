@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcome to FiSight</title>
+        <title>Welcome to FundN3xus</title>
         <style>
             body {
                 margin: 0;
@@ -153,20 +153,20 @@ export async function POST(request: NextRequest) {
             <div class="header">
                 <div class="logo">
                     <div class="logo-icon">💰</div>
-                    <h1 class="logo-text">FiSight</h1>
+                    <h1 class="logo-text">FundN3xus</h1>
                 </div>
-                <h1 class="welcome-title">Welcome to FiSight!</h1>
+                <h1 class="welcome-title">Welcome to FundN3xus!</h1>
                 <p class="welcome-subtitle">Your AI-powered financial planning journey starts here</p>
             </div>
             
             <div class="content">
                 <p class="greeting">Hello ${name},</p>
                 <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 24px;">
-                    Thank you for joining FiSight! We're excited to help you take control of your financial future with our AI-powered tools and insights.
+                    Thank you for joining FundN3xus! We're excited to help you take control of your financial future with our AI-powered tools and insights.
                 </p>
                 
                 <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 24px;">
-                    Here's what you can do with FiSight:
+                    Here's what you can do with FundN3xus:
                 </p>
                 
                 <ul class="feature-list">
@@ -197,13 +197,13 @@ export async function POST(request: NextRequest) {
             
             <div class="footer">
                 <p class="footer-text">
-                    <strong>FiSight</strong><br>
-                    <a href="mailto:contact@fisight.com" class="contact-info">contact@fisight.com</a><br>
+                    <strong>FundN3xus</strong><br>
+                    <a href="mailto:contact@FundN3xus.com" class="contact-info">contact@FundN3xus.com</a><br>
                     +91 98765 43210<br>
                     123 Fintech Avenue, Mumbai, India
                 </p>
                 <p class="footer-text">
-                    © 2025 FiSight. All rights reserved.
+                    © 2025 FundN3xus. All rights reserved.
                 </p>
             </div>
         </div>
@@ -215,14 +215,14 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail({
       from: process.env.SMTP_FROM,
       to: email,
-      subject: 'Welcome to FiSight - Your Financial Journey Begins! 🚀',
+      subject: 'Welcome to FundN3xus - Your Financial Journey Begins! 🚀',
       html: htmlTemplate,
       text: `
-        Welcome to FiSight, ${name}!
+        Welcome to FundN3xus, ${name}!
         
-        Thank you for joining FiSight! We're excited to help you take control of your financial future with our AI-powered tools and insights.
+        Thank you for joining FundN3xus! We're excited to help you take control of your financial future with our AI-powered tools and insights.
         
-        Here's what you can do with FiSight:
+        Here's what you can do with FundN3xus:
         • Get AI-powered investment analysis and portfolio rebalancing suggestions
         • Simulate affordability for major purchases like homes and cars
         • Explore financial scenarios and plan for different life events
@@ -233,10 +233,10 @@ export async function POST(request: NextRequest) {
         Visit: http://localhost:9002/login
         
         Best regards,
-        The FiSight Team
+        The FundN3xus Team
         
         Contact us:
-        Email: contact@fisight.com
+        Email: contact@FundN3xus.com
         Phone: +91 98765 43210
         Address: 123 Fintech Avenue, Mumbai, India
       `,

@@ -40,7 +40,7 @@ export function LandingFooter() {
           >
             <Logo className="h-7 w-7 text-primary" />
           </motion.div>
-          <span className="text-xl font-bold font-headline">FiSight</span>
+          <span className="text-xl font-bold font-headline">FundN3xus</span>
         </motion.div>
         
         <motion.nav 
@@ -70,7 +70,7 @@ export function LandingFooter() {
           animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
-          &copy; {new Date().getFullYear()} FiSight. {t('footer.rights')}
+          &copy; {new Date().getFullYear()} FundN3xus. {t('footer.rights')}
         </motion.p>
       </div>
     </motion.footer>

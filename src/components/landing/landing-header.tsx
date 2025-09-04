@@ -40,7 +40,7 @@ export function LandingHeader() {
             >
               <Logo className="h-7 w-7 text-primary" />
             </motion.div>
-            <span className="text-xl font-bold font-headline">FiSight</span>
+            <span className="text-xl font-bold font-headline">FundN3xus</span>
           </Link>
         </motion.div>
         
@@ -95,7 +95,7 @@ export function LandingHeader() {
               <div className="grid gap-6 p-6">
                 <Link href="/" className="flex items-center gap-2">
                   <Logo className="h-7 w-7 text-primary" />
-                  <span className="text-xl font-bold font-headline">FiSight</span>
+                  <span className="text-xl font-bold font-headline">FundN3xus</span>
                 </Link>
                 <nav className="grid gap-4">
                   {navLinks.map(link => (

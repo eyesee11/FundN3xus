@@ -1,5 +1,5 @@
 /**
- * FiSight ML API Client
+ * FundN3xus ML API Client
  * Production-ready client for communicating with ML backend
  */
 

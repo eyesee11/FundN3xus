@@ -1,4 +1,4 @@
-# 💰 FiSight - AI-Powered Financial Advisory Platform
+# 💰 FundN3xus - AI-Powered Financial Advisory Platform
 
 > **Empowering smarter financial decisions through AI and Machine Learning**
 
@@ -16,8 +16,8 @@
 ### **Option 1: Full Stack Development (Recommended)**
 ```bash
 # Clone the repository
-git clone https://github.com/deepanshusingla076/fisight.git
-cd fisight
+git clone https://github.com/deepanshusingla076/FundN3xus.git
+cd FundN3xus
 
 # Install frontend dependencies
 npm install
@@ -71,9 +71,9 @@ npm run dev:ml     # http://localhost:8000
 
 ## 🎯 **Overview**
 
-FiSight is a cutting-edge financial advisory platform that combines modern web technologies with advanced machine learning to provide personalized financial insights. Built with a focus on user experience and data-driven recommendations, FiSight helps individuals make informed financial decisions through AI-powered analysis.
+FundN3xus is a cutting-edge financial advisory platform that combines modern web technologies with advanced machine learning to provide personalized financial insights. Built with a focus on user experience and data-driven recommendations, FundN3xus helps individuals make informed financial decisions through AI-powered analysis.
 
-### **🌟 What Makes FiSight Special**
+### **🌟 What Makes FundN3xus Special**
 
 - **🧠 AI-First Approach**: Four specialized ML models trained on 15,000+ synthetic financial records
 - **📱 Modern UX**: Responsive, intuitive interface built with Next.js and Tailwind CSS  
@@ -192,7 +192,7 @@ graph TB
 ## 📁 **Project Structure**
 
 ```
-FiSight/
+FundN3xus/
 ├── � README.md                     # Project documentation
 ├── 📄 package.json                  # Node.js dependencies and scripts
 ├── 📄 next.config.ts                # Next.js configuration
@@ -343,12 +343,12 @@ Before getting started, ensure you have the following installed:
 #### **1. Clone Repository**
 ```bash
 # HTTPS (recommended)
-git clone https://github.com/deepanshusingla076/fisight.git
+git clone https://github.com/deepanshusingla076/FundN3xus.git
 
 # Or SSH (if configured)  
-git clone git@github.com:deepanshusingla076/fisight.git
+git clone git@github.com:deepanshusingla076/FundN3xus.git
 
-cd fisight
+cd FundN3xus
 ```
 
 #### **2. Frontend Setup**
@@ -418,7 +418,7 @@ npm run dev:ml     # ML API: http://localhost:8000
 
 ### **✅ Verify Installation**
 
-1. **Frontend**: Visit http://localhost:9002 - should show FiSight landing page
+1. **Frontend**: Visit http://localhost:9002 - should show FundN3xus landing page
 2. **ML API**: Visit http://localhost:8000/docs - should show FastAPI documentation
 3. **Health Check**: Visit http://localhost:8000/health - should return JSON status
 
@@ -501,8 +501,8 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your_email@gmail.com
 SMTP_PASS=your_app_specific_password
-SMTP_FROM=FiSight <your_email@gmail.com>
-SMTP_TO=support@fisight.app
+SMTP_FROM=FundN3xus <your_email@gmail.com>
+SMTP_TO=support@FundN3xus.app
 
 # ===================================
 # 🔒 SECURITY & AUTHENTICATION
@@ -525,8 +525,8 @@ NEXT_PUBLIC_APP_VERSION=1.0.0
 # Feature Flags
 NEXT_PUBLIC_ENABLE_ANALYTICS=false
 NEXT_PUBLIC_ENABLE_DEBUG_MODE=true
-FISIGHT_ENABLE_PRETRAINED_MODEL=true
-FISIGHT_ENABLE_MCP_SERVER=false
+FundN3xus_ENABLE_PRETRAINED_MODEL=true
+FundN3xus_ENABLE_MCP_SERVER=false
 
 # ===================================
 # 🌐 API ENDPOINTS
@@ -603,7 +603,7 @@ NEXT_PUBLIC_ENABLE_DEBUG_MODE=true
 NODE_ENV=production
 NEXT_PUBLIC_APP_ENV=production  
 NEXT_PUBLIC_ML_API_URL=https://your-ml-api.railway.app
-NEXT_PUBLIC_WEBAPP_URL=https://fisight.vercel.app
+NEXT_PUBLIC_WEBAPP_URL=https://FundN3xus.vercel.app
 NEXT_PUBLIC_ENABLE_DEBUG_MODE=false
 ```
 
@@ -849,7 +849,7 @@ const MLAnalyzer = lazy(() => import('./ml-investment-risk-analyzer'));
 import Image from 'next/image';
 <Image
   src="/banner.png"
-  alt="FiSight Banner"
+  alt="FundN3xus Banner"
   width={800}
   height={400}
   priority
@@ -886,7 +886,7 @@ async def async_prediction(data: PredictionRequest):
 
 ## 🤖 **ML Models & API**
 
-FiSight's machine learning backend provides four specialized models trained on financial data, accessible via a production-ready FastAPI server.
+FundN3xus's machine learning backend provides four specialized models trained on financial data, accessible via a production-ready FastAPI server.
 
 ### **🧠 Machine Learning Models**
 
@@ -1171,7 +1171,7 @@ def load_model(model_path: str):
 
 ### **🧪 Testing Strategy**
 
-FiSight employs a comprehensive testing approach covering frontend components, API endpoints, and ML model validation.
+FundN3xus employs a comprehensive testing approach covering frontend components, API endpoints, and ML model validation.
 
 #### **Test Types Coverage**
 - **Unit Tests**: Individual functions and components
@@ -1384,7 +1384,7 @@ echo "python-3.11" > ml/runtime.txt
 
 # Deploy to Heroku
 cd ml
-heroku create fisight-ml-api
+heroku create FundN3xus-ml-api
 git subtree push --prefix ml heroku main
 ```
 
@@ -1476,23 +1476,23 @@ amplify publish
 # ML Backend: AWS Lambda + API Gateway
 # Use serverless framework
 npm install -g serverless
-serverless create --template aws-python3 --path fisight-ml
+serverless create --template aws-python3 --path FundN3xus-ml
 ```
 
 #### **Azure Deployment**
 ```bash
 # Frontend: Azure Static Web Apps
 az staticwebapp create \
-  --name fisight-frontend \
-  --resource-group fisight-rg \
-  --source https://github.com/your-username/fisight \
+  --name FundN3xus-frontend \
+  --resource-group FundN3xus-rg \
+  --source https://github.com/your-username/FundN3xus \
   --location "East US 2"
 
 # ML Backend: Azure Container Instances
 az container create \
-  --resource-group fisight-rg \
-  --name fisight-ml \
-  --image your-registry/fisight-ml:latest \
+  --resource-group FundN3xus-rg \
+  --name FundN3xus-ml \
+  --image your-registry/FundN3xus-ml:latest \
   --ports 8000
 ```
 
@@ -1505,11 +1505,11 @@ NODE_ENV=production
 NEXT_PUBLIC_APP_ENV=production
 
 # Updated URLs for production
-NEXT_PUBLIC_ML_API_URL=https://fisight-ml.railway.app
-NEXT_PUBLIC_WEBAPP_URL=https://fisight.vercel.app
+NEXT_PUBLIC_ML_API_URL=https://FundN3xus-ml.railway.app
+NEXT_PUBLIC_WEBAPP_URL=https://FundN3xus.vercel.app
 
 # Production Firebase project
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=fisight-prod
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=FundN3xus-prod
 NEXT_PUBLIC_FIREBASE_API_KEY=your_prod_api_key
 
 # Production security
@@ -1658,7 +1658,7 @@ async def batch_predictions(requests: List[PredictionRequest]):
 
 #### **GitHub Actions** (`.github/workflows/deploy.yml`)
 ```yaml
-name: Deploy FiSight
+name: Deploy FundN3xus
 
 on:
   push:
@@ -1709,7 +1709,7 @@ We welcome contributions! Here's how to get started:
 
 ### **Development Setup**
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/your-username/fisight.git`
+2. Clone your fork: `git clone https://github.com/your-username/FundN3xus.git`
 3. Create a feature branch: `git checkout -b feature/amazing-feature`
 4. Install dependencies: `npm install && cd ml && pip install -r requirements.txt`
 5. Start development: `npm run dev:full`
@@ -1743,14 +1743,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 **Support & Contact**
 
-- **🐛 Issues**: [GitHub Issues](https://github.com/deepanshusingla076/fisight/issues)
-- **💬 Discussions**: [GitHub Discussions](https://github.com/deepanshusingla076/fisight/discussions)
+- **🐛 Issues**: [GitHub Issues](https://github.com/deepanshusingla076/FundN3xus/issues)
+- **💬 Discussions**: [GitHub Discussions](https://github.com/deepanshusingla076/FundN3xus/discussions)
 - **📧 Email**: singladeepanshu706@gmail.com
 - **🔗 LinkedIn**: [Deepanshu Singla](https://linkedin.com/in/deepanshusingla076)
 
 ## 🤝 **Contributing**
 
-We welcome contributions from developers, designers, financial experts, and data scientists! Here's how you can help make FiSight better.
+We welcome contributions from developers, designers, financial experts, and data scientists! Here's how you can help make FundN3xus better.
 
 ### **🚀 Getting Started**
 
@@ -1758,8 +1758,8 @@ We welcome contributions from developers, designers, financial experts, and data
 ```bash
 # Fork the repository on GitHub
 # Clone your fork
-git clone https://github.com/your-username/fisight.git
-cd fisight
+git clone https://github.com/your-username/FundN3xus.git
+cd FundN3xus
 
 # Create a feature branch
 git checkout -b feature/amazing-new-feature
@@ -1884,9 +1884,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 | Issue Type | Where to Go | Response Time |
 |------------|-------------|---------------|
-| **🐛 Bug Reports** | [GitHub Issues](https://github.com/deepanshusingla076/fisight/issues) | 1-2 business days |
-| **💬 Questions** | [GitHub Discussions](https://github.com/deepanshusingla076/fisight/discussions) | 1-3 days |
-| **🚀 Feature Requests** | [GitHub Issues](https://github.com/deepanshusingla076/fisight/issues) | 3-5 days |
+| **🐛 Bug Reports** | [GitHub Issues](https://github.com/deepanshusingla076/FundN3xus/issues) | 1-2 business days |
+| **💬 Questions** | [GitHub Discussions](https://github.com/deepanshusingla076/FundN3xus/discussions) | 1-3 days |
+| **🚀 Feature Requests** | [GitHub Issues](https://github.com/deepanshusingla076/FundN3xus/issues) | 3-5 days |
 | **📧 Direct Contact** | singladeepanshu706@gmail.com | 2-5 days |
 
 ### **📞 Maintainer Contact**
@@ -1909,7 +1909,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - **⭐ Star** this repository to get notifications
 - **👀 Watch** for releases and important updates
 - **🍴 Fork** to contribute and stay synced
-- **📱 Follow** [@fisight](https://twitter.com/fisight) on Twitter (coming soon)
+- **📱 Follow** [@FundN3xus](https://twitter.com/FundN3xus) on Twitter (coming soon)
 
 ## 🎯 **Project Status & Roadmap**
 
@@ -1970,7 +1970,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🙏 **Acknowledgments**
 
-FiSight wouldn't be possible without these amazing technologies and communities:
+FundN3xus wouldn't be possible without these amazing technologies and communities:
 
 ### **🔧 Core Technologies**
 - **[Next.js Team](https://nextjs.org/)** - For the incredible React framework and App Router
@@ -2012,12 +2012,12 @@ FiSight wouldn't be possible without these amazing technologies and communities:
 
 <div align="center">
 
-**⭐ If FiSight helps you make better financial decisions, please star this repository! ⭐**
+**⭐ If FundN3xus helps you make better financial decisions, please star this repository! ⭐**
 
 **Built with ❤️ for better financial futures**
 
 *Empowering individuals to make smarter financial decisions through AI and machine learning.*
 
-**[⬆ Back to Top](#-fisight---ai-powered-financial-advisory-platform)**
+**[⬆ Back to Top](#-FundN3xus---ai-powered-financial-advisory-platform)**
 
 </div>

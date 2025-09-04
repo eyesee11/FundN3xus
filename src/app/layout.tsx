@@ -6,7 +6,7 @@ import { LanguageProvider } from '@/contexts/language-context';
 import { AuthProvider } from '@/contexts/auth-context';
 
 export const metadata: Metadata = {
-  title: 'FiSight',
+  title: 'FundN3xus',
   description: 'AI-Powered Financial Insights',
 };
 

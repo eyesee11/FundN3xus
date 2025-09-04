@@ -74,7 +74,7 @@ export function TextToSpeechDemo() {
   };
 
   const predefinedTexts = [
-    "Welcome to FiSight! Your AI-powered financial assistant.",
+    "Welcome to FundN3xus! Your AI-powered financial assistant.",
     "Your financial health score is 85 out of 100, which is excellent!",
     "Based on your profile, we recommend a moderate investment risk strategy.",
     "You can afford up to $250,000 for your next major purchase.",

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-FiSight ML API Server - Production Ready
-FastAPI server serving ML models for FiSight hackathon project.
+FundN3xus ML API Server - Production Ready
+FastAPI server serving ML models for FundN3xus hackathon project.
 
 Usage: python ml/server.py
 Access: http://localhost:8000
@@ -25,24 +25,67 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import uvicorn
+from dotenv import load_dotenv
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Load environment variables from .env file
+load_dotenv()
+
+# Get configuration from environment variables
+ML_HOST = os.getenv('HOST', '0.0.0.0')
+ML_PORT = int(os.getenv('PORT', 8000))
+ML_RELOAD = os.getenv('RELOAD', 'true').lower() == 'true'
+ML_LOG_LEVEL = os.getenv('LOG_LEVEL', 'info')
+ML_WORKERS = int(os.getenv('WORKERS', 1))
+
+# Model configuration
+MODELS_DIR = os.getenv('MODELS_DIR', 'models')
+DATASET_PATH = os.getenv('DATASET_PATH', 'dataset.csv')
+
+# CORS configuration
+CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:9002,http://127.0.0.1:9002,http://localhost:3000,http://127.0.0.1:3000').split(',')
+
+# GPU configuration
+USE_GPU = os.getenv('USE_GPU', 'false').lower() == 'true'
+CUDA_VISIBLE_DEVICES = os.getenv('CUDA_VISIBLE_DEVICES', '0')
+
+# Logging configuration
+ENABLE_VERBOSE_LOGGING = os.getenv('ENABLE_VERBOSE_LOGGING', 'true').lower() == 'true'
+LOG_PREDICTIONS = os.getenv('LOG_PREDICTIONS', 'false').lower() == 'true'
+
+# Development flags
+DEVELOPMENT_MODE = os.getenv('DEVELOPMENT_MODE', 'true').lower() == 'true'
+ENABLE_DEBUG_ENDPOINTS = os.getenv('ENABLE_DEBUG_ENDPOINTS', 'true').lower() == 'true'
+
+# Configure logging based on environment variables
+log_level = getattr(logging, ML_LOG_LEVEL.upper(), logging.INFO)
+logging.basicConfig(
+    level=log_level,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s' if ENABLE_VERBOSE_LOGGING else '%(levelname)s: %(message)s'
+)
 logger = logging.getLogger(__name__)
+
+# Log configuration on startup
+if DEVELOPMENT_MODE:
+    logger.info(f"🔧 ML Backend Configuration:")
+    logger.info(f"   Host: {ML_HOST}")
+    logger.info(f"   Port: {ML_PORT}")
+    logger.info(f"   Models Directory: {MODELS_DIR}")
+    logger.info(f"   GPU Enabled: {USE_GPU}")
+    logger.info(f"   Debug Mode: {DEVELOPMENT_MODE}")
 
 # Initialize FastAPI app
 app = FastAPI(
     title="FiSight ML API",
     description="Production ML API for financial predictions and analysis",
     version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc"
+    docs_url="/docs" if ENABLE_DEBUG_ENDPOINTS else None,
+    redoc_url="/redoc" if ENABLE_DEBUG_ENDPOINTS else None
 )
 
 # Add CORS middleware for frontend integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:9002", "http://127.0.0.1:9002", "http://localhost:3000", "http://127.0.0.1:3000"],  # Next.js dev server
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -50,7 +93,10 @@ app.add_middleware(
 
 # Global model storage
 models = {}
-models_dir = "models"
+
+# Log CORS configuration if in development mode
+if DEVELOPMENT_MODE:
+    logger.info(f"🌐 CORS Origins: {CORS_ORIGINS}")
 
 # Request/Response Models
 class FinancialProfile(BaseModel):
@@ -97,11 +143,11 @@ class ScenarioResponse(BaseModel):
 async def load_models():
     """Load ML models on server startup"""
     try:
-        logger.info("Loading FiSight ML models...")
+        logger.info("Loading FundN3xus ML models...")
         
         # Check if models directory exists
-        if not os.path.exists(models_dir):
-            logger.warning(f"Models directory {models_dir} not found. Training models first...")
+        if not os.path.exists(MODELS_DIR):
+            logger.warning(f"Models directory {MODELS_DIR} not found. Training models first...")
             # Run training script from the correct directory
             os.system("python train_model.py")
         
@@ -114,7 +160,7 @@ async def load_models():
         }
         
         for model_name, filename in model_files.items():
-            model_path = os.path.join(models_dir, filename)
+            model_path = os.path.join(MODELS_DIR, filename)
             if os.path.exists(model_path):
                 models[model_name] = joblib.load(model_path)
                 logger.info(f"Successfully loaded {model_name} model")
@@ -162,8 +208,47 @@ async def health_check():
     return {
         "status": "healthy",
         "models_loaded": len(models),
-        "available_models": list(models.keys())
+        "available_models": list(models.keys()),
+        "configuration": {
+            "models_dir": MODELS_DIR,
+            "gpu_enabled": USE_GPU,
+            "development_mode": DEVELOPMENT_MODE
+        } if DEVELOPMENT_MODE else {}
     }
+
+# Debug endpoint (only available in development mode)
+if ENABLE_DEBUG_ENDPOINTS:
+    @app.get("/debug/config")
+    async def debug_config():
+        """Debug endpoint to view configuration"""
+        return {
+            "server": {
+                "host": ML_HOST,
+                "port": ML_PORT,
+                "reload": ML_RELOAD,
+                "log_level": ML_LOG_LEVEL,
+                "workers": ML_WORKERS
+            },
+            "models": {
+                "directory": MODELS_DIR,
+                "dataset_path": DATASET_PATH
+            },
+            "gpu": {
+                "enabled": USE_GPU,
+                "cuda_device": CUDA_VISIBLE_DEVICES
+            },
+            "cors": {
+                "origins": CORS_ORIGINS
+            },
+            "logging": {
+                "verbose": ENABLE_VERBOSE_LOGGING,
+                "log_predictions": LOG_PREDICTIONS
+            },
+            "development": {
+                "mode": DEVELOPMENT_MODE,
+                "debug_endpoints": ENABLE_DEBUG_ENDPOINTS
+            }
+        }
 
 @app.post("/predict/investment-risk", response_model=InvestmentRiskResponse)
 async def predict_investment_risk(profile: FinancialProfile):
@@ -197,6 +282,10 @@ async def predict_investment_risk(profile: FinancialProfile):
         
         # Simple confidence based on model certainty (mock for now)
         confidence = 0.85
+        
+        # Log prediction if enabled
+        if LOG_PREDICTIONS:
+            logger.info(f"Investment Risk Prediction - Age: {profile.age}, Income: {profile.income}, Risk Score: {risk_score:.1f}")
         
         return InvestmentRiskResponse(
             risk_score=risk_score,
@@ -371,12 +460,19 @@ async def predict_scenario(profile: FinancialProfile):
 def main():
     """Run development server"""
     logger.info("Starting FiSight ML API Server...")
+    
+    if DEVELOPMENT_MODE:
+        logger.info(f"🚀 Server Configuration:")
+        logger.info(f"   URL: http://{ML_HOST}:{ML_PORT}")
+        logger.info(f"   Docs: http://{ML_HOST}:{ML_PORT}/docs" if ENABLE_DEBUG_ENDPOINTS else "   Docs: Disabled")
+        logger.info(f"   Reload: {ML_RELOAD}")
+    
     uvicorn.run(
         "server:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True,
-        log_level="info"
+        host=ML_HOST,
+        port=ML_PORT,
+        reload=ML_RELOAD,
+        log_level=ML_LOG_LEVEL
     )
 
 if __name__ == "__main__":

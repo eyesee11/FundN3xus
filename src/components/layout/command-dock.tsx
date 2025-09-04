@@ -105,7 +105,7 @@ export function CommandDock({ isExpanded, onToggleExpanded }: CommandDockProps) 
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Logo className="w-6 h-6 text-primary" />
-                  <h2 className="font-semibold text-lg">FiSight</h2>
+                  <h2 className="font-semibold text-lg">FundN3xus</h2>
                 </div>
                 <Button
                   variant="ghost"

@@ -275,7 +275,7 @@ export function LandingFinancialChatWidget() {
                 <Button asChild className="w-full">
                   <Link href="/login" target="_blank">
                     <LogIn className="h-4 w-4 mr-2" />
-                    {t('chat.tryFiSight')}
+                    {t('chat.tryFundN3xus')}
                   </Link>
                 </Button>
                 <p className="text-xs text-muted-foreground text-center">

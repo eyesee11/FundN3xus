@@ -17,13 +17,13 @@ const translations = {
   en: {
     // landing page stuff
     'hero.title': 'Navigate Your Financial Future with AI-Powered Clarity',
-    'hero.subtitle': 'FiSight combines cutting-edge AI with your financial data to provide actionable insights, helping you make smarter decisions and achieve your goals faster.',
+    'hero.subtitle': 'FundN3xus combines cutting-edge AI with your financial data to provide actionable insights, helping you make smarter decisions and achieve your goals faster.',
     'hero.dashboard': 'Explore Your Dashboard',
     'hero.learnMore': 'Learn More',
     
     // about section
     'about.title': 'Our Mission: Financial Empowerment for All',
-    'about.description': 'We believe that everyone deserves access to high-quality financial guidance. FiSight was born from a desire to democratize financial planning, using the power of artificial intelligence to make expert-level insights accessible and affordable.',
+    'about.description': 'We believe that everyone deserves access to high-quality financial guidance. FundN3xus was born from a desire to democratize financial planning, using the power of artificial intelligence to make expert-level insights accessible and affordable.',
     'about.privacy': "We're committed to your privacy and security. Your data is always encrypted, anonymized, and never shared.",
     
     // Services
@@ -53,8 +53,8 @@ const translations = {
     'faq.a2': 'Our AI uses advanced large language models (LLMs) trained on vast amounts of financial data and strategies. It analyzes your specific financial situation to provide personalized insights and recommendations, similar to a human financial advisor.',
     'faq.q3': 'Do I need to link my bank accounts?',
     'faq.a3': 'For the most accurate and automated insights, linking your accounts is recommended. However, we also offer the ability to input your financial data manually if you prefer.',
-    'faq.q4': 'Is FiSight a replacement for a human financial advisor?',
-    'faq.a4': 'FiSight is a powerful tool to help you understand and manage your finances. While it provides expert-level analysis, it is not a certified financial planner. We recommend consulting with a qualified human advisor for complex financial decisions.',
+    'faq.q4': 'Is FundN3xus a replacement for a human financial advisor?',
+    'faq.a4': 'FundN3xus is a powerful tool to help you understand and manage your finances. While it provides expert-level analysis, it is not a certified financial planner. We recommend consulting with a qualified human advisor for complex financial decisions.',
     
     // Footer
     'footer.services': 'Services',
@@ -87,7 +87,7 @@ const translations = {
     'chat.welcome': '👋 Welcome! I\'m your AI Financial Advisor. I can help with budgeting, investing, debt management, and tax planning.',
     'chat.limitReached': 'You\'ve tried {count} sample responses! To get personalized financial advice based on your actual income, expenses, and goals:',
     'chat.placeholder': 'Ask about budgeting, investing, or financial planning...',
-    'chat.tryFiSight': 'Try FiSight AI Advisor',
+    'chat.tryFundN3xus': 'Try FundN3xus AI Advisor',
     'chat.sampleOnly': 'Sample responses only',
     
     // Common
@@ -100,13 +100,13 @@ const translations = {
   hi: {
     // Landing Page
     'hero.title': 'अपने वित्तीय भविष्य को AI की शक्ति से संवारें',
-    'hero.subtitle': 'FiSight आपके वित्तीय डेटा को अत्याधुनिक AI तकनीक के साथ जोड़कर व्यावहारिक सुझाव देता है, जो आपको बेहतर निर्णय लेने और अपने लक्ष्यों को तेज़ी से हासिल करने में मदद करता है।',
+    'hero.subtitle': 'FundN3xus आपके वित्तीय डेटा को अत्याधुनिक AI तकनीक के साथ जोड़कर व्यावहारिक सुझाव देता है, जो आपको बेहतर निर्णय लेने और अपने लक्ष्यों को तेज़ी से हासिल करने में मदद करता है।',
     'hero.dashboard': 'अपना डैशबोर्ड देखें',
     'hero.learnMore': 'और जानें',
     
     // About Section
     'about.title': 'हमारा मिशन: सभी के लिए वित्तीय सशक्तिकरण',
-    'about.description': 'हमारा मानना है कि हर भारतीय को उच्च गुणवत्ता वाली वित्तीय सलाह का अधिकार है। FiSight का जन्म वित्तीय योजना को लोकतांत्रिक बनाने की इच्छा से हुआ है, जो कृत्रिम बुद्धिमत्ता की शक्ति का उपयोग करके विशेषज्ञ स्तर की जानकारी को सुलभ और किफायती बनाता है।',
+    'about.description': 'हमारा मानना है कि हर भारतीय को उच्च गुणवत्ता वाली वित्तीय सलाह का अधिकार है। FundN3xus का जन्म वित्तीय योजना को लोकतांत्रिक बनाने की इच्छा से हुआ है, जो कृत्रिम बुद्धिमत्ता की शक्ति का उपयोग करके विशेषज्ञ स्तर की जानकारी को सुलभ और किफायती बनाता है।',
     'about.privacy': 'हम आपकी गोपनीयता और सुरक्षा के लिए प्रतिबद्ध हैं। आपका डेटा हमेशा एन्क्रिप्टेड, गुमनाम रहता है और कभी साझा नहीं किया जाता है।',
     
     // Services
@@ -136,8 +136,8 @@ const translations = {
     'faq.a2': 'हमारा AI वित्तीय डेटा और रणनीतियों की विशाल मात्रा पर प्रशिक्षित उन्नत बड़े भाषा मॉडल (LLMs) का उपयोग करता है। यह आपकी विशिष्ट वित्तीय स्थिति का विश्लेषण करके व्यक्तिगत अंतर्दृष्टि और सुझाव प्रदान करता है, एक मानव वित्तीय सलाहकार के समान।',
     'faq.q3': 'क्या मुझे अपने बैंक खाते लिंक करने होंगे?',
     'faq.a3': 'सबसे सटीक और स्वचालित अंतर्दृष्टि के लिए, आपके खातों को लिंक करना अनुशंसित है। हालांकि, यदि आप चाहें तो हम आपको अपने वित्तीय डेटा को मैन्युअल रूप से इनपुट करने की सुविधा भी प्रदान करते हैं।',
-    'faq.q4': 'क्या FiSight एक मानव वित्तीय सलाहकार का विकल्प है?',
-    'faq.a4': 'FiSight आपके वित्त को समझने और प्रबंधित करने में मदद करने के लिए एक शक्तिशाली उपकरण है। जबकि यह विशेषज्ञ-स्तरीय विश्लेषण प्रदान करता है, यह एक प्रमाणित वित्तीय योजनाकार नहीं है। हम जटिल वित्तीय निर्णयों के लिए एक योग्य मानव सलाहकार से परामर्श करने की सलाह देते हैं।',
+    'faq.q4': 'क्या FundN3xus एक मानव वित्तीय सलाहकार का विकल्प है?',
+    'faq.a4': 'FundN3xus आपके वित्त को समझने और प्रबंधित करने में मदद करने के लिए एक शक्तिशाली उपकरण है। जबकि यह विशेषज्ञ-स्तरीय विश्लेषण प्रदान करता है, यह एक प्रमाणित वित्तीय योजनाकार नहीं है। हम जटिल वित्तीय निर्णयों के लिए एक योग्य मानव सलाहकार से परामर्श करने की सलाह देते हैं।',
     
     // Footer
     'footer.services': 'सेवाएं',
@@ -170,7 +170,7 @@ const translations = {
     'chat.welcome': '👋 स्वागत! मैं आपका AI वित्तीय सलाहकार हूं। मैं बजटिंग, निवेश, ऋण प्रबंधन और कर योजना में मदद कर सकता हूं।',
     'chat.limitReached': 'आपने {count} नमूना प्रतिक्रियाएं आज़माई हैं! अपनी वास्तविक आय, खर्च और लक्ष्यों के आधार पर व्यक्तिगत वित्तीय सलाह प्राप्त करने के लिए:',
     'chat.placeholder': 'बजटिंग, निवेश या वित्तीय योजना के बारे में पूछें...',
-    'chat.tryFiSight': 'FiSight AI सलाहकार आज़माएं',
+    'chat.tryFundN3xus': 'FundN3xus AI सलाहकार आज़माएं',
     'chat.sampleOnly': 'केवल नमूना प्रतिक्रियाएं',
     
     // Common

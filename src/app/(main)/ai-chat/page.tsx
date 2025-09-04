@@ -23,7 +23,7 @@ interface Message {
 }
 
 // Enhanced system prompt for better financial NLP handling
-const SYSTEM_PROMPT = `You are FiSight AI, an advanced financial advisor and assistant. Your role is to help users with their personal finance management, investment decisions, and financial planning.
+const SYSTEM_PROMPT = `You are FundN3xus AI, an advanced financial advisor and assistant. Your role is to help users with their personal finance management, investment decisions, and financial planning.
 
 CORE CAPABILITIES:
 - Personal finance analysis and budgeting
@@ -64,7 +64,7 @@ export default function AIChatPage() {
     {
       id: 1,
       role: 'assistant',
-      content: "Hello! I'm FiSight AI, your personal financial advisor. I can help you with budgeting, investments, loans, taxes, retirement planning, and more. What financial topic would you like to discuss today?",
+      content: "Hello! I'm FundN3xus AI, your personal financial advisor. I can help you with budgeting, investments, loans, taxes, retirement planning, and more. What financial topic would you like to discuss today?",
       timestamp: new Date(),
       type: 'normal'
     }
@@ -317,13 +317,13 @@ What specific financial goal or challenge can I help you with today?`;
     setMessages([{
       id: 1,
       role: 'assistant',
-      content: "Hello! I'm FiSight AI, your personal financial advisor. I can help you with budgeting, investments, loans, taxes, retirement planning, and more. What financial topic would you like to discuss today?",
+      content: "Hello! I'm FundN3xus AI, your personal financial advisor. I can help you with budgeting, investments, loans, taxes, retirement planning, and more. What financial topic would you like to discuss today?",
       timestamp: new Date(),
       type: 'normal'
     }]);
     toast({
       title: "Chat cleared",
-      description: "Starting a fresh conversation with FiSight AI."
+      description: "Starting a fresh conversation with FundN3xus AI."
     });
   };
 
@@ -387,7 +387,7 @@ What specific financial goal or challenge can I help you with today?`;
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Brain className="h-5 w-5 text-primary" />
-            FiSight AI Chat
+            FundN3xus AI Chat
             <Badge variant="secondary" className="ml-auto">
               <Sparkles className="h-3 w-3 mr-1" />
               Financial Expert

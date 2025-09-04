@@ -37,7 +37,7 @@ export default function LoginPage() {
               <div className="relative w-full max-w-[320px] aspect-square">
                 <Image
                   src="/banner.png"
-                  alt="FiSight Financial Planning"
+                  alt="FundN3xus Financial Planning"
                   fill
                   className="object-contain drop-shadow-lg"
                   priority

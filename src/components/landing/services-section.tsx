@@ -233,7 +233,7 @@ const ServicesSection = () => {
             Ready to Transform Your Financial Future?
           </h3>
           <p className="text-sm text-muted-foreground mb-4 max-w-xl mx-auto">
-            Join thousands of users who trust FiSight for their financial planning and investment decisions.
+            Join thousands of users who trust FundN3xus for their financial planning and investment decisions.
           </p>
           <Link 
             href="/login"

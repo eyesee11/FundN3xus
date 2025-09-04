@@ -30,7 +30,7 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
     // Define tour steps - comprehensive walkthrough! 🚀
     const steps = [
       {
-        title: '👋 Welcome to FiSight!',
+        title: '👋 Welcome to FundN3xus!',
         text: `Hey ${user?.displayName || 'there'}! Ready to take control of your finances? Let's show you around this awesome platform!`,
         buttons: [
           {

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FiSight ML Training Pipeline - Production Ready
+FundN3xus ML Training Pipeline - Production Ready
 Hackathon-optimized clean training script for financial AI models.
 
 Usage: python ml/train_model.py
@@ -11,7 +11,21 @@ Creates 4 production models:
 - Financial Health Score (XGBoost Regression)
 - Scenario Planner (XGBoost Classification + SMOTE)
 
-Requirements: Run `pip install -r ml/requirements.txt` first
+Requirements: Run `pip install -r            logger.info("\n" + "="*60)
+            logger.info("FISIGHT ML TRAINING COMPLETED SUCCESSFULLY!")
+            logger.info("="*60)
+            logger.info(f"Training duration: {duration:.1f} seconds")
+            logger.info(f"Models saved in: {self.models_dir}/")
+            logger.info("Generated models:")
+            logger.info("  - investment_risk_model.pkl")
+            logger.info("  - affordability_model.pkl") 
+            logger.info("  - health_score_model.pkl")
+            logger.info("  - scenario_planner_model.pkl")
+            logger.info(f"\nConfiguration used:")
+            logger.info(f"  - GPU Enabled: {USE_GPU}")
+            logger.info(f"  - Models Directory: {self.models_dir}")
+            logger.info(f"  - Dataset Path: {self.dataset_path}")
+            logger.info("\nYour ML backend is ready! 🚀")ments.txt` first
 """
 
 import os
@@ -19,6 +33,7 @@ import logging
 import warnings
 from datetime import datetime
 from typing import Tuple, Dict, Any
+from dotenv import load_dotenv
 
 import pandas as pd
 import numpy as np
@@ -29,38 +44,68 @@ from sklearn.preprocessing import LabelEncoder
 from imblearn.over_sampling import SMOTE
 from xgboost import XGBRegressor, XGBClassifier
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Get configuration from environment variables
+MODELS_DIR = os.getenv('MODELS_DIR', 'models')
+DATASET_PATH = os.getenv('DATASET_PATH', 'dataset.csv')
+USE_GPU = os.getenv('USE_GPU', 'false').lower() == 'true'
+CUDA_VISIBLE_DEVICES = os.getenv('CUDA_VISIBLE_DEVICES', '0')
+LOG_LEVEL = os.getenv('LOG_LEVEL', 'info').upper()
+ENABLE_VERBOSE_LOGGING = os.getenv('ENABLE_VERBOSE_LOGGING', 'true').lower() == 'true'
+DEVELOPMENT_MODE = os.getenv('DEVELOPMENT_MODE', 'true').lower() == 'true'
+
+# Set CUDA device if specified
+if USE_GPU and CUDA_VISIBLE_DEVICES:
+    os.environ['CUDA_VISIBLE_DEVICES'] = CUDA_VISIBLE_DEVICES
+
 # Suppress warnings for cleaner output
 warnings.filterwarnings('ignore')
 
-# Configure logging
+# Configure logging based on environment variables
+log_level = getattr(logging, LOG_LEVEL, logging.INFO)
 logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    level=log_level,
+    format='%(asctime)s - %(levelname)s - %(message)s' if ENABLE_VERBOSE_LOGGING else '%(levelname)s: %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-class FiSightMLTrainer:
-    """Clean, production-ready ML trainer for FiSight hackathon project"""
+class FundN3xusMLTrainer:
+    """Clean, production-ready ML trainer for FundN3xus hackathon project"""
     
     def __init__(self):
-        self.models_dir = "ml/models"
-        self.dataset_path = "ml/dataset.csv"
+        self.models_dir = MODELS_DIR
+        self.dataset_path = DATASET_PATH
         self.models = {}
         
         # Ensure models directory exists
         os.makedirs(self.models_dir, exist_ok=True)
         
+        # Log configuration if in development mode
+        if DEVELOPMENT_MODE:
+            logger.info(f"🔧 Training Configuration:")
+            logger.info(f"   Models Directory: {self.models_dir}")
+            logger.info(f"   Dataset Path: {self.dataset_path}")
+            logger.info(f"   GPU Enabled: {USE_GPU}")
+            logger.info(f"   CUDA Device: {CUDA_VISIBLE_DEVICES}")
+        
         # Check for GPU support
         try:
             import xgboost as xgb
-            self.gpu_available = xgb.cuda.cuda_visible_devices() is not None
-            if self.gpu_available:
-                logger.info("GPU acceleration available for XGBoost")
+            if USE_GPU:
+                self.gpu_available = xgb.cuda.cuda_visible_devices() is not None
+                if self.gpu_available:
+                    logger.info("✅ GPU acceleration enabled for XGBoost")
+                else:
+                    logger.warning("⚠️  GPU requested but not available, using CPU")
             else:
-                logger.info("Using CPU for XGBoost training")
-        except:
+                self.gpu_available = False
+                logger.info("🖥️  Using CPU for XGBoost training (GPU disabled in config)")
+        except Exception as e:
             self.gpu_available = False
-            logger.info("GPU acceleration not available, using CPU")
+            logger.warning(f"⚠️  GPU acceleration not available: {e}")
+            logger.info("🖥️  Using CPU for XGBoost training")
     
     def generate_synthetic_dataset(self, n_samples: int = 15000) -> pd.DataFrame:
         """Generate realistic synthetic financial dataset"""
@@ -191,10 +236,10 @@ class FiSightMLTrainer:
             'verbosity': 0
         }
         
-        # Add GPU support if available
-        if self.gpu_available:
+        # Add GPU support if available and enabled
+        if self.gpu_available and USE_GPU:
             base_params['tree_method'] = 'gpu_hist'
-            base_params['gpu_id'] = 0
+            base_params['gpu_id'] = int(CUDA_VISIBLE_DEVICES.split(',')[0]) if ',' in CUDA_VISIBLE_DEVICES else int(CUDA_VISIBLE_DEVICES)
         
         if task_type == 'regression':
             return {
@@ -376,9 +421,9 @@ class FiSightMLTrainer:
         logger.info(f"Scenario planner model saved to {model_path}")
     
     def train_all_models(self) -> None:
-        """Train all FiSight ML models"""
+        """Train all FundN3xus ML models"""
         
-        logger.info("Starting FiSight ML training pipeline...")
+        logger.info("Starting FundN3xus ML training pipeline...")
         start_time = datetime.now()
         
         # Load dataset
@@ -397,7 +442,7 @@ class FiSightMLTrainer:
             duration = (end_time - start_time).total_seconds()
             
             logger.info("\n" + "="*60)
-            logger.info("FISIGHT ML TRAINING COMPLETED SUCCESSFULLY!")
+            logger.info("FundN3xus ML TRAINING COMPLETED SUCCESSFULLY!")
             logger.info("="*60)
             logger.info(f"Training duration: {duration:.1f} seconds")
             logger.info(f"Models saved in: {self.models_dir}/")
@@ -415,10 +460,10 @@ class FiSightMLTrainer:
 def main():
     """Main execution function"""
     
-    print("🚀 FiSight ML Training Pipeline")
+    print("🚀 FundN3xus ML Training Pipeline")
     print("=" * 50)
     
-    trainer = FiSightMLTrainer()
+    trainer = FundN3xusMLTrainer()
     trainer.train_all_models()
 
 if __name__ == "__main__":

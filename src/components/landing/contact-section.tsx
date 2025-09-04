@@ -96,9 +96,9 @@ export function ContactSection() {
           <div className="mb-7">
             <Mail className="h-20 w-20 text-yellow-400" />
           </div>
-          <h2 className="text-3xl font-headline font-bold mb-2 text-background tracking-tight">FiSight</h2>
+          <h2 className="text-3xl font-headline font-bold mb-2 text-background tracking-tight">FundN3xus</h2>
           <div className="text-background/80 text-base mb-5 text-center font-body">
-            <div>contact@fisight.com</div>
+            <div>contact@FundN3xus.com</div>
             <div>+91 98765 43210</div>
             <div>123 Fintech Avenue, Mumbai, India</div>
           </div>

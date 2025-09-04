@@ -147,7 +147,7 @@ export function AuthForm() {
               <Logo className="h-8 w-8 text-primary" />
             </div>
             <span className="text-2xl font-bold font-headline bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              FiSight
+              FundN3xus
             </span>
           </div>
           <CardTitle className="font-headline text-2xl text-foreground">Welcome Back!</CardTitle>

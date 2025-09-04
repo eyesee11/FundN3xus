@@ -31,7 +31,7 @@ export function AppSidebar() {
       <SidebarHeader>
         <Link href="/dashboard" className="flex items-center gap-2">
           <Logo className="w-8 h-8 text-primary" />
-          <h1 className="text-xl font-bold font-headline">FiSight</h1>
+          <h1 className="text-xl font-bold font-headline">FundN3xus</h1>
         </Link>
       </SidebarHeader>
       

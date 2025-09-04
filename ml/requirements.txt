@@ -1,10 +1,39 @@
-# FiSight ML Dependencies - Production Setup
+# FundN3xus ML Dependencies - Production Setup
+# Core ML and Data Science Libraries
 scikit-learn==1.5.2
 xgboost==2.1.1
 imbalanced-learn==0.12.4
 joblib==1.4.2
-pandas>=2.0.0
-numpy>=1.24.0
-fastapi==0.104.1
-uvicorn==0.24.0
-pydantic>=1.10.0
+pandas>=2.0.0,<3.0.0
+numpy>=1.24.0,<2.0.0
+
+# Web Framework and API Dependencies
+fastapi>=0.104.0,<0.105.0
+uvicorn[standard]>=0.24.0,<0.25.0
+pydantic>=2.0.0,<3.0.0
+
+# HTTP and Request Dependencies for API Testing
+requests>=2.25.0,<3.0.0
+
+# Additional ML Dependencies
+scipy>=1.6.0,<2.0.0
+threadpoolctl>=3.1.0
+
+# Development and Logging
+python-multipart>=0.0.5  # For FastAPI file uploads if needed
+python-dotenv>=1.0.0      # For loading environment variables from .env files
+
+# Optional: Data visualization (if needed for development)
+# matplotlib>=3.5.0,<4.0.0
+# seaborn>=0.11.0,<1.0.0
+
+# Optional: Model serialization alternatives
+# pickle-compat>=1.0.0
+
+# Production deployment dependencies
+# gunicorn>=21.0.0  # For production WSGI server instead of uvicorn in some cases
+
+# GPU Support (optional - only install if you have CUDA)
+# Uncomment the following if you want GPU acceleration:
+# nvidia-ml-py3>=7.352.0  # For GPU monitoring
+# cupy-cuda11x>=10.0.0    # For GPU-accelerated NumPy operations (adjust CUDA version as needed)

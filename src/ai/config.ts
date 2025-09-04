@@ -1,5 +1,5 @@
 /**
- * config for fisight financial advisor AI system
+ * config for FundN3xus financial advisor AI system
  * 
  * handles:
  * 1. fi money MCP server integration
@@ -7,7 +7,7 @@
  * 3. AI model params and settings
  */
 
-export interface FiSightAIConfig {
+export interface FundN3xusAIConfig {
   // MCP server configuration
   mcpServer: {
     enabled: boolean;
@@ -70,7 +70,7 @@ export interface FiSightAIConfig {
 }
 
 // Default configuration
-export const defaultConfig: FiSightAIConfig = {
+export const defaultConfig: FundN3xusAIConfig = {
   mcpServer: {
     enabled: false, // Set to true when you have Fi Money MCP server set up
     serverPath: 'node', // Path to your MCP server executable
@@ -164,26 +164,26 @@ export const environments = {
 };
 
 // Get configuration based on environment
-export function getConfig(): FiSightAIConfig {
+export function getConfig(): FundN3xusAIConfig {
   const env = process.env.NODE_ENV || 'development';
   
   // Load custom config from environment variables if available
-  const customConfig: Partial<FiSightAIConfig> = {};
+  const customConfig: Partial<FundN3xusAIConfig> = {};
   
-  if (process.env.FISIGHT_PRETRAINED_MODEL_PATH) {
+  if (process.env.FundN3xus_PRETRAINED_MODEL_PATH) {
     customConfig.preTrainedModel = {
       ...defaultConfig.preTrainedModel,
       enabled: true,
-      weightsPath: process.env.FISIGHT_PRETRAINED_MODEL_PATH,
+      weightsPath: process.env.FundN3xus_PRETRAINED_MODEL_PATH,
     };
   }
   
-  if (process.env.FISIGHT_MCP_SERVER_PATH) {
+  if (process.env.FundN3xus_MCP_SERVER_PATH) {
     customConfig.mcpServer = {
       ...defaultConfig.mcpServer,
       enabled: true,
-      serverPath: process.env.FISIGHT_MCP_SERVER_PATH,
-      serverArgs: process.env.FISIGHT_MCP_SERVER_ARGS?.split(',') || [],
+      serverPath: process.env.FundN3xus_MCP_SERVER_PATH,
+      serverArgs: process.env.FundN3xus_MCP_SERVER_ARGS?.split(',') || [],
     };
   }
 
@@ -196,7 +196,7 @@ export function getConfig(): FiSightAIConfig {
 }
 
 // Validation function for configuration
-export function validateConfig(config: FiSightAIConfig): { valid: boolean; errors: string[] } {
+export function validateConfig(config: FundN3xusAIConfig): { valid: boolean; errors: string[] } {
   const errors: string[] = [];
 
   // Validate MCP server configuration
