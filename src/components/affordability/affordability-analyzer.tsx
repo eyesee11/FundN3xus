@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { analyzeAffordability, type AffordabilityAnalysisOutput } from '@/ai/flows/affordability-analysis';
+import type { AffordabilityAnalysisOutput } from '@/ai/flows/affordability-analysis';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -109,6 +109,8 @@ export function AffordabilityAnalyzer() {
     setResult(null);
 
     try {
+      // Dynamic import to avoid SSR issues
+      const { analyzeAffordability } = await import('@/ai/flows/affordability-analysis');
       const response = await analyzeAffordability(values);
       setResult(response);
     } catch (e) {

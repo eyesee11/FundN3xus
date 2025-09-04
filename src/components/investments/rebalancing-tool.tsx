@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { getInvestmentRebalancingSuggestions, type GetInvestmentRebalancingSuggestionsOutput } from '@/ai/flows/investment-rebalancing-suggestions';
+import type { GetInvestmentRebalancingSuggestionsOutput } from '@/ai/flows/investment-rebalancing-suggestions';
 import { mockPortfolio } from '@/lib/mock-data';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -38,6 +38,8 @@ export function RebalancingTool() {
     setResult(null);
 
     try {
+      // Dynamic import to avoid SSR issues
+      const { getInvestmentRebalancingSuggestions } = await import('@/ai/flows/investment-rebalancing-suggestions');
       const portfolioData = JSON.stringify(mockPortfolio);
       const response = await getInvestmentRebalancingSuggestions({
         ...values,

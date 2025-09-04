@@ -10,7 +10,7 @@ import {
   CardFooter,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { analyzeFinancialTrends, type AnalyzeFinancialTrendsOutput } from '@/ai/flows/analyze-financial-trends';
+import type { AnalyzeFinancialTrendsOutput } from '@/ai/flows/analyze-financial-trends';
 import { mockTransactions } from '@/lib/mock-data';
 import { AIResponseCard } from '../shared/ai-response-card';
 import { Sparkles } from 'lucide-react';
@@ -25,6 +25,8 @@ export function FinancialHealthSummary() {
     setError(null);
     setAnalysis(null);
     try {
+      // Dynamic import to avoid SSR issues
+      const { analyzeFinancialTrends } = await import('@/ai/flows/analyze-financial-trends');
       const financialData = JSON.stringify(mockTransactions);
       const result = await analyzeFinancialTrends({ financialData });
       setAnalysis(result);

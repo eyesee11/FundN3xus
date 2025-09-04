@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { simulateFinancialScenario, type SimulateFinancialScenarioOutput } from '@/ai/flows/simulate-financial-scenarios';
+import type { SimulateFinancialScenarioOutput } from '@/ai/flows/simulate-financial-scenarios';
 import { mockCurrentFinancialSituation } from '@/lib/mock-data';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -35,6 +35,8 @@ export function ScenarioSimulator() {
     setResult(null);
 
     try {
+      // Dynamic import to avoid SSR issues
+      const { simulateFinancialScenario } = await import('@/ai/flows/simulate-financial-scenarios');
       const response = await simulateFinancialScenario({
         ...values,
         currentFinancialSituation: mockCurrentFinancialSituation,

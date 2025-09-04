@@ -12,7 +12,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '../ui/skeleton';
-import { financialAdvisorChatbot, type FinancialAdvisorInput, type FinancialAdvisorOutput } from '@/ai/flows/financial-advisor-chatbot';
+import type { FinancialAdvisorInput, FinancialAdvisorOutput } from '@/ai/flows/financial-advisor-chatbot';
 import { VoiceAssistantControls, useVoiceAssistantSpeaker } from '@/components/shared/voice-assistant-controls';
 
 interface Message {
@@ -152,6 +152,8 @@ export function FinancialAdvisorChatWidgetStandalone() {
       };
 
       // get AI response
+      // Dynamic import to avoid SSR issues
+      const { financialAdvisorChatbot } = await import('@/ai/flows/financial-advisor-chatbot');
       const advisorResponse = await financialAdvisorChatbot(advisorInput);
 
       // update health score

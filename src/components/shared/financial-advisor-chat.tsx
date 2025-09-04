@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Skeleton } from '../ui/skeleton';
 import { useProfile, profileToFinancialSituation } from '@/hooks/use-profile';
-import { financialAdvisorChatbot, type FinancialAdvisorInput, type FinancialAdvisorOutput } from '@/ai/flows/financial-advisor-chatbot';
+import type { FinancialAdvisorInput, FinancialAdvisorOutput } from '@/ai/flows/financial-advisor-chatbot';
 import { VoiceAssistantControls, useVoiceAssistantSpeaker } from '@/components/shared/voice-assistant-controls';
 import { extractTextFromReactNode } from '@/hooks/use-voice-assistant';
 
@@ -142,7 +142,8 @@ export function FinancialAdvisorChatWidget() {
         context,
       };
 
-      // Get AI response
+      // Get AI response (dynamic import to avoid SSR issues)
+      const { financialAdvisorChatbot } = await import('@/ai/flows/financial-advisor-chatbot');
       const advisorResponse = await financialAdvisorChatbot(advisorInput);
 
       // Update health score
