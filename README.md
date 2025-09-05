@@ -16,7 +16,7 @@
 ### **Option 1: Full Stack Development (Recommended)**
 ```bash
 # Clone the repository
-git clone https://github.com/deepanshusingla076/FundN3xus.git
+git clone https://github.com/eyesee11/FundN3xus.git
 cd FundN3xus
 
 # Install frontend dependencies
@@ -343,10 +343,10 @@ Before getting started, ensure you have the following installed:
 #### **1. Clone Repository**
 ```bash
 # HTTPS (recommended)
-git clone https://github.com/deepanshusingla076/FundN3xus.git
+git clone https://github.com/eyesee11/FundN3xus.git
 
 # Or SSH (if configured)  
-git clone git@github.com:deepanshusingla076/FundN3xus.git
+git clone git@github.com:eyesee11/FundN3xus.git
 
 cd FundN3xus
 ```
@@ -1743,10 +1743,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 **Support & Contact**
 
-- **🐛 Issues**: [GitHub Issues](https://github.com/deepanshusingla076/FundN3xus/issues)
-- **💬 Discussions**: [GitHub Discussions](https://github.com/deepanshusingla076/FundN3xus/discussions)
-- **📧 Email**: singladeepanshu706@gmail.com
-- **🔗 LinkedIn**: [Deepanshu Singla](https://linkedin.com/in/deepanshusingla076)
+- **🐛 Issues**: [GitHub Issues](https://github.com/deyesee11/FundN3xus/issues)
+- **💬 Discussions**: [GitHub Discussions](https://github.com/eyesee11/FundN3xus/discussions)
+- **📧 Email**: weaboo1164@gmail.com
+- **🔗 LinkedIn**: [Ayush Chauhan](https://linkedin.com/in/ayush-chauhan-776321293/)
 
 ## 🤝 **Contributing**
 
@@ -1884,18 +1884,18 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 | Issue Type | Where to Go | Response Time |
 |------------|-------------|---------------|
-| **🐛 Bug Reports** | [GitHub Issues](https://github.com/deepanshusingla076/FundN3xus/issues) | 1-2 business days |
-| **💬 Questions** | [GitHub Discussions](https://github.com/deepanshusingla076/FundN3xus/discussions) | 1-3 days |
-| **🚀 Feature Requests** | [GitHub Issues](https://github.com/deepanshusingla076/FundN3xus/issues) | 3-5 days |
-| **📧 Direct Contact** | singladeepanshu706@gmail.com | 2-5 days |
+| **🐛 Bug Reports** | [GitHub Issues](https://github.com/eyesee11/FundN3xus/issues) | 1-2 business days |
+| **💬 Questions** | [GitHub Discussions](https://github.com/eyesee11/FundN3xus/discussions) | 1-3 days |
+| **🚀 Feature Requests** | [GitHub Issues](https://github.com/eyesee11/FundN3xus/issues) | 3-5 days |
+| **📧 Direct Contact** | weaboo1164@gmail.com | 2-5 days |
 
 ### **📞 Maintainer Contact**
 
-**Deepanshu Singla** - *Project Creator & Lead Developer*
-- 📧 **Email**: singladeepanshu706@gmail.com
-- 💼 **LinkedIn**: [linkedin.com/in/deepanshusingla076](https://linkedin.com/in/deepanshusingla076)
-- 🐙 **GitHub**: [github.com/deepanshusingla076](https://github.com/deepanshusingla076)
-- 🌐 **Portfolio**: [Coming Soon]
+**Ayush Chauhan** - *Project Creator & Lead Developer*
+- 📧 **Email**: weaboo1164@gmail.com
+- 💼 **LinkedIn**: [linkedin.com/in/ayush-chauhan-776321293/](https://linkedin.com/in/ayush-chauhan-776321293/)
+- 🐙 **GitHub**: [github.com/eyesee11](https://github.com/eyesee11)
+- 🌐 **Portfolio**: [Portfolio](https://eyesee11.github.io/portfolio/)
 
 ### **🤝 Community Resources**
 
