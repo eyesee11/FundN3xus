@@ -18,15 +18,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: [
-      'genkit',
-      '@genkit-ai/core',
-      '@genkit-ai/googleai',
-      '@genkit-ai/next',
-      '@google/generative-ai'
-    ]
-  },
+  serverExternalPackages: [
+    'genkit',
+    '@genkit-ai/core',
+    '@genkit-ai/googleai',
+    '@genkit-ai/next',
+    '@google/generative-ai'
+  ],
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
