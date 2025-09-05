@@ -23,7 +23,8 @@ const nextConfig: NextConfig = {
     '@genkit-ai/core',
     '@genkit-ai/googleai',
     '@genkit-ai/next',
-    '@google/generative-ai'
+    '@google/generative-ai',
+    'shepherd.js'
   ],
   webpack: (config, { isServer }) => {
     if (!isServer) {

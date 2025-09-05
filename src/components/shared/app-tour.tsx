@@ -2,7 +2,6 @@
 
 // App tour using Shepherd.js - show users around like a boss! 🎯
 import { useEffect, useRef } from 'react'
-import Shepherd from 'shepherd.js'
 import { useAuth } from '@/contexts/auth-context'
 
 interface AppTourProps {
@@ -15,17 +14,21 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
   const { user } = useAuth()
 
   useEffect(() => {
-    // Create tour instance
-    const tour = new Shepherd.Tour({
-      useModalOverlay: true,
-      defaultStepOptions: {
-        classes: 'shadow-lg bg-background border rounded-lg',
-        scrollTo: { behavior: 'smooth', block: 'center' },
-        cancelIcon: {
-          enabled: true,
+    const initTour = async () => {
+      // Dynamic import to avoid SSR issues
+      const Shepherd = (await import('shepherd.js')).default;
+      
+      // Create tour instance
+      const tour = new Shepherd.Tour({
+        useModalOverlay: true,
+        defaultStepOptions: {
+          classes: 'shadow-lg bg-background border rounded-lg',
+          scrollTo: { behavior: 'smooth', block: 'center' },
+          cancelIcon: {
+            enabled: true,
+          },
         },
-      },
-    })
+      })
 
     // Define tour steps - comprehensive walkthrough! 🚀
     const steps = [
@@ -289,31 +292,46 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
       }
     ]
 
-    // Add steps to tour
-    steps.forEach(step => tour.addStep(step))
+      // Add steps to tour
+      steps.forEach(step => tour.addStep(step))
 
-    // Store tour reference
-    tourRef.current = tour
+      // Store tour reference
+      tourRef.current = tour
 
-    // Auto start if requested
-    if (autoStart) {
-      setTimeout(() => tour.start(), 1000) // Small delay to ensure elements are rendered
-    }
+      // Auto start if requested
+      if (autoStart) {
+        setTimeout(() => tour.start(), 1000) // Small delay to ensure elements are rendered
+      }
 
-    // Listen for manual tour start events
-    const handleStartTour = () => {
-      if (tourRef.current) {
-        tourRef.current.start()
+      // Listen for manual tour start events
+      const handleStartTour = () => {
+        if (tourRef.current) {
+          tourRef.current.start()
+        }
+      }
+
+      window.addEventListener('start-app-tour', handleStartTour)
+
+      // Cleanup function
+      return () => {
+        window.removeEventListener('start-app-tour', handleStartTour)
+        if (tourRef.current) {
+          tourRef.current.complete()
+        }
       }
     }
 
-    window.addEventListener('start-app-tour', handleStartTour)
-
-    // Cleanup
+    // Initialize tour
+    let cleanup: (() => void) | undefined;
+    
+    initTour().then((cleanupFn) => {
+      cleanup = cleanupFn;
+    });
+    
+    // Return cleanup function
     return () => {
-      window.removeEventListener('start-app-tour', handleStartTour)
-      if (tourRef.current) {
-        tourRef.current.complete()
+      if (cleanup) {
+        cleanup();
       }
     }
   }, [autoStart, onTourComplete, user?.displayName])
