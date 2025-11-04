@@ -28,7 +28,8 @@ load_dotenv()
 
 # Configuration
 RAG_HOST = os.getenv('RAG_HOST', '0.0.0.0')
-RAG_PORT = int(os.getenv('RAG_PORT', 8001))
+# Use PORT for Render/Railway, fallback to RAG_PORT for local development
+RAG_PORT = int(os.getenv('PORT', os.getenv('RAG_PORT', 8001)))
 CORS_ORIGINS = os.getenv('CORS_ORIGINS', '*').split(',')
 
 # Configure logging
