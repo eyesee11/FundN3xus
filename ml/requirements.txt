@@ -66,11 +66,9 @@ tiktoken>=0.5.0           # Token counting
 tenacity>=8.2.0           # Retry logic
 
 # ----------------------------------------------------------------------------
-# OPTIONAL: PINECONE CLOUD VECTOR DATABASE
+# PINECONE CLOUD VECTOR DATABASE (for RAG)
 # ----------------------------------------------------------------------------
-# Uncomment these if you want to use Pinecone instead of ChromaDB:
-# pinecone-client>=2.2.4
-# pinecone-text>=0.7.0
+pinecone>=5.0.0            # Pinecone vector database client
 
 # ----------------------------------------------------------------------------
 # OPTIONAL: MONITORING & LOGGING
