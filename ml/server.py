@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 """
 FundN3xus ML API Server - Production Ready
-FastAPI server serving ML models for FundN3xus hackathon project.
-
-Usage: python ml/server.py
-Access: http://localhost:8000
-Docs: http://localhost:8000/docs
 
 Endpoints:
 - GET /health - Health check

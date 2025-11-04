@@ -1,31 +1,6 @@
 #!/usr/bin/env python3
 """
 FundN3xus ML Training Pipeline - Production Ready
-Hackathon-optimized clean training script for financial AI models.
-
-Usage: python ml/train_model.py
-
-Creates 4 production models:
-- Investment Risk (XGBoost Regression)
-- Affordability (XGBoost Regression) 
-- Financial Health Score (XGBoost Regression)
-- Scenario Planner (XGBoost Classification + SMOTE)
-
-Requirements: Run `pip install -r            logger.info("\n" + "="*60)
-            logger.info("FISIGHT ML TRAINING COMPLETED SUCCESSFULLY!")
-            logger.info("="*60)
-            logger.info(f"Training duration: {duration:.1f} seconds")
-            logger.info(f"Models saved in: {self.models_dir}/")
-            logger.info("Generated models:")
-            logger.info("  - investment_risk_model.pkl")
-            logger.info("  - affordability_model.pkl") 
-            logger.info("  - health_score_model.pkl")
-            logger.info("  - scenario_planner_model.pkl")
-            logger.info(f"\nConfiguration used:")
-            logger.info(f"  - GPU Enabled: {USE_GPU}")
-            logger.info(f"  - Models Directory: {self.models_dir}")
-            logger.info(f"  - Dataset Path: {self.dataset_path}")
-            logger.info("\nYour ML backend is ready! 🚀")ments.txt` first
 """
 
 import os

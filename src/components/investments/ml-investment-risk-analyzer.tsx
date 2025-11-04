@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -8,29 +8,34 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { useProfile } from '@/hooks/use-profile';
-import { mlApi, type InvestmentRiskResponse } from '@/lib/ml-api';
-import { 
-  TrendingUp, 
-  Shield, 
-  Zap, 
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
+import { useProfile } from "@/hooks/use-profile";
+import { mlApi, type InvestmentRiskResponse } from "@/lib/ml-api";
+import { ragAPI } from "@/lib/rag-api";
+import {
+  TrendingUp,
+  Shield,
+  Zap,
   Target,
-  BarChart3
-} from 'lucide-react';
+  BarChart3,
+  Brain,
+  Sparkles,
+} from "lucide-react";
 
 export function MLInvestmentRiskAnalyzer() {
   const [riskData, setRiskData] = useState<InvestmentRiskResponse | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [ragInsights, setRagInsights] = useState<string | null>(null);
+  const [isLoadingRag, setIsLoadingRag] = useState(false);
   const { profile } = useProfile();
 
   const analyzeRisk = async () => {
     if (!profile) {
-      setError(new Error('Profile data not available'));
+      setError(new Error("Profile data not available"));
       return;
     }
 
@@ -41,28 +46,64 @@ export function MLInvestmentRiskAnalyzer() {
       const mlProfile = mlApi.convertProfile(profile);
       const result = await mlApi.investmentRisk(mlProfile);
       setRiskData(result);
+
+      // Fetch RAG insights after ML analysis
+      await getRagInsights(result);
     } catch (e) {
-      setError(e instanceof Error ? e : new Error('Failed to analyze risk tolerance'));
+      setError(
+        e instanceof Error ? e : new Error("Failed to analyze risk tolerance")
+      );
     } finally {
       setIsLoading(false);
     }
   };
 
+  const getRagInsights = async (riskResult: InvestmentRiskResponse) => {
+    if (!profile) return;
+
+    setIsLoadingRag(true);
+    try {
+      const queryText = `Investment risk profile: ${
+        riskResult.risk_category
+      } with score ${Math.round(riskResult.risk_score)}/100. 
+                     Annual Income: $${profile.annualIncome.toLocaleString()}, Monthly Expenses: $${profile.monthlyExpenses.toLocaleString()}, 
+                     Risk tolerance: ${riskResult.risk_category}. 
+                     What investment strategies and asset allocations are recommended for similar investors? 
+                     Compare with benchmark portfolios from the dataset.`;
+
+      const response = await ragAPI.query(queryText);
+      setRagInsights(response.answer);
+    } catch (e) {
+      console.error("Failed to fetch RAG insights:", e);
+      setRagInsights(null);
+    } finally {
+      setIsLoadingRag(false);
+    }
+  };
+
   const getRiskIcon = (category: string) => {
     switch (category) {
-      case 'conservative': return Shield;
-      case 'moderate': return Target;
-      case 'aggressive': return Zap;
-      default: return BarChart3;
+      case "conservative":
+        return Shield;
+      case "moderate":
+        return Target;
+      case "aggressive":
+        return Zap;
+      default:
+        return BarChart3;
     }
   };
 
   const getRiskColor = (category: string) => {
     switch (category) {
-      case 'conservative': return 'text-green-600 bg-green-100 border-green-200';
-      case 'moderate': return 'text-yellow-600 bg-yellow-100 border-yellow-200';
-      case 'aggressive': return 'text-red-600 bg-red-100 border-red-200';
-      default: return 'text-blue-600 bg-blue-100 border-blue-200';
+      case "conservative":
+        return "text-green-600 bg-green-100 border-green-200";
+      case "moderate":
+        return "text-yellow-600 bg-yellow-100 border-yellow-200";
+      case "aggressive":
+        return "text-red-600 bg-red-100 border-red-200";
+      default:
+        return "text-blue-600 bg-blue-100 border-blue-200";
     }
   };
 
@@ -81,7 +122,8 @@ export function MLInvestmentRiskAnalyzer() {
           Investment Risk Analysis
         </CardTitle>
         <CardDescription>
-          ML-powered assessment of your investment risk tolerance and preferences.
+          ML-powered assessment of your investment risk tolerance and
+          preferences.
         </CardDescription>
       </CardHeader>
 
@@ -94,7 +136,7 @@ export function MLInvestmentRiskAnalyzer() {
                 {Math.round(riskData.risk_score)}
                 <span className="text-lg text-muted-foreground">/100</span>
               </div>
-              
+
               <div className="flex items-center justify-center gap-2">
                 {(() => {
                   const Icon = getRiskIcon(riskData.risk_category);
@@ -124,21 +166,21 @@ export function MLInvestmentRiskAnalyzer() {
             <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
               <h4 className="font-medium mb-2">Risk Profile Insights</h4>
               <div className="space-y-2 text-sm">
-                {riskData.risk_category === 'conservative' && (
+                {riskData.risk_category === "conservative" && (
                   <div>
                     <p>• Preference for stable, low-risk investments</p>
                     <p>• Focus on capital preservation over growth</p>
                     <p>• Suitable for bonds, savings accounts, CDs</p>
                   </div>
                 )}
-                {riskData.risk_category === 'moderate' && (
+                {riskData.risk_category === "moderate" && (
                   <div>
                     <p>• Balanced approach to risk and return</p>
                     <p>• Mix of conservative and growth investments</p>
                     <p>• Suitable for diversified portfolios, mutual funds</p>
                   </div>
                 )}
-                {riskData.risk_category === 'aggressive' && (
+                {riskData.risk_category === "aggressive" && (
                   <div>
                     <p>• High tolerance for volatility and risk</p>
                     <p>• Focus on maximum growth potential</p>
@@ -151,12 +193,43 @@ export function MLInvestmentRiskAnalyzer() {
             {/* Confidence Score */}
             <div className="bg-purple-50 dark:bg-purple-950/20 rounded-lg p-3">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Analysis Confidence</span>
+                <span className="text-muted-foreground">
+                  Analysis Confidence
+                </span>
                 <span className="font-medium text-purple-700 dark:text-purple-300">
                   {Math.round(riskData.confidence * 100)}%
                 </span>
               </div>
             </div>
+
+            {/* RAG Investment Insights */}
+            {(ragInsights || isLoadingRag) && (
+              <div className="space-y-3 border-t pt-4">
+                <h4 className="font-medium flex items-center gap-2">
+                  <Brain className="w-4 h-4 text-indigo-600" />
+                  Investment Strategy Recommendations
+                </h4>
+                {isLoadingRag ? (
+                  <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-indigo-600 animate-pulse" />
+                      <p className="text-sm text-muted-foreground">
+                        Analyzing investment strategies from 15,000
+                        portfolios...
+                      </p>
+                    </div>
+                  </div>
+                ) : ragInsights ? (
+                  <div className="p-4 bg-indigo-50 dark:bg-indigo-950/20 rounded-lg space-y-2">
+                    <p className="text-sm whitespace-pre-line">{ragInsights}</p>
+                    <Badge variant="outline" className="text-xs">
+                      <Brain className="w-3 h-3 mr-1" />
+                      Portfolio Benchmarks
+                    </Badge>
+                  </div>
+                ) : null}
+              </div>
+            )}
           </div>
         )}
 
@@ -165,7 +238,9 @@ export function MLInvestmentRiskAnalyzer() {
           <div className="space-y-4">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
-              <p className="text-sm text-muted-foreground mt-2">Analyzing risk profile...</p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Analyzing risk profile...
+              </p>
             </div>
           </div>
         )}
@@ -187,21 +262,23 @@ export function MLInvestmentRiskAnalyzer() {
             <TrendingUp className="w-12 h-12 mx-auto opacity-50" />
             <div>
               <p className="font-medium">Investment Risk Analysis</p>
-              <p className="text-sm">Discover your investment risk tolerance with ML analysis.</p>
+              <p className="text-sm">
+                Discover your investment risk tolerance with ML analysis.
+              </p>
             </div>
           </div>
         )}
       </CardContent>
 
       <CardFooter className="border-t px-6 py-4">
-        <Button 
-          onClick={analyzeRisk} 
+        <Button
+          onClick={analyzeRisk}
           disabled={isLoading || !profile}
           className="w-full"
           variant="outline"
         >
           <BarChart3 className="mr-2 h-4 w-4" />
-          {isLoading ? 'Analyzing...' : 'Analyze Risk Tolerance'}
+          {isLoading ? "Analyzing..." : "Analyze Risk Tolerance"}
         </Button>
       </CardFooter>
     </Card>
