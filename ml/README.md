@@ -1,3 +1,13 @@
+---
+title: FundN3xus RAG API
+emoji: 💰
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # FundN3xus ML Backend
 
 Production-ready machine learning backend for financial predictions and AI-powered insights.
