@@ -1,6 +1,6 @@
 // File: src/app/api/ai/chat/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { askGemini } from "@/lib/gemini";
+import { askGroq } from "@/lib/groq";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -69,10 +69,10 @@ function extractFinancialData(userContext?: string) {
 export async function POST(req: NextRequest): Promise<NextResponse<ChatResponse | { error: string }>> {
   try {
     // 1. Validate environment variables
-    if (!process.env.GEMINI_API_KEY) {
-      console.error("❌ GEMINI_API_KEY is missing");
+    if (!process.env.GROQ_API_KEY) {
+      console.error("❌ GROQ_API_KEY is missing");
       return NextResponse.json(
-        { error: "GEMINI_API_KEY missing" },
+        { error: "GROQ_API_KEY missing" },
         { status: 500 }
       );
     }
@@ -173,14 +173,14 @@ export async function POST(req: NextRequest): Promise<NextResponse<ChatResponse 
       ? `Based on the user's financial profile analysis:\n${mlContext.join('\n')}`
       : userContext || "";
 
-    // 7. Get AI response from Gemini
+    // 7. Get AI response from Groq
     console.log("🤖 Getting AI response with ML context...");
     let aiResponse: string;
 
     try {
-      aiResponse = await askGemini(prompt, contextString);
-    } catch (geminiError: any) {
-      console.error("❌ Gemini AI failed:", geminiError);
+      aiResponse = await askGroq(prompt, contextString);
+    } catch (groqError: any) {
+      console.error("❌ Groq AI failed:", groqError);
 
       // Check if FastAPI is down
       const fastApiUrl = process.env.FASTAPI_URL || "http://localhost:8000";
@@ -194,7 +194,7 @@ export async function POST(req: NextRequest): Promise<NextResponse<ChatResponse 
       }
 
       return NextResponse.json(
-        { error: geminiError.message || "AI request failed" },
+        { error: groqError.message || "AI request failed" },
         { status: 500 }
       );
     }

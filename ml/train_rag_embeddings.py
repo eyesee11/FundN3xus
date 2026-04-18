@@ -26,13 +26,13 @@ import logging
 from datetime import datetime
 from dotenv import load_dotenv
 
-from rag_pipeline import FinancialRAGPipeline
+from rag_pipeline_pinecone import PineconeRAGPipeline
 
 # Load environment
 load_dotenv()
 
 # Will be set based on command-line arguments
-RAG_PIPELINE_CLASS = FinancialRAGPipeline
+RAG_PIPELINE_CLASS = PineconeRAGPipeline
 
 # Configure logging
 logging.basicConfig(

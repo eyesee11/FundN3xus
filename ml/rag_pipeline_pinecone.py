@@ -53,12 +53,12 @@ except ImportError:
     PINECONE_AVAILABLE = False
     logging.error("Pinecone not installed. Run: pip install pinecone")
 
-# For Gemini integration
+# For Groq integration
 try:
-    from langchain_google_genai import ChatGoogleGenerativeAI
-    GEMINI_AVAILABLE = True
+    from langchain_groq import ChatGroq
+    GROQ_AVAILABLE = True
 except ImportError:
-    GEMINI_AVAILABLE = False
+    GROQ_AVAILABLE = False
 
 # Load environment variables
 load_dotenv()
@@ -70,7 +70,7 @@ PINECONE_INDEX_NAME = os.getenv('PINECONE_INDEX_NAME', 'fundnexus-financial')
 
 # Other Configuration
 DATASET_PATH = os.getenv('DATASET_PATH', 'ml/dataset.csv')
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY', '')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY', '')
 EMBEDDING_MODEL = os.getenv('EMBEDDING_MODEL', 'sentence-transformers/all-MiniLM-L6-v2')
 
 # Configure logging
@@ -362,16 +362,15 @@ with a savings rate of {row['savings_rate']*100:.1f}% and a financial health sco
         """Initialize LLM for generation"""
         logger.info("Initializing LLM...")
         
-        if GEMINI_AVAILABLE and GEMINI_API_KEY:
-            self.llm = ChatGoogleGenerativeAI(
-                model="gemini-pro",
-                google_api_key=GEMINI_API_KEY,
-                temperature=0.3,
-                convert_system_message_to_human=True
+        if GROQ_AVAILABLE and GROQ_API_KEY:
+            self.llm = ChatGroq(
+                model="llama-3.3-70b-versatile",  # Active fast Groq model
+                api_key=GROQ_API_KEY,
+                temperature=0.3
             )
-            logger.info("Using Google Gemini LLM")
+            logger.info("Using Groq LLM")
         else:
-            logger.warning("Gemini API key not found. Set GEMINI_API_KEY in .env")
+            logger.warning("Groq API key not found. Set GROQ_API_KEY in .env")
             logger.warning("RAG pipeline will use retrieval only without generation")
     
     def create_qa_chain(self):
