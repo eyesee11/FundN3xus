@@ -64,7 +64,7 @@ Context: This is a conversation within the FundN3xus financial planning app wher
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(\`Groq API error: \${response.status} \${errorData?.error?.message || response.statusText}\`);
+      throw new Error(`Groq API error: ${response.status} ${errorData?.error?.message || response.statusText}`);
     }
 
     const data = await response.json();
