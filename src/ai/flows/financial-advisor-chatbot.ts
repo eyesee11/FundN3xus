@@ -11,8 +11,8 @@
  * - connects with Fi Money's MCP server
  */
 
-import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
+import { askGroqJson } from '@/lib/groq';
 
 // input schema for the financial advisor chatbot
 const FinancialAdvisorInputSchema = z.object({
@@ -75,70 +75,40 @@ const FinancialAdvisorOutputSchema = z.object({
   followUpQuestions: z.array(z.string()).describe("Questions to ask in follow-up conversations")
 });
 
-export type FinancialAdvisorOutput = z.infer<typeof FinancialAdvisorOutputSchema>;
+export type FinancialAdvisorOutput = {
+  response: string;
+  suggestions: {
+    action: string;
+    priority: 'high' | 'medium' | 'low';
+    reasoning: string;
+    estimatedImpact: string;
+    timeframe: string;
+  }[];
+  financialHealthScore: number;
+  insights: string[];
+  nextSteps: string[];
+  riskAssessment: {
+    level: 'low' | 'medium' | 'high';
+    factors: string[];
+  };
+  followUpQuestions: string[];
+};
 
 /**
- * Prompt template for the financial advisor chatbot
+ * Financial Advisor Chatbot Flow
+ * Uses Groq to connect with a Llama model.
  */
-const financialAdvisorPrompt = ai.definePrompt(
-  {
-    name: 'financialAdvisorPrompt',
-    inputSchema: FinancialAdvisorInputSchema,
-    outputSchema: FinancialAdvisorOutputSchema,
-  },
-  async (input) => {
-    const { userId, userQuery, financialData, interactionHistory, context } = input;
+export async function financialAdvisorChatbot(input: FinancialAdvisorInput): Promise<FinancialAdvisorOutput> {
+  const { userId, userQuery, financialData, interactionHistory, context } = input;
 
-    // Calculate financial health metrics
-    const monthlyNetIncome = financialData.monthlyIncome - financialData.monthlyExpenses;
-    const savingsRate = (monthlyNetIncome / financialData.monthlyIncome) * 100;
-    const totalDebt = financialData.debts.reduce((sum, debt) => sum + debt.amount, 0);
-    const totalInvestments = financialData.investments.reduce((sum, inv) => sum + inv.value, 0);
-    const netWorth = financialData.currentBalance + totalInvestments - totalDebt;
+  const monthlyNetIncome = financialData.monthlyIncome - financialData.monthlyExpenses;
+  const savingsRate = (monthlyNetIncome / financialData.monthlyIncome) * 100;
+  const totalDebt = financialData.debts.reduce((sum, debt) => sum + debt.amount, 0);
+  const totalInvestments = financialData.investments.reduce((sum, inv) => sum + inv.value, 0);
+  const netWorth = financialData.currentBalance + totalInvestments - totalDebt;
 
-    return {
-      text: `You are an expert financial advisor with access to a user's complete financial profile. 
-You have been tracking their daily interactions and financial activities.
-
-USER PROFILE:
-- User ID: ${userId}
-- Current Balance: $${financialData.currentBalance.toLocaleString()}
-- Monthly Income: $${financialData.monthlyIncome.toLocaleString()}
-- Monthly Expenses: $${financialData.monthlyExpenses.toLocaleString()}
-- Net Monthly Income: $${monthlyNetIncome.toLocaleString()}
-- Savings Rate: ${savingsRate.toFixed(1)}%
-- Total Debt: $${totalDebt.toLocaleString()}
-- Total Investments: $${totalInvestments.toLocaleString()}
-- Net Worth: $${netWorth.toLocaleString()}
-
-RECENT FINANCIAL ACTIVITY:
-${financialData.recentTransactions.slice(0, 5).map(t => 
-  `- ${t.date}: ${t.amount < 0 ? '-' : '+'}$${Math.abs(t.amount)} (${t.category}) - ${t.description}`
-).join('\n')}
-
-INVESTMENT PORTFOLIO:
-${financialData.investments.map(inv => 
-  `- ${inv.type}: $${inv.value.toLocaleString()} (${inv.performance > 0 ? '+' : ''}${inv.performance.toFixed(1)}%)`
-).join('\n')}
-
-DEBT OBLIGATIONS:
-${financialData.debts.map(debt => 
-  `- ${debt.type}: $${debt.amount.toLocaleString()} at ${debt.interestRate.toFixed(1)}% interest`
-).join('\n')}
-
-INTERACTION HISTORY (Last 3 conversations):
-${interactionHistory.slice(-3).map(h => 
-  `[${h.timestamp}] User: "${h.query}" | Your Response: "${h.response.substring(0, 100)}..."`
-).join('\n')}
-
-CURRENT CONTEXT:
-- Time: ${context.timeOfDay}, ${context.dayOfWeek}
-- Season: ${context.season}
-${context.marketConditions ? `- Market: ${context.marketConditions}` : ''}
-
-USER'S CURRENT QUESTION: "${userQuery}"
-
-As their personal financial advisor, provide comprehensive guidance that:
+  const systemPrompt = `You are an expert financial advisor with access to a user's complete financial profile. 
+You have been tracking their daily interactions and financial activities. As their personal financial advisor, provide comprehensive guidance that:
 1. Directly addresses their question
 2. Considers their complete financial picture
 3. Builds on previous conversations
@@ -148,30 +118,75 @@ As their personal financial advisor, provide comprehensive guidance that:
 
 Be conversational, empathetic, and practical. Consider the time context and their recent activities.
 
-Provide your response in the following structured format:
-- response: A conversational answer to their question
-- suggestions: Specific actionable recommendations with priority, reasoning, impact, and timeframe
-- financialHealthScore: A score from 0-100 based on their overall financial health
-- insights: Key observations about their financial situation
-- nextSteps: Immediate actions they should consider
-- riskAssessment: Current risk level and factors
-- followUpQuestions: Questions to continue the conversation`,
-    };
-  }
-);
-
-/**
- * Financial Advisor Chatbot Flow
- * Uses pre-trained model weights and Fi Money MCP server integration
- */
-export const financialAdvisorChatbot = ai.defineFlow(
-  {
-    name: 'financialAdvisorChatbot',
-    inputSchema: FinancialAdvisorInputSchema,
-    outputSchema: FinancialAdvisorOutputSchema,
+Provide your response in the following structured JSON format ONLY, EXACTLY as described:
+{
+  "response": "A conversational answer to their question",
+  "suggestions": [
+    {
+      "action": "Recommended action",
+      "priority": "high|medium|low",
+      "reasoning": "Why this action is recommended",
+      "estimatedImpact": "Expected financial impact",
+      "timeframe": "Suggested timeframe for implementation"
+    }
+  ],
+  "financialHealthScore": 85,
+  "insights": ["Key observation 1"],
+  "nextSteps": ["Immediate action 1"],
+  "riskAssessment": {
+    "level": "low|medium|high",
+    "factors": ["Risk factor 1"]
   },
-  async (input) => {
-    const { output } = await financialAdvisorPrompt(input);
-    return output!;
-  }
-);
+  "followUpQuestions": ["Question 1?"]
+}
+If financialHealthScore is missing or cannot be determined, output a valid number between 0 and 100.`;
+
+  const recentTransactionsStr = financialData.recentTransactions.slice(0, 5).map(t => 
+    "- " + t.date + ": " + (t.amount < 0 ? '-' : '+') + "$" + Math.abs(t.amount) + " (" + t.category + ") - " + t.description
+  ).join('\\n');
+
+  const investmentsStr = financialData.investments.map(inv => 
+    "- " + inv.type + ": $" + inv.value.toLocaleString() + " (" + (inv.performance > 0 ? '+' : '') + inv.performance.toFixed(1) + "%)"
+  ).join('\\n');
+
+  const debtsStr = financialData.debts.map(debt => 
+    "- " + debt.type + ": $" + debt.amount.toLocaleString() + " at " + debt.interestRate.toFixed(1) + "% interest"
+  ).join('\\n');
+
+  const interactionHistoryStr = interactionHistory.slice(-3).map(h => 
+    "[" + h.timestamp + "] User: \\"" + h.query + "\\" | Your Response: \\"" + h.response.substring(0, 100) + "...\\""
+  ).join('\\n');
+
+  const userPromptText = \`USER PROFILE:
+- User ID: \${userId}
+- Current Balance: $\${financialData.currentBalance.toLocaleString()}
+- Monthly Income: $\${financialData.monthlyIncome.toLocaleString()}
+- Monthly Expenses: $\${financialData.monthlyExpenses.toLocaleString()}
+- Net Monthly Income: $\${monthlyNetIncome.toLocaleString()}
+- Savings Rate: \${savingsRate.toFixed(1)}%
+- Total Debt: $\${totalDebt.toLocaleString()}
+- Total Investments: $\${totalInvestments.toLocaleString()}
+- Net Worth: $\${netWorth.toLocaleString()}
+
+RECENT FINANCIAL ACTIVITY:
+\${recentTransactionsStr}
+
+INVESTMENT PORTFOLIO:
+\${investmentsStr}
+
+DEBT OBLIGATIONS:
+\${debtsStr}
+
+INTERACTION HISTORY (Last 3 conversations):
+\${interactionHistoryStr}
+
+CURRENT CONTEXT:
+- Time: \${context.timeOfDay}, \${context.dayOfWeek}
+- Season: \${context.season}
+\${context.marketConditions ? \`- Market: \${context.marketConditions}\` : ''}
+
+USER'S CURRENT QUESTION: "\${userQuery}"\`;
+
+  return await askGroqJson<FinancialAdvisorOutput>(systemPrompt, userPromptText);
+}
+

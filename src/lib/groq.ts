@@ -1,6 +1,42 @@
 // File: src/lib/groq.ts
 
 /**
+ * Ask Groq LLM for JSON response
+ */
+export async function askGroqJson<T>(systemPrompt: string, userPrompt: string): Promise<T> {
+  const API_KEY = process.env.GROQ_API_KEY;
+  if (!API_KEY) throw new Error("GROQ_API_KEY is missing from environment variables");
+
+  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: "llama-3.3-70b-versatile",
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: systemPrompt + "\\n\\nIMPORTANT: You must return valid JSON ONLY matching the requested structure." },
+        { role: "user", content: userPrompt }
+      ],
+      temperature: 0.1
+    })
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(`Groq API error: ${response.status} ${errorData?.error?.message || response.statusText}`);
+  }
+
+  const data = await response.json();
+  const content = data.choices?.[0]?.message?.content;
+  if (!content) throw new Error("Groq returned an empty response");
+  
+  return JSON.parse(content) as T;
+}
+
+/**
  * Ask Groq LLM for financial advice with optional context
  * @param prompt - User's question or prompt
  * @param context - Optional context from ML models or user data

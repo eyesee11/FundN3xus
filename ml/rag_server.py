@@ -122,6 +122,12 @@ async def startup_event():
 
 
 # API Endpoints
+
+@app.get("/")
+async def root():
+    """Root endpoint for health checks (e.g., Hugging Face Spaces)"""
+    return {"status": "online", "message": "FundN3xus RAG API is running"}
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""

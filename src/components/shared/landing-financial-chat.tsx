@@ -28,17 +28,17 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
   if (queryLower.includes('budget') || queryLower.includes('save money')) {
     return (
       <div className="space-y-4">
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border-l-4 border-blue-500">
-          <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+        <div className="bg-gradient-to-r from-brand-card to-brand-navy border-brand-orange/20 p-4 rounded-lg border-l-4 border-brand-orange">
+          <h3 className="font-semibold text-white mb-2 flex items-center gap-2">
             <Target className="h-4 w-4" />
             Proven Budgeting Strategy
           </h3>
           <div className="space-y-3">
-            <div className="bg-white/70 p-3 rounded-md">
-              <h4 className="font-medium text-blue-800 mb-2">The 50/30/20 Rule:</h4>
+            <div className="bg-brand-dark/50 p-3 rounded-md">
+              <h4 className="font-medium text-slate-300 mb-2">The 50/30/20 Rule:</h4>
               <div className="space-y-1 text-sm">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-brand-dark/500 rounded-full"></div>
                   <span><strong>50%</strong> for needs (rent, utilities, groceries)</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -46,14 +46,14 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
                   <span><strong>30%</strong> for wants (entertainment, dining out)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-brand-dark/500 rounded-full"></div>
                   <span><strong>20%</strong> for savings and debt repayment</span>
                 </div>
               </div>
             </div>
             
-            <div className="bg-white/70 p-3 rounded-md">
-              <h4 className="font-medium text-blue-800 mb-2 flex items-center gap-2">
+            <div className="bg-brand-dark/50 p-3 rounded-md">
+              <h4 className="font-medium text-slate-300 mb-2 flex items-center gap-2">
                 <Sparkles className="h-3 w-3" />
                 Quick Tips:
               </h4>
@@ -78,8 +78,8 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 rounded-lg border-l-4 border-green-500">
-          <p className="text-green-800 text-sm font-medium">
+        <div className="bg-gradient-to-r from-brand-card to-brand-navy border border-brand-orange/20 p-3 rounded-lg border-l-4 border-brand-orange">
+          <p className="text-slate-300 text-sm font-medium">
             💡 <strong>Pro Tip:</strong> Start with one category at a time for sustainable habit building!
           </p>
         </div>
@@ -90,57 +90,57 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
   if (queryLower.includes('invest') || queryLower.includes('mutual fund') || queryLower.includes('sip')) {
     return (
       <div className="space-y-4">
-        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-4 rounded-lg border-l-4 border-purple-500">
-          <h3 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+        <div className="bg-gradient-to-r from-brand-card to-brand-navy border-brand-orange/20 p-4 rounded-lg border-l-4 border-brand-orange">
+          <h3 className="font-semibold text-white mb-3 flex items-center gap-2">
             <TrendingUp className="h-4 w-4" />
             Smart Investment Strategy for Beginners
           </h3>
           
           <div className="grid gap-3">
-            <div className="bg-white/70 p-3 rounded-md">
-              <h4 className="font-medium text-purple-800 mb-2">Mutual Fund SIP Approach:</h4>
+            <div className="bg-brand-dark/50 p-3 rounded-md">
+              <h4 className="font-medium text-slate-300 mb-2">Mutual Fund SIP Approach:</h4>
               <div className="space-y-2 text-sm">
-                <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
+                <div className="flex items-center justify-between p-2 bg-brand-dark/50 rounded">
                   <span>Monthly SIP Amount:</span>
                   <Badge variant="secondary">₹2,000-5,000</Badge>
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-blue-500 rounded"></div>
+                    <div className="w-3 h-3 bg-brand-dark/500 rounded"></div>
                     <span>Large-cap funds for stability (60%)</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded"></div>
+                    <div className="w-3 h-3 bg-brand-dark/500 rounded"></div>
                     <span>Mid-cap funds for growth (30%)</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-gray-500 rounded"></div>
+                    <div className="w-3 h-3 bg-brand-dark/500 rounded"></div>
                     <span>Debt funds for safety (10%)</span>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="bg-white/70 p-3 rounded-md">
-              <h4 className="font-medium text-purple-800 mb-2">Recommended Timeline:</h4>
+            <div className="bg-brand-dark/50 p-3 rounded-md">
+              <h4 className="font-medium text-slate-300 mb-2">Recommended Timeline:</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
-                  <span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium">Step 1</span>
+                  <span className="bg-red-100 text-slate-300 px-2 py-1 rounded text-xs font-medium">Step 1</span>
                   <span>Emergency fund first (6 months expenses)</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium">Step 2</span>
+                  <span className="bg-yellow-100 text-slate-300 px-2 py-1 rounded text-xs font-medium">Step 2</span>
                   <span>Then start SIP investments</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Step 3</span>
+                  <span className="bg-green-100 text-slate-300 px-2 py-1 rounded text-xs font-medium">Step 3</span>
                   <span>Increase SIP by 10% annually</span>
                 </div>
               </div>
             </div>
             
-            <div className="bg-white/70 p-3 rounded-md">
-              <h4 className="font-medium text-purple-800 mb-2">Popular Beginner Funds:</h4>
+            <div className="bg-brand-dark/50 p-3 rounded-md">
+              <h4 className="font-medium text-slate-300 mb-2">Popular Beginner Funds:</h4>
               <div className="space-y-1 text-sm">
                 {['HDFC Top 100 Fund', 'ICICI Prudential Bluechip Fund', 'SBI Small Cap Fund'].map((fund, index) => (
                   <div key={fund} className="flex items-center gap-2 p-1">
@@ -155,8 +155,8 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
           </div>
         </div>
         
-        <div className="bg-gradient-to-r from-amber-50 to-orange-50 p-3 rounded-lg border-l-4 border-amber-500">
-          <p className="text-amber-800 text-sm font-medium flex items-center gap-2">
+        <div className="bg-gradient-to-r from-brand-card to-brand-navy border-brand-orange/20 p-3 rounded-lg border-l-4 border-brand-orange">
+          <p className="text-brand-orange text-sm font-medium flex items-center gap-2">
             <Shield className="h-4 w-4" />
             <strong>Remember:</strong> Time in market beats timing the market!
           </p>
@@ -168,15 +168,15 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
   // Default response for other financial queries
   return (
     <div className="space-y-4">
-      <div className="bg-gradient-to-r from-slate-50 to-gray-50 p-4 rounded-lg border-l-4 border-slate-500">
-        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
+      <div className="bg-gradient-to-r from-brand-card to-brand-navy border-brand-orange/20 p-4 rounded-lg border-l-4 border-brand-orange">
+        <h3 className="font-semibold text-white mb-3 flex items-center gap-2">
           <Sparkles className="h-4 w-4" />
           General Financial Wellness Tips
         </h3>
         
         <div className="grid gap-3">
-          <div className="bg-white/70 p-3 rounded-md">
-            <h4 className="font-medium text-slate-800 mb-2">Monthly Financial Checklist:</h4>
+          <div className="bg-brand-dark/50 p-3 rounded-md">
+            <h4 className="font-medium text-slate-300 mb-2">Monthly Financial Checklist:</h4>
             <div className="grid grid-cols-1 gap-1 text-sm">
               {[
                 'Track income vs expenses',
@@ -187,7 +187,7 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2 p-1">
                   <div className="w-4 h-4 bg-green-100 rounded flex items-center justify-center">
-                    <span className="text-green-600 text-xs">✓</span>
+                    <span className="text-slate-400 text-xs">✓</span>
                   </div>
                   <span>{item}</span>
                 </div>
@@ -195,8 +195,8 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
             </div>
           </div>
           
-          <div className="bg-white/70 p-3 rounded-md">
-            <h4 className="font-medium text-slate-800 mb-2">Long-term Wealth Building:</h4>
+          <div className="bg-brand-dark/50 p-3 rounded-md">
+            <h4 className="font-medium text-slate-300 mb-2">Long-term Wealth Building:</h4>
             <div className="space-y-1 text-sm">
               {[
                 'Start investing early (compound interest magic)',
@@ -215,28 +215,28 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
             </div>
           </div>
           
-          <div className="bg-white/70 p-3 rounded-md">
-            <h4 className="font-medium text-slate-800 mb-2">Financial Goals Framework:</h4>
+          <div className="bg-brand-dark/50 p-3 rounded-md">
+            <h4 className="font-medium text-slate-300 mb-2">Financial Goals Framework:</h4>
             <div className="space-y-2 text-sm">
-              <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
-                <div className="bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium">1-3 years</div>
+              <div className="flex items-start gap-3 p-2 bg-brand-dark/50 rounded">
+                <div className="bg-brand-dark/500 text-white px-2 py-1 rounded text-xs font-medium">1-3 years</div>
                 <div>
-                  <div className="font-medium text-blue-800">Short-term</div>
-                  <div className="text-blue-600">Emergency fund, vacation</div>
+                  <div className="font-medium text-slate-300">Short-term</div>
+                  <div className="text-slate-400">Emergency fund, vacation</div>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-2 bg-purple-50 rounded">
-                <div className="bg-purple-500 text-white px-2 py-1 rounded text-xs font-medium">3-7 years</div>
+              <div className="flex items-start gap-3 p-2 bg-brand-dark/50 rounded">
+                <div className="bg-brand-dark/500 text-white px-2 py-1 rounded text-xs font-medium">3-7 years</div>
                 <div>
-                  <div className="font-medium text-purple-800">Medium-term</div>
-                  <div className="text-purple-600">House down payment, car</div>
+                  <div className="font-medium text-slate-300">Medium-term</div>
+                  <div className="text-slate-400">House down payment, car</div>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-2 bg-green-50 rounded">
-                <div className="bg-green-500 text-white px-2 py-1 rounded text-xs font-medium">7+ years</div>
+              <div className="flex items-start gap-3 p-2 bg-brand-dark/50 rounded">
+                <div className="bg-brand-dark/500 text-white px-2 py-1 rounded text-xs font-medium">7+ years</div>
                 <div>
-                  <div className="font-medium text-green-800">Long-term</div>
-                  <div className="text-green-600">Retirement, children's education</div>
+                  <div className="font-medium text-slate-300">Long-term</div>
+                  <div className="text-slate-400">Retirement, children's education</div>
                 </div>
               </div>
             </div>
@@ -244,8 +244,8 @@ const getSampleFinancialResponse = (query: string): React.ReactNode => {
         </div>
       </div>
       
-      <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-3 rounded-lg border-l-4 border-blue-500">
-        <p className="text-blue-800 text-sm font-medium flex items-center gap-2">
+      <div className="bg-gradient-to-r from-brand-card to-brand-navy border-brand-orange/20 p-3 rounded-lg border-l-4 border-brand-orange">
+        <p className="text-slate-300 text-sm font-medium flex items-center gap-2">
           <TrendingUp className="h-4 w-4" />
           <strong>Want personalized advice?</strong> Sign up for detailed analysis of your financial situation!
         </p>
@@ -273,7 +273,7 @@ export function LandingFinancialChatWidget() {
   
   // Aurora floating icons for chat button
   const floatingIcons = [Sparkles, TrendingUp, Shield, Target, Brain];
-  const iconColors = ['text-primary', 'text-accent', 'text-blue-400', 'text-green-400', 'text-purple-400'];
+  const iconColors = ['text-brand-orange', 'text-brand-orange', 'text-blue-400', 'text-green-400', 'text-purple-400'];
   
   const MAX_FREE_RESPONSES = 5;
 
@@ -354,10 +354,10 @@ export function LandingFinancialChatWidget() {
         id: Date.now(),
         role: 'advisor',
         content: (
-          <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-blue-50">
+          <Card className="border-brand-orange/20 bg-gradient-to-r from-brand-orange/5 to-blue-50">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm flex items-center gap-2">
-                <Brain className="h-4 w-4 text-primary" />
+                <Brain className="h-4 w-4 text-brand-orange" />
                 Free Sample Limit Reached
               </CardTitle>
             </CardHeader>
@@ -408,30 +408,30 @@ export function LandingFinancialChatWidget() {
         advisorContent = (
           <div className="space-y-4">
             <div>{response}</div>
-            <Card className="border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-md">
+            <Card className="border-blue-200 bg-gradient-to-r from-brand-card to-brand-navy border-brand-orange/20 shadow-md">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-semibold text-blue-900 flex items-center gap-2">
+                  <span className="text-sm font-semibold text-white flex items-center gap-2">
                     <Brain className="h-4 w-4" />
                     Sample Responses Used
                   </span>
-                  <Badge variant="secondary" className="bg-white/80 text-blue-800 border-blue-200">
+                  <Badge variant="secondary" className="bg-brand-dark/80 text-slate-300 border-blue-200">
                     {newResponseCount}/{MAX_FREE_RESPONSES}
                   </Badge>
                 </div>
                 <Progress 
                   value={(newResponseCount / MAX_FREE_RESPONSES) * 100} 
-                  className="h-3 mb-3 bg-blue-100" 
+                  className="h-3 mb-3 bg-brand-dark" 
                 />
                 <div className="space-y-3">
-                  <p className="text-sm text-blue-800 leading-relaxed">
+                  <p className="text-sm text-slate-300 leading-relaxed">
                     {newResponseCount < MAX_FREE_RESPONSES 
                       ? `🎯 ${MAX_FREE_RESPONSES - newResponseCount} more sample responses available. Sign up for unlimited access!`
                       : "🚀 Sign up now for unlimited personalized financial advice!"
                     }
                   </p>
                   {newResponseCount >= MAX_FREE_RESPONSES - 1 && (
-                    <Button asChild size="sm" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                    <Button asChild size="sm" className="w-full bg-brand-orange hover:bg-brand-orange/90 text-white">
                       <Link href="/login" target="_blank">
                         <ArrowRight className="h-4 w-4 mr-2" />
                         Get Full Access
@@ -500,8 +500,8 @@ export function LandingFinancialChatWidget() {
     <div className="fixed bottom-6 right-6 z-50">
       {/* Aurora Background Effects */}
       <div className="absolute inset-0 -m-8 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-primary/20 rounded-full blur-2xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-accent/30 rounded-full blur-xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-brand-orange/20 rounded-full blur-2xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-brand-orange/30 rounded-full blur-xl animate-pulse transform -translate-x-1/2 -translate-y-1/2" style={{ animationDelay: '1s' }} />
       </div>
 
       {/* Floating Icons Animation */}
@@ -542,7 +542,7 @@ export function LandingFinancialChatWidget() {
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        className="h-16 w-16 rounded-full shadow-2xl bg-gradient-to-r from-primary via-accent to-primary hover:from-primary/90 hover:via-accent/90 hover:to-primary/90 border-2 border-primary/20 backdrop-blur-sm relative overflow-hidden group cursor-pointer z-10"
+        className="h-16 w-16 rounded-full shadow-2xl bg-gradient-to-r from-brand-orange via-brand-orange/80 to-brand-orange hover:from-brand-orange/90 hover:via-orange-400/90 hover:to-orange-500/90 border-2 border-brand-orange/20 backdrop-blur-sm relative overflow-hidden group cursor-pointer z-10"
         onClick={handleChatToggle}
         aria-label="Open Financial AI Chat"
       >
@@ -550,7 +550,7 @@ export function LandingFinancialChatWidget() {
         <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full" />
         
         {/* Pulsing ring effect */}
-        <div className="absolute inset-0 rounded-full bg-primary/30 animate-ping" />
+        <div className="absolute inset-0 rounded-full bg-brand-orange/30 animate-ping" />
         
         <div className="relative z-10 flex items-center justify-center">
           <motion.div
@@ -588,13 +588,13 @@ export function LandingFinancialChatWidget() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: "100%", scale: 0.9 }}
               transition={{ type: "spring", damping: 20, stiffness: 300 }}
-              className="absolute right-4 top-4 bottom-4 w-full sm:w-96 bg-background shadow-2xl border border-border rounded-2xl overflow-hidden"
+              className="absolute right-4 top-4 bottom-4 w-full sm:w-96 bg-brand-dark shadow-2xl border border-white/10 rounded-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Aurora Background Effects */}
               <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-primary/5 via-accent/5 to-transparent" />
-                <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-primary/10 via-transparent to-transparent rounded-full blur-3xl" />
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-brand-orange/5 via-orange-400/5 to-transparent" />
+                <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-tl from-brand-orange/10 via-transparent to-transparent rounded-full blur-3xl" />
                 <div className="absolute top-1/3 left-0 w-48 h-48 bg-gradient-to-r from-accent/10 via-transparent to-transparent rounded-full blur-2xl" />
               </div>
 
@@ -621,13 +621,13 @@ export function LandingFinancialChatWidget() {
                     repeatDelay: 3
                   }}
                 >
-                  <Sparkles className="w-3 h-3 text-primary/40" />
+                  <Sparkles className="w-3 h-3 text-brand-orange/40" />
                 </motion.div>
               ))}
 
               <div className="flex flex-col h-full relative z-10">
                 {/* Header */}
-                <div className="p-6 border-b border-border/50 bg-gradient-to-r from-card/90 to-background/90 backdrop-blur-sm">
+                <div className="p-6 border-b border-white/10/50 bg-gradient-to-r from-brand-card/90 to-brand-dark/90 backdrop-blur-sm">
                   <div className="flex items-center justify-between">
                     <motion.div
                       initial={{ opacity: 0, y: -20 }}
@@ -636,11 +636,11 @@ export function LandingFinancialChatWidget() {
                       className="flex items-center gap-3"
                     >
                       <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-sm opacity-50" />
-                        <Brain className="h-6 w-6 text-primary relative z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-accent rounded-full blur-sm opacity-50" />
+                        <Brain className="h-6 w-6 text-brand-orange relative z-10" />
                       </div>
                       <div>
-                        <h2 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                        <h2 className="text-lg font-bold bg-gradient-to-r from-brand-orange to-accent bg-clip-text text-transparent">
                           Financial AI Assistant
                         </h2>
                         <p className="text-xs text-muted-foreground">
@@ -650,7 +650,7 @@ export function LandingFinancialChatWidget() {
                     </motion.div>
                     
                     <div className="flex items-center gap-2">
-                      {/* <Badge variant="secondary" className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
+                      {/* <Badge variant="secondary" className="bg-gradient-to-r from-brand-orange/10 to-accent/10 border-brand-orange/20">
                         <Sparkles className="w-3 h-3 mr-1" />
                         Sample Mode
                       </Badge> */}
@@ -683,8 +683,8 @@ export function LandingFinancialChatWidget() {
                               whileHover={{ scale: 1.1 }}
                               className="relative"
                             >
-                              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-sm opacity-50" />
-                              <Avatar className="h-9 w-9 border-2 border-primary/20 bg-gradient-to-r from-primary via-accent to-primary relative">
+                              <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-accent rounded-full blur-sm opacity-50" />
+                              <Avatar className="h-9 w-9 border-2 border-brand-orange/20 bg-gradient-to-r from-brand-orange via-brand-orange/80 to-brand-orange relative">
                                 <AvatarFallback className="bg-transparent text-white">
                                   <Brain className="h-4 w-4" />
                                 </AvatarFallback>
@@ -696,13 +696,13 @@ export function LandingFinancialChatWidget() {
                             whileHover={{ scale: 1.02 }}
                             className={`rounded-2xl p-4 max-w-[85%] relative overflow-hidden backdrop-blur-sm ${
                               message.role === 'user' 
-                                ? 'bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg border border-primary/20' 
-                                : 'bg-gradient-to-br from-card/90 to-muted/50 border border-border/50 shadow-md'
+                                ? 'bg-gradient-to-r from-brand-orange to-accent text-brand-orange-foreground shadow-lg border border-brand-orange/20' 
+                                : 'bg-brand-card border border-white/10/50 shadow-md'
                             }`}
                           >
                             {/* Aurora effect for message bubbles */}
                             {message.role === 'advisor' && (
-                              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
+                              <div className="absolute inset-0 bg-gradient-to-br from-brand-orange/5 via-transparent to-accent/5 pointer-events-none" />
                             )}
                             
                             <div className="text-sm relative z-10">
@@ -726,10 +726,10 @@ export function LandingFinancialChatWidget() {
                                         speak(message.content as string);
                                       }
                                     }}
-                                    className="ml-2 h-7 w-7 p-0 opacity-60 hover:opacity-100 hover:bg-primary/10 rounded-full"
+                                    className="ml-2 h-7 w-7 p-0 opacity-60 hover:opacity-100 hover:bg-brand-orange/10 rounded-full"
                                     title={isSpeaking ? "Stop speaking" : "Read aloud"}
                                   >
-                                    <Volume2 className={`h-3 w-3 ${isSpeaking ? 'text-primary animate-pulse' : ''}`} />
+                                    <Volume2 className={`h-3 w-3 ${isSpeaking ? 'text-brand-orange animate-pulse' : ''}`} />
                                   </Button>
                                 </motion.div>
                               )}
@@ -738,7 +738,7 @@ export function LandingFinancialChatWidget() {
                           
                           {message.role === 'user' && (
                             <motion.div whileHover={{ scale: 1.1 }}>
-                              <Avatar className="h-9 w-9 border-2 border-accent/20 bg-gradient-to-r from-accent to-primary">
+                              <Avatar className="h-9 w-9 border-2 border-orange-400/20 bg-gradient-to-r from-accent to-orange-500">
                                 <AvatarFallback className="bg-transparent text-white">
                                   <User className="h-4 w-4" />
                                 </AvatarFallback>
@@ -758,8 +758,8 @@ export function LandingFinancialChatWidget() {
                             whileHover={{ scale: 1.1 }}
                             className="relative"
                           >
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-sm opacity-50" />
-                            <Avatar className="h-9 w-9 border-2 border-primary/20 bg-gradient-to-r from-primary via-accent to-primary relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-brand-orange to-accent rounded-full blur-sm opacity-50" />
+                            <Avatar className="h-9 w-9 border-2 border-brand-orange/20 bg-gradient-to-r from-brand-orange via-brand-orange/80 to-brand-orange relative">
                               <AvatarFallback className="bg-transparent text-white">
                                 <motion.div
                                   animate={{ rotate: 360 }}
@@ -770,16 +770,16 @@ export function LandingFinancialChatWidget() {
                               </AvatarFallback>
                             </Avatar>
                           </motion.div>
-                          <div className="bg-gradient-to-br from-card/90 to-muted/50 border border-border/50 shadow-md rounded-2xl p-4 space-y-3 relative overflow-hidden backdrop-blur-sm">
+                          <div className="bg-brand-card border border-white/10/50 shadow-md rounded-2xl p-4 space-y-3 relative overflow-hidden backdrop-blur-sm">
                             {/* Aurora loading effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/5 to-primary/10 animate-pulse pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-brand-orange/10 via-orange-400/5 to-orange-500/10 animate-pulse pointer-events-none" />
                             
                             <div className="flex items-center gap-3 relative z-10">
                               <div className="flex gap-1">
                                 {[0, 1, 2].map((i) => (
                                   <motion.div
                                     key={i}
-                                    className="h-2 w-2 bg-primary rounded-full"
+                                    className="h-2 w-2 bg-brand-orange rounded-full"
                                     animate={{
                                       scale: [1, 1.5, 1],
                                       opacity: [0.5, 1, 0.5]
@@ -798,7 +798,7 @@ export function LandingFinancialChatWidget() {
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                               >
-                                <Sparkles className="h-3 w-3 text-primary/60" />
+                                <Sparkles className="h-3 w-3 text-brand-orange/60" />
                               </motion.div>
                             </div>
                           </div>
@@ -811,7 +811,7 @@ export function LandingFinancialChatWidget() {
                   </ScrollArea>
                   
                   {/* Input Area */}
-                  <div className="p-6 border-t border-border/50 bg-gradient-to-r from-card/50 to-background/50 backdrop-blur-sm">
+                  <div className="p-6 border-t border-white/10/50 bg-gradient-to-r from-card/50 to-background/50 backdrop-blur-sm">
                     <div className="space-y-3">
                       {responseCount < MAX_FREE_RESPONSES && (
                         <div className="flex items-center justify-between text-xs text-muted-foreground">
@@ -827,11 +827,11 @@ export function LandingFinancialChatWidget() {
                                 variant="ghost"
                                 size="sm"
                                 onClick={handleSpeechToggle}
-                                className={`h-6 w-6 p-0 ${isSpeechEnabled ? 'bg-primary/10' : ''}`}
+                                className={`h-6 w-6 p-0 ${isSpeechEnabled ? 'bg-brand-orange/10' : ''}`}
                                 title={isSpeechEnabled ? 'Turn off auto-speech' : 'Turn on auto-speech'}
                               >
                                 {isSpeechEnabled ? (
-                                  <Volume2 className={`h-3 w-3 ${isSpeaking ? 'text-green-600 animate-pulse' : 'text-primary'}`} />
+                                  <Volume2 className={`h-3 w-3 ${isSpeaking ? 'text-slate-400 animate-pulse' : 'text-brand-orange'}`} />
                                 ) : (
                                   <VolumeX className="h-3 w-3 text-muted-foreground" />
                                 )}
@@ -850,14 +850,14 @@ export function LandingFinancialChatWidget() {
                       >
                         <div className="relative flex-1">
                           {/* Aurora glow effect for input */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/10 to-primary/20 rounded-lg blur-sm opacity-50" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-brand-orange/20 via-orange-400/10 to-orange-500/20 rounded-lg blur-sm opacity-50" />
                           
                           <Input
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder={responseCount >= MAX_FREE_RESPONSES ? t('nav.getStarted') : "Ask about finances or use voice input..."}
                             disabled={isLoading || responseCount >= MAX_FREE_RESPONSES}
-                            className="pr-12 h-12 bg-gradient-to-r from-card/90 to-muted/50 border-2 border-primary/20 focus:border-primary/40 backdrop-blur-sm relative z-10 text-foreground placeholder:text-muted-foreground/70"
+                            className="pr-12 h-12 bg-gradient-to-r from-brand-card/90 to-muted/50 border-2 border-brand-orange/20 focus:border-brand-orange/40 backdrop-blur-sm relative z-10 text-foreground placeholder:text-muted-foreground/70"
                           />
                           {isSupported && (
                             <motion.div
@@ -874,7 +874,7 @@ export function LandingFinancialChatWidget() {
                                 className={`h-8 w-8 p-0 rounded-full transition-all duration-300 ${
                                   isListening 
                                     ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg' 
-                                    : 'hover:bg-primary/10 hover:text-primary'
+                                    : 'hover:bg-brand-orange/10 hover:text-brand-orange'
                                 }`}
                               >
                                 {isListening ? (
@@ -898,7 +898,7 @@ export function LandingFinancialChatWidget() {
                           <Button 
                             type="submit" 
                             disabled={isLoading || !input.trim() || responseCount >= MAX_FREE_RESPONSES}
-                            className="shrink-0 h-12 px-6 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 shadow-lg relative overflow-hidden group"
+                            className="shrink-0 h-12 px-6 bg-gradient-to-r from-brand-orange to-accent hover:from-brand-orange/90 hover:to-accent/90 shadow-lg relative overflow-hidden group"
                           >
                             {/* Button inner glow */}
                             <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

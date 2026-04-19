@@ -27,6 +27,9 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
 export const metadata: Metadata = {
   title: 'FundN3xus',
   description: 'AI-Powered Financial Insights',
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default function RootLayout({
@@ -45,8 +48,8 @@ export default function RootLayout({
         >
           <AuthProvider>
             <LanguageProvider>
-              {children}
-              <Toaster />
+                {children}
+                <Toaster />
             </LanguageProvider>
           </AuthProvider>
         </ThemeProvider>

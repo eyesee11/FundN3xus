@@ -143,25 +143,33 @@ export function useVoiceAssistant(config: VoiceAssistantConfig = {}): UseVoiceAs
       };
 
       recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-        setError(event.error);
         setIsListening(false);
         
         // Provide user-friendly error messages
         switch (event.error) {
           case 'network':
-            setError('Network error occurred. Please check your connection.');
+            // Chrome throws network errors if trying to use Web Speech on HTTP (except localhost)
+            // or if there is a transient connection issue to their speech servers.
+            setError('Network error. Ensure you are on localhost/HTTPS and have internet.');
+            setTimeout(() => setError(null), 5000);
             break;
           case 'not-allowed':
             setError('Microphone access denied. Please allow microphone permissions.');
             break;
           case 'no-speech':
+            // No speech detected is very common and shouldn't be a sticky error
             setError('No speech detected. Please try again.');
+            setTimeout(() => setError(null), 3000);
             break;
           case 'audio-capture':
             setError('Audio capture failed. Please check your microphone.');
             break;
           case 'service-not-allowed':
             setError('Speech recognition service not allowed.');
+            break;
+          case 'aborted':
+            // Don't show an error for expected aborts
+            setError(null);
             break;
           default:
             setError(`Speech recognition error: ${event.error}`);

@@ -156,7 +156,7 @@ export function MLFinancialHealthSummary() {
           <div className="space-y-4">
             {/* Main Score */}
             <div className="text-center space-y-2">
-              <div className="text-4xl font-bold text-slate-900 dark:text-white">
+              <div className="text-4xl font-bold text-foreground">
                 {Math.round(healthData.health_score)}
                 <span className="text-lg text-muted-foreground">/100</span>
               </div>
@@ -187,7 +187,7 @@ export function MLFinancialHealthSummary() {
             </div>
 
             {/* Confidence Score */}
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-3">
+            <div className="bg-muted rounded-lg p-3">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">
                   Prediction Confidence

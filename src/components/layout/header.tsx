@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User, LogOut, Upload, Link2, FileText, CreditCard, PiggyBank, TrendingUp } from 'lucide-react';
-import { ThemeToggle } from '../shared/theme-toggle';
 
 export function Header() {
   const { user, logout } = useAuth();
@@ -39,9 +38,6 @@ export function Header() {
         }}
         className="mr-2"
       />
-      <div data-tour="theme-toggle">
-        <ThemeToggle />
-      </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-10 w-10 rounded-full">

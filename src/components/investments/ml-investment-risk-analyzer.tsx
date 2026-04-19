@@ -132,7 +132,7 @@ export function MLInvestmentRiskAnalyzer() {
           <div className="space-y-4">
             {/* Risk Score Display */}
             <div className="text-center space-y-3">
-              <div className="text-4xl font-bold text-slate-900 dark:text-white">
+              <div className="text-4xl font-bold text-foreground">
                 {Math.round(riskData.risk_score)}
                 <span className="text-lg text-muted-foreground">/100</span>
               </div>
@@ -163,7 +163,7 @@ export function MLInvestmentRiskAnalyzer() {
             </div>
 
             {/* Risk Category Details */}
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4">
+            <div className="bg-muted rounded-lg p-4">
               <h4 className="font-medium mb-2">Risk Profile Insights</h4>
               <div className="space-y-2 text-sm">
                 {riskData.risk_category === "conservative" && (

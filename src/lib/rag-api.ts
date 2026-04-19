@@ -5,8 +5,7 @@
  * Use this to integrate intelligent financial insights powered by your dataset.
  */
 
-const RAG_API_URL =
-  process.env.NEXT_PUBLIC_RAG_API_URL || "http://localhost:8001";
+const RAG_API_URL = process.env.NEXT_PUBLIC_RAG_API_URL || "https://eyesee11-fundnexus-rag.hf.space";
 
 export interface QueryRequest {
   question: string;

@@ -306,7 +306,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
   const [language, setLanguage] = useState<Language>('en'); // Default to English
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language;
+    const savedLanguage = typeof window !== 'undefined' ? window.localStorage.getItem('language') as Language : null;
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'hi')) {
       setLanguage(savedLanguage);
     }
@@ -314,7 +314,7 @@ export function LanguageProvider({ children }: LanguageProviderProps) {
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang);
-    localStorage.setItem('language', lang);
+    if (typeof window !== 'undefined') window.localStorage.setItem('language', lang);
   };
 
   const t = (key: string): string => {

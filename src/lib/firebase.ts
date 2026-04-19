@@ -1,6 +1,6 @@
 // Firebase configuration - the backbone of our auth system 🔥
 import { initializeApp, getApps, getApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth, initializeAuth, browserLocalPersistence, browserSessionPersistence, inMemoryPersistence } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 // Firebase config from environment variables
@@ -17,7 +17,10 @@ const firebaseConfig = {
 const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig)
 
 // Initialize Firebase Authentication and get a reference to the service
-export const auth = getAuth(app)
+// Use inMemoryPersistence on the server to prevent localStorage errors in Node 25
+export const auth = typeof window !== 'undefined' 
+  ? getAuth(app) 
+  : initializeAuth(app, { persistence: inMemoryPersistence })
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app)

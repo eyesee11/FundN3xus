@@ -109,7 +109,7 @@ export class FiMoneyMcpService {
       }
     } catch (error) {
       console.error('Failed to load pre-trained model:', error);
-      // Continue without pre-trained model - fallback to standard Genkit inference
+      // Continue without pre-trained model - fallback to standard inference
       console.log('Continuing with standard inference without pre-trained weights');
     }
   }

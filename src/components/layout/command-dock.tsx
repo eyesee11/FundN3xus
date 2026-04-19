@@ -51,7 +51,7 @@ export function CommandDock({ isExpanded, onToggleExpanded }: CommandDockProps) 
           isExpanded ? "w-96" : "w-auto"
         )}
       >
-        <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-2xl shadow-2xl">
+        <div className="bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl">
           
           {/* Collapsed State - Horizontal Dock */}
           {!isExpanded && (
@@ -77,7 +77,7 @@ export function CommandDock({ isExpanded, onToggleExpanded }: CommandDockProps) 
                         "h-10 w-10 rounded-xl transition-all duration-200",
                         pathname === item.href 
                           ? "bg-primary/10 text-primary shadow-sm" 
-                          : "hover:bg-white/50 dark:hover:bg-slate-700/50"
+                          : "hover:bg-card-foreground/10"
                       )}
                     >
                       <item.icon className={cn("w-4 h-4", item.color)} />

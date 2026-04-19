@@ -20,9 +20,8 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
       
       // Create tour instance
       const tour = new Shepherd.Tour({
-        useModalOverlay: true,
+        useModalOverlay: false,
         defaultStepOptions: {
-          classes: 'shadow-lg bg-background border rounded-lg',
           scrollTo: { behavior: 'smooth', block: 'center' },
           cancelIcon: {
             enabled: true,
@@ -30,12 +29,32 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
         },
       })
 
-    // Define tour steps - comprehensive walkthrough! 🚀
+      const checkElement = (selector: string) => {
+        return function() {
+          return new Promise<void>((resolve) => {
+            setTimeout(() => {
+              const el = document.querySelector(selector) as HTMLElement;
+              if (!el || window.getComputedStyle(el).display === 'none') {
+                console.warn(`Element not found or hidden: ${selector}, skipping step`);
+                tour.next();
+              }
+              resolve();
+            }, 300); // Give React time to mount and animate elements
+          });
+        };
+      };
+
+    // Define tour steps - comprehensive walkthrough! 
     const steps = [
       {
         title: '👋 Welcome to FundN3xus!',
         text: `Hey ${user?.displayName || 'there'}! Ready to take control of your finances? Let's show you around this awesome platform!`,
         buttons: [
+          {
+            text: 'Skip Tour',
+            action: tour.cancel,
+            classes: 'btn btn-secondary'
+          },
           {
             text: 'Let\'s Go!',
             action: tour.next,
@@ -51,6 +70,11 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
           element: '[data-tour="dashboard"], [href="/dashboard"], a[href="/dashboard"]',
           on: 'right' as any
         },
+        showOn: () => {
+          const el = document.querySelector('[data-tour="dashboard"], [href="/dashboard"], a[href="/dashboard"]');
+          return !!el && window.getComputedStyle(el).display !== 'none';
+        },
+        beforeShowPromise: checkElement('[data-tour="dashboard"], [href="/dashboard"], a[href="/dashboard"]'),
         buttons: [
           {
             text: 'Back',
@@ -63,16 +87,7 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
             classes: 'btn btn-primary'
           }
         ],
-        id: 'dashboard',
-        when: {
-          show: function() {
-            const element = document.querySelector('[data-tour="dashboard"], [href="/dashboard"], a[href="/dashboard"]')
-            if (!element) {
-              console.warn('Dashboard element not found, skipping step')
-              tour.next()
-            }
-          }
-        }
+        id: 'dashboard'
       },
       {
         title: '🏠 Quick Actions Dock',
@@ -81,6 +96,11 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
           element: '[data-tour="command-dock"], .fixed.bottom-6',
           on: 'left' as any
         },
+        showOn: () => {
+          const el = document.querySelector('[data-tour="command-dock"], .fixed.bottom-6');
+          return !!el && window.getComputedStyle(el).display !== 'none';
+        },
+        beforeShowPromise: checkElement('[data-tour="command-dock"], .fixed.bottom-6'),
         buttons: [
           {
             text: 'Back',
@@ -93,16 +113,7 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
             classes: 'btn btn-primary'
           }
         ],
-        id: 'command-dock',
-        when: {
-          show: function() {
-            const element = document.querySelector('[data-tour="command-dock"], .fixed.bottom-6')
-            if (!element) {
-              console.warn('Command dock element not found, skipping step')
-              tour.next()
-            }
-          }
-        }
+        id: 'command-dock'
       },
       {
         title: '🤖 AI Financial Assistant',
@@ -111,6 +122,11 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
           element: '[data-tour="ai-chat"], [href="/ai-chat"], a[href="/ai-chat"]',
           on: 'right' as any
         },
+        showOn: () => {
+          const el = document.querySelector('[data-tour="ai-chat"], [href="/ai-chat"], a[href="/ai-chat"]');
+          return !!el && window.getComputedStyle(el).display !== 'none';
+        },
+        beforeShowPromise: checkElement('[data-tour="ai-chat"], [href="/ai-chat"], a[href="/ai-chat"]'),
         buttons: [
           {
             text: 'Back',
@@ -123,16 +139,7 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
             classes: 'btn btn-primary'
           }
         ],
-        id: 'ai-chat',
-        when: {
-          show: function() {
-            const element = document.querySelector('[data-tour="ai-chat"], [href="/ai-chat"], a[href="/ai-chat"]')
-            if (!element) {
-              console.warn('AI chat element not found, skipping step')
-              tour.next()
-            }
-          }
-        }
+        id: 'ai-chat'
       },
       {
         title: '📊 Investments Hub',
@@ -141,6 +148,11 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
           element: '[data-tour="investments"], [href="/investments"], a[href="/investments"]',
           on: 'right' as any
         },
+        showOn: () => {
+          const el = document.querySelector('[data-tour="investments"], [href="/investments"], a[href="/investments"]');
+          return !!el && window.getComputedStyle(el).display !== 'none';
+        },
+        beforeShowPromise: checkElement('[data-tour="investments"], [href="/investments"], a[href="/investments"]'),
         buttons: [
           {
             text: 'Back',
@@ -153,16 +165,7 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
             classes: 'btn btn-primary'
           }
         ],
-        id: 'investments',
-        when: {
-          show: function() {
-            const element = document.querySelector('[data-tour="investments"], [href="/investments"], a[href="/investments"]')
-            if (!element) {
-              console.warn('Investments element not found, skipping step')
-              tour.next()
-            }
-          }
-        }
+        id: 'investments'
       },
       {
         title: '🏡 Affordability Analyzer',
@@ -171,6 +174,11 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
           element: '[data-tour="affordability"], [href="/affordability"], a[href="/affordability"]',
           on: 'right' as any
         },
+        showOn: () => {
+          const el = document.querySelector('[data-tour="affordability"], [href="/affordability"], a[href="/affordability"]');
+          return !!el && window.getComputedStyle(el).display !== 'none';
+        },
+        beforeShowPromise: checkElement('[data-tour="affordability"], [href="/affordability"], a[href="/affordability"]'),
         buttons: [
           {
             text: 'Back',
@@ -183,16 +191,7 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
             classes: 'btn btn-primary'
           }
         ],
-        id: 'affordability',
-        when: {
-          show: function() {
-            const element = document.querySelector('[data-tour="affordability"], [href="/affordability"], a[href="/affordability"]')
-            if (!element) {
-              console.warn('Affordability element not found, skipping step')
-              tour.next()
-            }
-          }
-        }
+        id: 'affordability'
       },
       {
         title: '🎮 Financial Scenarios',
@@ -201,6 +200,11 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
           element: '[data-tour="scenarios"], [href="/scenarios"], a[href="/scenarios"]',
           on: 'right' as any
         },
+        showOn: () => {
+          const el = document.querySelector('[data-tour="scenarios"], [href="/scenarios"], a[href="/scenarios"]');
+          return !!el && window.getComputedStyle(el).display !== 'none';
+        },
+        beforeShowPromise: checkElement('[data-tour="scenarios"], [href="/scenarios"], a[href="/scenarios"]'),
         buttons: [
           {
             text: 'Back',
@@ -213,54 +217,20 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
             classes: 'btn btn-primary'
           }
         ],
-        id: 'scenarios',
-        when: {
-          show: function() {
-            const element = document.querySelector('[data-tour="scenarios"], [href="/scenarios"], a[href="/scenarios"]')
-            if (!element) {
-              console.warn('Scenarios element not found, skipping step')
-              tour.next()
-            }
-          }
-        }
+        id: 'scenarios'
       },
       {
         title: '👤 Profile & Settings',
         text: 'Customize your experience! Set up your financial profile, connect accounts, manage notifications, and fine-tune your preferences.',
         attachTo: {
-          element: '[data-tour="profile"], [href="/settings"], a[href="/settings"]',
+          element: '[data-tour="profile"], [href="/settings"], a[href="/settings"], nav a[href="/settings"]',
           on: 'right' as any
         },
-        buttons: [
-          {
-            text: 'Back',
-            action: tour.back,
-            classes: 'btn btn-secondary'
-          },
-          {
-            text: 'Next',
-            action: tour.next,
-            classes: 'btn btn-primary'
-          }
-        ],
-        id: 'profile',
-        when: {
-          show: function() {
-            const element = document.querySelector('[data-tour="profile"], [href="/settings"], a[href="/settings"]')
-            if (!element) {
-              console.warn('Profile element not found, skipping step')
-              tour.next()
-            }
-          }
-        }
-      },
-      {
-        title: '🌓 Theme Toggle',
-        text: 'Prefer dark mode? Light mode? Switch between themes anytime to match your vibe!',
-        attachTo: {
-          element: '[data-tour="theme-toggle"]',
-          on: 'bottom' as any
+        showOn: () => {
+          const el = document.querySelector('[data-tour="profile"], [href="/settings"], a[href="/settings"], nav a[href="/settings"]');
+          return !!el && window.getComputedStyle(el).display !== 'none';
         },
+        beforeShowPromise: checkElement('[data-tour="profile"], [href="/settings"], a[href="/settings"], nav a[href="/settings"]'),
         buttons: [
           {
             text: 'Back',
@@ -273,10 +243,10 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
             classes: 'btn btn-primary'
           }
         ],
-        id: 'theme-toggle'
+        id: 'profile'
       },
       {
-        title: '🎉 You\'re All Set!',
+        title: ' You\'re All Set!',
         text: 'That\'s the grand tour! You\'re now ready to take control of your financial future. Remember, our AI assistant is always here to help. Happy investing! 💰',
         buttons: [
           {
@@ -316,22 +286,29 @@ export function AppTour({ onTourComplete, autoStart = false }: AppTourProps) {
       return () => {
         window.removeEventListener('start-app-tour', handleStartTour)
         if (tourRef.current) {
-          tourRef.current.complete()
+          tourRef.current.cancel()
         }
       }
     }
 
-    // Initialize tour
-    let cleanup: (() => void) | undefined;
+    let isActive = true;
+    let cleanupFn: (() => void) | undefined;
     
-    initTour().then((cleanupFn) => {
-      cleanup = cleanupFn;
-    });
-    
-    // Return cleanup function
-    return () => {
-      if (cleanup) {
+    initTour().then((cleanup) => {
+      if (!isActive) {
+        // If unmounted before init completed, cleanup immediately
         cleanup();
+      } else {
+        cleanupFn = cleanup;
+      }
+    });
+
+    return () => {
+      isActive = false;
+      if (cleanupFn) {
+        cleanupFn();
+      } else if (tourRef.current) {
+        tourRef.current.cancel()
       }
     }
   }, [autoStart, onTourComplete, user?.displayName])

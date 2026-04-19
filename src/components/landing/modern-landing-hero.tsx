@@ -2,396 +2,134 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import Image from 'next/image';
+import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
-import { 
-  Sparkles, 
-  TrendingUp, 
-  Shield, 
-  Zap, 
-  ArrowRight,
-  Users,
-  Target,
-  BarChart3,
-  CheckCircle,
-  Star,
-  DollarSign,
-  Calculator,
-  BarChart,
-  PiggyBank,
-  Activity,
-  CircleDot
-} from 'lucide-react';
 import { useLanguage } from '@/contexts/language-context';
+import { ArrowRight, BarChart3, Database, Shield, Zap } from 'lucide-react';
+import Image from 'next/image';
 
 export function ModernLandingHero() {
   const { t } = useLanguage();
-  
-  // Enhanced floating icons array
-  const floatingIcons = [
-    Sparkles, DollarSign, TrendingUp, Shield, Target, Calculator,
-    BarChart, PiggyBank, Zap, Star, ArrowRight, BarChart3,
-    Activity, CircleDot, Users, CheckCircle
-  ];
-
-  const iconColors = [
-    'text-blue-400', 'text-purple-400', 'text-green-400', 'text-yellow-400',
-    'text-pink-400', 'text-indigo-400', 'text-cyan-400', 'text-orange-400',
-    'text-red-400', 'text-emerald-400', 'text-violet-400', 'text-amber-400',
-    'text-teal-400', 'text-rose-400', 'text-lime-400', 'text-sky-400'
-  ];
-
-  // Undraw illustrations for collage
-  const illustrations = [
-    {
-      src: '/undraw_projections_fhch.png',
-      alt: 'Financial Projections',
-      position: { top: '60%', right: '5%', rotate: 8 },
-      size: { width: 200, height: 140 }
-    },
-    {
-      src: '/undraw_investment-data_frxx.png',
-      alt: 'Investment Data Analytics',
-      position: { top: '10%', left: '15%', rotate: -5 },
-      size: { width: 200, height: 120 }
-    },
-    {
-      src: '/undraw_statistic-chart_6s7z.png',
-      alt: 'Getting Started',
-      position: { bottom: '15%', left: '10%', rotate: -3 },
-      size: { width: 200, height: 110 }
-    },
-    {
-      src: '/undraw_wallet_diag.png',
-      alt: 'Digital Wallet',
-      position: { top: '25%', right: '10%', rotate: 12 },
-      size: { width:200, height: 130 }
-    }
-  ];
-
-  const features = [
-    {
-      icon: Shield,
-      title: t('hero.features.security'),
-      description: t('hero.features.securityDesc'),
-      color: 'text-blue-500'
-    },
-    {
-      icon: Zap,
-      title: t('hero.features.ai'),
-      description: t('hero.features.aiDesc'),
-      color: 'text-yellow-500'
-    },
-    {
-      icon: Target,
-      title: t('hero.features.planning'),
-      description: t('hero.features.planningDesc'),
-      color: 'text-green-500'
-    }
-  ];
-
-  const stats = [
-    { number: '10K+', label: t('hero.stats.users'), color: 'text-blue-500' },
-    { number: '99.9%', label: t('hero.stats.uptime'), color: 'text-green-500' },
-    { number: '24/7', label: t('hero.stats.support'), color: 'text-purple-500' },
-    { number: '150+', label: t('hero.stats.features'), color: 'text-orange-500' }
-  ];
 
   return (
-    <section className="container py-12 md:py-20 lg:py-28 relative overflow-hidden">
-      {/* Enhanced Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent" />
-      
-      {/* Enhanced Floating Animation Icons */}
-      {floatingIcons.map((Icon, index) => {
-        const delay = index * 0.3;
-        const duration = 8 + (index % 4) * 2;
-        const xOffset = 50 + (index % 7) * 80;
-        const yOffset = 50 + (index % 5) * 100;
-        
-        return (
-          <motion.div
-            key={`floating-${index}`}
-            className="absolute pointer-events-none"
-            initial={{ 
-              opacity: 0,
-              x: xOffset,
-              y: yOffset,
-              scale: 0.5,
-              rotate: 0
-            }}
-            animate={{
-              opacity: [0, 0.8, 0.9, 0.7, 0],
-              x: [xOffset, xOffset + 100, xOffset - 50, xOffset + 150, xOffset],
-              y: [yOffset, yOffset - 80, yOffset + 60, yOffset - 120, yOffset],
-              scale: [0.5, 1.2, 0.8, 1.5, 0.5],
-              rotate: [0, 180, 270, 540, 720]
-            }}
-            transition={{
-              duration: duration,
-              delay: delay,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            style={{
-              left: `${5 + (index % 8) * 12}%`,
-              top: `${10 + (index % 6) * 15}%`,
-              zIndex: 1
-            }}
-          >
-            <Icon className={`w-6 h-6 ${iconColors[index % iconColors.length]}`} />
-          </motion.div>
-        );
-      })}
+    <section className="relative w-full overflow-hidden bg-brand-navy pt-24 pb-32">
+      {/* Abstract Background Blob like JDoodle */}
+      <div className="absolute top-1/4 left-0 -translate-x-1/2 -translate-y-1/2 opacity-20 hidden lg:block">
+        <svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M482.5 159.5C536.9 217.1 578.8 285.3 561 346.5C543.2 407.7 465.7 460.7 391.8 501.9C317.9 543.1 247.6 572.5 186.2 553.1C124.8 533.7 72.3 465.5 39.8 387.9C7.3 310.3 -5.2 223.3 2.1 154.5C9.4 85.7 36.5 35.1 92.5 11.2C148.5 -12.7 233.4 4 309.2 27.2C385 50.4 428.1 101.9 482.5 159.5Z" fill="#1E293B"/>
+        </svg>
+      </div>
 
-      {/* Additional Sparkle Effects */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={`sparkle-${i}`}
-          className="absolute pointer-events-none"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            zIndex: 1
-          }}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1.5, 0],
-            rotate: [0, 360]
-          }}
-          transition={{
-            duration: 3,
-            delay: i * 0.2,
-            repeat: Infinity,
-            repeatDelay: 5
-          }}
-        >
-          <Sparkles className="w-4 h-4 text-primary/60" />
-        </motion.div>
-      ))}
-
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        {/* Left Column - Main Content */}
-        <div className="lg:col-span-7 space-y-8">
-          {/* Header Card */}
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
+        <div className="flex flex-col items-center justify-center text-center">
+          
+          {/* Main Heading styled like JDoodle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-center max-w-4xl"
           >
-            <Card className="border-none shadow-lg bg-gradient-to-br from-card/90 to-card/50 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <div className="flex items-center gap-2 mb-4">
-                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                    <Sparkles className="w-3 h-3 mr-1" />
-                    AI-Powered Financial Intelligence
-                  </Badge>
-                </div>
-                
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-headline tracking-tighter mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-                  {t('hero.title')}
-                </h1>
-                
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  {t('hero.subtitle')}
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button asChild size="lg" className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90">
-                    <Link href="/dashboard" className="flex items-center gap-2">
-                      <TrendingUp className="w-4 h-4" />
-                      {t('hero.dashboard')}
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link href="#services" className="flex items-center gap-2">
-                      <Users className="w-4 h-4" />
-                      {t('hero.learnMore')}
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Features Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid md:grid-cols-3 gap-4"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-              >
-                <Card className="h-full border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-md group bg-card/95 backdrop-blur-sm">
-                  <CardContent className="p-6 text-center">
-                    <div className={`inline-flex p-3 rounded-full bg-gradient-to-br from-primary/10 to-accent/10 mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <feature.icon className={`w-6 h-6 ${feature.color}`} />
-                    </div>
-                    <h3 className="font-semibold mb-2 text-base text-foreground">{feature.title}</h3>
-                    <p className="text-sm text-foreground/80 leading-relaxed">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Stats Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <Card className="border-border/50 bg-gradient-to-r from-muted/30 to-muted/10 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  {stats.map((stat, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-                      className="text-center"
-                    >
-                      <div className={`text-2xl md:text-3xl font-bold ${stat.color} mb-1`}>
-                        {stat.number}
-                      </div>
-                      <div className="text-xs text-muted-foreground font-medium">
-                        {stat.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-
-        {/* Right Column - Undraw Illustrations Collage */}
-        <div className="lg:col-span-5">
-          <motion.div
-            initial={{ opacity: 0, x: 50, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
-          >
-            {/* Collage Container */}
-            <motion.div
-              className="relative w-full h-96 md:h-[500px] bg-gradient-to-br from-primary/5 via-accent/5 to-muted/10 rounded-2xl overflow-hidden"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Background pattern */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-accent/10" />
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 font-headline leading-tight">
+              {t('hero.title') || 'Financial Intelligence For The AI Era'}
+            </h1>
+            
+            {/* Logo Accent (JDoodle replacement) */}
+            <div className="flex items-center gap-3 text-brand-orange text-3xl font-bold mb-8 relative">
+              Fund <Database className="h-8 w-8 inline animate-pulse" /> N3xus
               
-              {/* Floating Animation Elements around collage */}
-              {[...Array(12)].map((_, i) => (
-                <motion.div
-                  key={`collage-sparkle-${i}`}
-                  className="absolute"
-                  style={{
-                    left: `${10 + (i % 4) * 25}%`,
-                    top: `${10 + Math.floor(i / 4) * 30}%`,
-                    zIndex: 5
-                  }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: [0, 0.6, 0],
-                    scale: [0, 1.2, 0],
-                    y: [0, -50, -100],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 4,
-                    delay: i * 0.3,
-                    repeat: Infinity,
-                    repeatDelay: 2
-                  }}
-                >
-                  <Sparkles className="w-4 h-4 text-primary/60" />
-                </motion.div>
-              ))}
+              {/* Hand-drawn style dashed arrow pointing to middle - SVG representation */}
+              <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-60">
+                 <svg width="100" height="40" viewBox="0 0 100 40" fill="none" className="stroke-brand-orange">
+                  <path d="M10,10 Q50,-10 90,30" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+                  <path d="M85,20 L90,30 L80,32" strokeWidth="2" fill="none" />
+                 </svg>
+              </div>
+            </div>
 
-              {/* Undraw Illustrations */}
-              {illustrations.map((illustration, index) => (
-                <motion.div
-                  key={index}
-                  className="absolute"
-                  style={{
-                    ...illustration.position,
-                    transform: `rotate(${illustration.position.rotate}deg)`,
-                  }}
-                  initial={{ opacity: 0, scale: 0, rotate: 0 }}
-                  animate={{ 
-                    opacity: 1, 
-                    scale: 1, 
-                    rotate: illustration.position.rotate 
-                  }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 0.5 + index * 0.2,
-                    type: "spring",
-                    stiffness: 100
-                  }}
-                  whileHover={{ 
-                    scale: 1.1, 
-                    rotate: illustration.position.rotate + 5,
-                    zIndex: 10,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <Image
-                    src={illustration.src}
-                    alt={illustration.alt}
-                    width={illustration.size.width}
-                    height={illustration.size.height}
-                    className="drop-shadow-lg hover:drop-shadow-xl transition-all duration-300"
-                    priority={index === 0}
-                  />
-                </motion.div>
-              ))}
+            <p className="text-lg md:text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed">
+              {t('hero.subtitle') || 'FundN3xus is a comprehensive financial intelligence platform where you can analyze, assess, predict, and optimize. Empowering individuals and institutions with AI-driven affordability risk models, RAG advisory, and instant live analytics.'}
+            </p>
 
-              {/* Floating Feature Cards */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                className="absolute top-4 right-4 z-20"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button 
+                asChild 
+                size="lg" 
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white rounded-md font-semibold px-8 py-6 text-lg"
               >
-                <Card className="bg-card/90 backdrop-blur-sm border-border/50 shadow-lg">
-                  <CardContent className="p-3 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-xs font-medium">Live Data</span>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.0 }}
-                className="absolute bottom-4 left-4 z-20"
-              >
-                <Card className="bg-card/90 backdrop-blur-sm border-border/50 shadow-lg">
-                  <CardContent className="p-3 flex items-center gap-2">
-                    <Star className="w-4 h-4 text-yellow-500 fill-current" />
-                    <span className="text-xs font-medium">4.9/5 Rating</span>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                <Link href="/login" target="_blank">
+                  {'View Dashboard'}
+                </Link>
+              </Button>
             </motion.div>
           </motion.div>
+
+          {/* Floating Cards (Side Elements mimicking JDoodle brain/code cards) */}
+          <div className="relative w-full mt-24">
+            
+            {/* Left Card: AI/ML */}
+            <motion.div 
+              className="absolute left-0 -top-48 hidden lg:flex flex-col items-center"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="text-sm text-slate-400 max-w-[200px] mb-4 text-center">
+                REST-based FastAPI to integrate ML models into your financial workflow.
+              </div>
+              <div className="mb-2 opacity-60">
+                 <svg width="60" height="40" viewBox="0 0 60 40" fill="none" className="stroke-slate-400">
+                  <path d="M30,0 Q10,20 10,40" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+                  <path d="M5,30 L10,40 L15,35" strokeWidth="2" fill="none" />
+                 </svg>
+              </div>
+              <Card className="w-56 h-56 bg-brand-card border-white/10 flex items-center justify-center relative overflow-hidden group">
+                {/* Abstract graphic decoration */}
+                <div className="absolute left-2 top-12 bottom-12 w-2 rounded-full flex flex-col gap-2 opacity-30">
+                  <div className="w-2 h-2 rounded-full bg-brand-orange"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-orange"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-orange"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-orange"></div>
+                  <div className="w-2 h-2 rounded-full bg-brand-orange"></div>
+                </div>
+                <CardContent className="p-0 flex items-center justify-center h-full w-full">
+                  <Zap className="w-24 h-24 text-brand-orange group-hover:scale-110 transition-transform duration-500" />
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Right Card: Assessment */}
+            <motion.div 
+              className="absolute right-0 -top-32 hidden lg:flex flex-col items-center"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <div className="text-sm text-slate-400 max-w-[200px] mb-4 text-center">
+                Online Assessment and ML Analytics for Investment Risk.
+              </div>
+              <div className="mb-2 opacity-60">
+                 <svg width="60" height="40" viewBox="0 0 60 40" fill="none" className="stroke-slate-400">
+                  <path d="M30,0 Q50,20 50,40" strokeWidth="2" strokeDasharray="4 4" fill="none" />
+                  <path d="M45,35 L50,40 L55,30" strokeWidth="2" fill="none" />
+                 </svg>
+              </div>
+              <Card className="w-56 h-56 bg-brand-card border-white/10 flex items-center justify-center relative overflow-hidden group">
+                <div className="absolute right-4 top-4 flex gap-2 opacity-30">
+                   <div className="w-12 h-1 bg-brand-orange transform -rotate-45"></div>
+                   <div className="w-12 h-1 bg-brand-orange transform -rotate-45 mt-4"></div>
+                   <div className="w-12 h-1 bg-brand-orange transform -rotate-45 mt-8"></div>
+                </div>
+                <CardContent className="p-0 flex items-center justify-center h-full w-full">
+                  <BarChart3 className="w-24 h-24 text-brand-orange group-hover:scale-110 transition-transform duration-500" />
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+          
         </div>
       </div>
     </section>

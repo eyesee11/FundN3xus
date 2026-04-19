@@ -21,6 +21,13 @@ export default {
         headline: ['"Space Grotesk"', 'sans-serif'],
       },
       colors: {
+        brand: {
+          navy: '#0f172a',
+          orange: '#FF6020',
+          dark: '#0D1629',
+          card: '#1E293B'
+        },
+        brand: { navy: '#0D1629', orange: '#FF6020', light: '#f0f4f8', dark: '#0a1120' },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

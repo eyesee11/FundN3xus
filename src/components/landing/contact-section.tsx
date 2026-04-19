@@ -89,23 +89,23 @@ export function ContactSection() {
   };
 
   return (
-    <section ref={ref} id="contact" className="py-14 bg-background">
-      <div className="max-w-3xl mx-auto flex flex-col md:flex-row rounded-2xl overflow-hidden border bg-card">
+    <section ref={ref} id="contact" className="py-14 bg-brand-navy">
+      <div className="max-w-3xl mx-auto flex flex-col md:flex-row rounded-2xl overflow-hidden border border-white/10 bg-brand-card shadow-2xl">
         {/* Left side: illustration + info */}
-        <div className="flex-1 flex flex-col justify-center items-center px-8 py-10 bg-gradient-to-br from-primary to-background text-background md:min-h-[340px]">
+        <div className="flex-1 flex flex-col justify-center items-center px-8 py-10 bg-gradient-to-br from-brand-dark to-brand-navy border-r border-white/5 text-white md:min-h-[340px]">
           <div className="mb-7">
-            <Mail className="h-20 w-20 text-yellow-400" />
+            <Mail className="h-20 w-20 text-brand-orange" />
           </div>
-          <h2 className="text-3xl font-headline font-bold mb-2 text-background tracking-tight">FundN3xus</h2>
-          <div className="text-background/80 text-base mb-5 text-center font-body">
+          <h2 className="text-3xl font-headline font-bold mb-2 text-white tracking-tight">FundN3xus</h2>
+          <div className="text-slate-400 text-base mb-5 text-center font-body space-y-2">
             <div>contact@FundN3xus.com</div>
             <div>+91 89237 09367</div>
             <div>Chitkara University, Punjab, India</div>
           </div>
         </div>
         {/* Right side: form */}
-        <div className="flex-1 flex flex-col justify-center px-8 py-10 bg-background">
-          <h3 className="text-2xl font-headline font-bold mb-6 text-primary tracking-tight">Let's talk</h3>
+        <div className="flex-1 flex flex-col justify-center px-8 py-10 bg-brand-card">
+          <h3 className="text-2xl font-headline font-bold mb-6 text-white tracking-tight">Let's talk</h3>
           <form onSubmit={handleContactSubmit} className="flex flex-col gap-6">
             <Input
               placeholder="Your Name"
@@ -114,7 +114,7 @@ export function ContactSection() {
                 setContactForm({ ...contactForm, name: e.target.value });
                 if (formErrors.name) setFormErrors({ ...formErrors, name: '' });
               }}
-              className={`rounded-full px-5 py-3 text-base font-body border border-input bg-background focus:ring-2 focus:ring-primary/30 transition-all duration-150 ${formErrors.name ? 'border-destructive' : ''}`}
+              className={`rounded-full px-5 py-3 text-base font-body border-white/10 bg-brand-dark text-white placeholder:text-slate-500 focus-visible:ring-brand-orange focus-visible:border-brand-orange transition-all duration-150 ${formErrors.name ? 'border-red-500' : ''}`}
               required
             />
             <Input
@@ -125,12 +125,12 @@ export function ContactSection() {
                 setContactForm({ ...contactForm, email: e.target.value });
                 if (formErrors.email) setFormErrors({ ...formErrors, email: '' });
               }}
-              className={`rounded-full px-5 py-3 text-base font-body border border-input bg-background focus:ring-2 focus:ring-primary/30 transition-all duration-150 ${formErrors.email ? 'border-destructive' : ''}`}
+              className={`rounded-full px-5 py-3 text-base font-body border-white/10 bg-brand-dark text-white placeholder:text-slate-500 focus-visible:ring-brand-orange focus-visible:border-brand-orange transition-all duration-150 ${formErrors.email ? 'border-red-500' : ''}`}
               required
             />
             <Textarea
               placeholder="Type your message here..."
-              className={`rounded-2xl px-5 py-3 text-base font-body border border-input bg-background min-h-[100px] focus:ring-2 focus:ring-primary/30 transition-all duration-150 ${formErrors.message ? 'border-destructive' : ''}`}
+              className={`rounded-2xl px-5 py-3 text-base font-body border-white/10 bg-brand-dark text-white placeholder:text-slate-500 min-h-[100px] focus-visible:ring-brand-orange focus-visible:border-brand-orange transition-all duration-150 ${formErrors.message ? 'border-red-500' : ''}`}
               value={contactForm.message}
               onChange={e => {
                 setContactForm({ ...contactForm, message: e.target.value });
@@ -141,7 +141,7 @@ export function ContactSection() {
             <div className="flex justify-end">
               <Button
                 type="submit"
-                className="rounded-full px-7 py-2 text-base font-headline font-semibold bg-primary text-background hover:bg-primary/90 focus:ring-2 focus:ring-primary/30 transition-all duration-150"
+                className="rounded-full px-7 py-2 text-base font-headline font-semibold bg-brand-orange text-white hover:bg-brand-orange/90 transition-all duration-150"
                 disabled={isLoadingContact}
               >
                 Send

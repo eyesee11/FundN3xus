@@ -13,6 +13,7 @@ import { PageHeader } from '@/components/shared/page-header';
 import { useProfile, profileToFinancialSituation } from '@/hooks/use-profile';
 import { useToast } from '@/hooks/use-toast';
 import { useVoiceAssistant } from '@/hooks/use-voice-assistant';
+import { queryRAG } from '@/lib/rag-api';
 
 interface Message {
   id: number;
@@ -73,7 +74,33 @@ export default function AIChatPage() {
   const [isLoading, setIsLoading] = useState(false);
   const { profile } = useProfile();
   const { toast } = useToast();
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Load chat history from localStorage on mount
+  useEffect(() => {
+    const savedChat = localStorage.getItem('fundnexus_chat_history');
+    if (savedChat) {
+      try {
+        const parsed = JSON.parse(savedChat);
+        // Re-hydrate the date objects
+        const hydrated = parsed.map((m: any) => ({
+          ...m,
+          timestamp: new Date(m.timestamp)
+        }));
+        setMessages(hydrated);
+      } catch (e) {
+        console.error('Failed to parse chat history', e);
+      }
+    }
+  }, []);
+
+  // Save chat history to localStorage whenever messages change
+  useEffect(() => {
+    // Only save if we have more than the welcome message, to avoid saving empty sessions constantly
+    if (messages.length > 1) {
+      localStorage.setItem('fundnexus_chat_history', JSON.stringify(messages));
+    }
+  }, [messages]);
   
   // Voice Assistant for input
   const {
@@ -92,13 +119,9 @@ export default function AIChatPage() {
     interimResults: true,
   });
 
-  // Debug voice support
-  console.log('Voice support status:', { isSupported, error });
-  console.log('Voice button should be visible now');
-
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
 
@@ -128,136 +151,18 @@ export default function AIChatPage() {
   };
 
   const generateFinancialResponse = async (query: string): Promise<string> => {
-    // Simulate API call with enhanced financial responses
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    const queryLower = query.toLowerCase();
-    
-    // Check if it's a financial query
-    if (!isFinancialQuery(query)) {
-      return "I'm a financial advisor AI specialized in helping with budgeting, investments, loans, taxes, and financial planning. I'd be happy to help with any finance-related questions you have. For example, you could ask about creating a budget, investment strategies, loan management, or retirement planning. What financial topic interests you?";
+    try {
+      const response = await queryRAG(query, { returnSources: true, maxSources: 3 });
+      
+      if (response && response.answer) {
+        return response.answer;
+      }
+      
+      return "I'm sorry, I couldn't get a proper response from the financial model right now. Please try again.";
+    } catch (error) {
+      console.error('Error querying RAG:', error);
+      return "Server Error: I'm currently unable to connect to the backend.\n\nMake sure your deployed RAG_API_URL is correct and the HF space is awake.";
     }
-
-    // Generate contextual financial responses
-    if (queryLower.includes('budget') || queryLower.includes('expense')) {
-      return `Based on typical financial planning principles, I recommend the 50/30/20 rule: 50% for needs, 30% for wants, and 20% for savings and debt repayment. 
-
-For your specific situation:
-• Track all expenses for 30 days to understand spending patterns
-• Categorize expenses into fixed (rent, utilities) and variable (entertainment, dining)
-• Set up automatic transfers to savings accounts
-• Use apps or spreadsheets to monitor monthly cash flow
-
-Would you like me to help create a personalized budget plan based on your income and goals?`;
-    }
-
-    if (queryLower.includes('invest') || queryLower.includes('sip') || queryLower.includes('mutual fund')) {
-      return `For investment planning, I recommend a diversified approach:
-
-**Equity Mutual Funds (60-70% allocation):**
-• Large-cap funds for stability
-• Mid-cap funds for growth potential
-• International funds for diversification
-
-**Debt Instruments (20-30% allocation):**
-• PPF for tax benefits (15-year lock-in)
-• ELSS funds for tax saving under 80C
-• Liquid funds for emergency corpus
-
-**SIP Strategy:**
-• Start with ₹5,000-10,000 monthly SIP
-• Increase by 10% annually (step-up SIP)
-• Choose funds with consistent 5+ year performance
-
-What's your investment horizon and risk tolerance? I can suggest specific fund categories based on your goals.`;
-    }
-
-    if (queryLower.includes('loan') || queryLower.includes('emi') || queryLower.includes('debt')) {
-      return `For effective debt management, follow this priority order:
-
-**1. High-Interest Debt First:**
-• Credit cards (18-24% interest) - pay off immediately
-• Personal loans (11-16% interest)
-• Vehicle loans (8-12% interest)
-• Home loans (8-10% interest) - lowest priority
-
-**2. EMI Optimization:**
-• Keep total EMIs under 40% of monthly income
-• Consider loan consolidation if multiple debts exist
-• Make partial prepayments for high-interest loans
-
-**3. Strategies:**
-• Use windfall money (bonus, tax refunds) for prepayment
-• Consider balance transfer for credit cards
-• Negotiate with banks for better interest rates
-
-What specific loan concerns do you have? I can help create a debt repayment strategy.`;
-    }
-
-    if (queryLower.includes('tax') || queryLower.includes('save tax') || queryLower.includes('80c')) {
-      return `Here are key tax-saving strategies for FY 2024-25:
-
-**Section 80C (₹1.5 lakh limit):**
-• EPF contributions (automatic for salaried)
-• ELSS mutual funds (3-year lock-in)
-• PPF (15-year lock-in, 7.1% return)
-• Life insurance premiums
-• Principal repayment of home loan
-
-**Other Deductions:**
-• 80D: Health insurance (₹25,000 for self, ₹50,000 for parents)
-• 24B: Home loan interest (₹2 lakh for self-occupied)
-• 80E: Education loan interest (no limit)
-
-**New vs Old Tax Regime:**
-• New regime: Lower rates but fewer deductions
-• Old regime: Higher rates but more deductions available
-
-Based on your income level, would you like me to calculate which regime works better for you?`;
-    }
-
-    if (queryLower.includes('emergency fund') || queryLower.includes('emergency')) {
-      return `Emergency fund is crucial for financial security:
-
-**Target Amount:**
-• 6-12 months of monthly expenses
-• For ₹50,000 monthly expenses = ₹3-6 lakh emergency fund
-
-**Where to Keep:**
-• 50% in savings account (instant access)
-• 30% in liquid mutual funds (1-2 day withdrawal)
-• 20% in short-term FDs (higher returns)
-
-**Building Strategy:**
-• Start with ₹10,000-20,000 monthly allocation
-• Use tax refunds, bonuses to boost fund
-• Automate transfers to separate emergency account
-• Don't invest emergency funds in equity/volatile assets
-
-**Usage Guidelines:**
-• Only for genuine emergencies (job loss, medical, major repairs)
-• Replenish immediately after use
-• Review and adjust amount annually
-
-Do you currently have an emergency fund? I can help you plan the right amount based on your expenses.`;
-    }
-
-    // Default financial response
-    return `I understand you're asking about ${query}. As your financial advisor, I can provide personalized guidance on:
-
-• **Investment Planning:** Mutual funds, stocks, bonds, SIPs
-• **Budget Management:** Expense tracking, savings goals
-• **Loan Strategy:** EMI optimization, debt consolidation
-• **Tax Planning:** 80C deductions, regime comparison
-• **Retirement Planning:** EPF, PPF, NPS contributions
-• **Insurance:** Life, health, vehicle coverage
-
-Could you be more specific about which financial area you'd like help with? For example, you could ask:
-- "How should I invest ₹20,000 monthly?"
-- "Help me create a budget for ₹80,000 salary"
-- "Should I prepay my home loan or invest?"
-
-What specific financial goal or challenge can I help you with today?`;
   };
 
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -314,6 +219,7 @@ What specific financial goal or challenge can I help you with today?`;
   };
 
   const clearChat = () => {
+    localStorage.removeItem('fundnexus_chat_history');
     setMessages([{
       id: 1,
       role: 'assistant',
@@ -398,9 +304,9 @@ What specific financial goal or challenge can I help you with today?`;
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="flex-1 flex flex-col space-y-4">
-          <ScrollArea ref={scrollAreaRef} className="flex-1 pr-4">
-            <div className="space-y-4">
+        <CardContent className="flex-1 flex flex-col h-[600px] space-y-4">
+          <ScrollArea className="flex-1 pr-4">
+            <div className="space-y-4 pb-4">
               {messages.map((message) => (
                 <div key={message.id} className={`flex items-start gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}>
                   {message.role === 'assistant' && (
@@ -415,8 +321,8 @@ What specific financial goal or challenge can I help you with today?`;
                     message.role === 'user' 
                       ? 'bg-primary text-primary-foreground' 
                       : message.type === 'rejected'
-                      ? 'bg-yellow-50 border border-yellow-200'
-                      : 'bg-muted'
+                      ? 'bg-orange-500/10 border border-orange-500/20 text-orange-50'
+                      : 'bg-muted text-foreground'
                   }`}>
                     <div className="whitespace-pre-wrap text-sm leading-relaxed">
                       {message.content}
@@ -468,7 +374,7 @@ What specific financial goal or challenge can I help you with today?`;
                       <Logo className="h-4 w-4 text-primary" />
                     </AvatarFallback>
                   </Avatar>
-                  <div className="bg-muted rounded-lg p-3">
+                  <div className="bg-muted text-foreground rounded-lg p-3">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <div className="h-2 w-2 bg-primary rounded-full animate-bounce" />
                       <div className="h-2 w-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
@@ -478,6 +384,7 @@ What specific financial goal or challenge can I help you with today?`;
                   </div>
                 </div>
               )}
+              <div ref={messagesEndRef} />
             </div>
           </ScrollArea>
 
@@ -520,8 +427,8 @@ What specific financial goal or challenge can I help you with today?`;
                   disabled={isLoading}
                   className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 shadow-sm border-2 ${
                     isListening 
-                      ? 'bg-red-500 hover:bg-red-600 text-white border-red-500 animate-pulse' 
-                      : 'bg-white hover:bg-gray-50 text-gray-600 border-gray-300 hover:border-gray-400'
+                      ? 'bg-destructive hover:bg-destructive/90 text-destructive-foreground border-destructive animate-pulse' 
+                      : 'bg-card hover:bg-muted text-foreground border-border'
                   }`}
                   title={isListening ? 'Stop voice input (recording...)' : 'Start voice input'}
                 >

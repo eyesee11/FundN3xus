@@ -22,7 +22,7 @@ export function LandingFooter() {
   return (
     <motion.footer 
       ref={ref}
-      className="bg-muted py-12"
+      className="bg-brand-dark py-12 border-t border-white/5"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.6 }}
@@ -38,9 +38,9 @@ export function LandingFooter() {
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.6 }}
           >
-            <Logo className="h-7 w-7 text-primary" />
+            <Logo className="h-7 w-7 text-brand-orange" />
           </motion.div>
-          <span className="text-xl font-bold font-headline">FundN3xus</span>
+          <span className="text-xl font-bold font-headline text-white">FundN3xus</span>
         </motion.div>
         
         <motion.nav 
@@ -57,7 +57,7 @@ export function LandingFooter() {
               transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
               whileHover={{ y: -2 }}
             >
-              <Link href={link.href} className="text-muted-foreground transition-colors hover:text-foreground">
+              <Link href={link.href} className="text-slate-400 transition-colors hover:text-brand-orange">
                 {link.label}
               </Link>
             </motion.div>
@@ -65,7 +65,7 @@ export function LandingFooter() {
         </motion.nav>
         
         <motion.p 
-          className="text-muted-foreground text-sm"
+          className="text-slate-500 text-sm"
           initial={{ x: 30, opacity: 0 }}
           animate={isInView ? { x: 0, opacity: 1 } : { x: 30, opacity: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}

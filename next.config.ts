@@ -1,3 +1,10 @@
+// Eliminate broken Node 25 localstorage before Next.js proxies it
+try {
+  if (typeof globalThis !== 'undefined' && globalThis.localStorage && typeof globalThis.localStorage.getItem !== 'function') {
+    Object.defineProperty(globalThis, 'localStorage', { value: undefined });
+  }
+} catch (e) {}
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
@@ -32,11 +39,6 @@ const nextConfig: NextConfig = {
     ];
   },
   serverExternalPackages: [
-    'genkit',
-    '@genkit-ai/core',
-    '@genkit-ai/googleai',
-    '@genkit-ai/next',
-    '@google/generative-ai',
     'shepherd.js'
   ],
   webpack: (config, { isServer }) => {

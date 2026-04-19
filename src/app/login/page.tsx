@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import * as React from 'react';
 import { useTheme } from 'next-themes';
 
 export default function LoginPage() {
@@ -23,7 +24,6 @@ export default function LoginPage() {
               Back to Home
             </Button>
           </Link>
-          <ThemeToggle />
         </div>
       </div>
       
@@ -61,6 +61,19 @@ export default function LoginPage() {
 // Theme Toggle Component
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200 rounded-lg">
+        <span className="w-4 h-4" />
+      </Button>
+    );
+  }
   
   return (
     <Button

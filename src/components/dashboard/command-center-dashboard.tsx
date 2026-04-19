@@ -230,7 +230,7 @@ export function CommandCenterDashboard() {
       {/* Dashboard Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+          <h1 className="text-2xl font-bold text-foreground">
             Financial Command Center
           </h1>
           <p className="text-muted-foreground">

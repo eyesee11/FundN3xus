@@ -4,7 +4,7 @@
  */
 
 // API Configuration
-const ML_API_BASE_URL = process.env.NEXT_PUBLIC_ML_API_URL || 'http://localhost:8000';
+const ML_API_BASE_URL = process.env.NEXT_PUBLIC_ML_API_URL || 'https://fundn3xus-xgbosot.onrender.com';
 
 // Type definitions for API requests and responses
 export interface FinancialProfile {

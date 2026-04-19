@@ -13,8 +13,8 @@ export function AboutSection() {
   const { t } = useLanguage();
 
   return (
-    <section ref={ref} id="about" className="py-20 md:py-32">
-      <div className="container grid lg:grid-cols-2 gap-12 items-center">
+    <section ref={ref} id="about" className="py-20 md:py-32 bg-brand-dark overflow-hidden">
+      <div className="container grid lg:grid-cols-2 gap-12 items-center relative z-10">
         <motion.div 
           className="flex justify-center lg:order-2 relative overflow-hidden"
           initial={{ opacity: 0, x: 50 }}
@@ -47,9 +47,9 @@ export function AboutSection() {
               }}
             >
               <Sparkles 
-                className="w-3 h-3 text-emerald-400 fill-current"
+                className="w-3 h-3 text-cyan-400 fill-current"
                 style={{
-                  filter: 'drop-shadow(0 0 4px rgba(52, 211, 153, 0.8))'
+                  filter: 'drop-shadow(0 0 4px rgba(34, 211, 238, 0.8))'
                 }}
               />
             </motion.div>
@@ -80,9 +80,9 @@ export function AboutSection() {
               }}
             >
               <Sparkles 
-                className="w-4 h-4 text-yellow-400 fill-current"
+                className="w-4 h-4 text-brand-orange fill-current"
                 style={{
-                  filter: 'drop-shadow(0 0 6px rgba(251, 191, 36, 0.6))'
+                  filter: 'drop-shadow(0 0 6px rgba(255, 96, 32, 0.6))'
                 }}
               />
             </motion.div>
@@ -103,7 +103,7 @@ export function AboutSection() {
               data-ai-hint="financial empowerment"
             />
             <motion.div
-              className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-blue-500/10 rounded-xl"
+              className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-brand-orange/20 rounded-xl"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
@@ -118,7 +118,7 @@ export function AboutSection() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold font-headline"
+            className="text-3xl md:text-4xl font-bold font-headline text-white"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
@@ -127,7 +127,7 @@ export function AboutSection() {
           </motion.h2>
           
           <motion.p 
-            className="text-lg text-muted-foreground"
+            className="text-lg text-slate-400"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
@@ -136,7 +136,7 @@ export function AboutSection() {
           </motion.p>
           
           <motion.p 
-            className="text-muted-foreground"
+            className="text-slate-500"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
