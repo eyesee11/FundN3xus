@@ -38,7 +38,7 @@ export function LandingFooter() {
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.6 }}
           >
-            <Logo className="h-7 w-7 text-brand-orange" />
+              <img src="/logo.png" alt="FundN3xus Logo" className="h-8 w-8 rounded-full shadow-md" />
           </motion.div>
           <span className="text-xl font-bold font-headline text-white">FundN3xus</span>
         </motion.div>
