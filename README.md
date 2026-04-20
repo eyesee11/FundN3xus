@@ -1,4 +1,4 @@
-# 💰 FundN3xus - AI-Powered Financial Advisory Platform
+# FundN3xus - AI-Powered Financial Advisory Platform
 
 > **Empowering smarter financial decisions through AI and Machine Learning**
 
@@ -11,9 +11,9 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4+-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-## 🚀 **Quick Start**
+## Quick Start
 
-### **Option 1: Full Stack Development (Recommended)**
+### Option 1: Full Stack Development (Recommended)
 ```bash
 # Clone the repository
 git clone https://github.com/eyesee11/FundN3xus.git
@@ -46,74 +46,76 @@ npm run dev        # http://localhost:9002
 npm run dev:ml     # http://localhost:8000
 ```
 
-**🌐 Access Points:**
-- **🖥️ Web Application**: http://localhost:9002
-- **🤖 ML API Server**: http://localhost:8000  
-- **📚 API Documentation**: http://localhost:8000/docs
-- **🔬 Interactive API**: http://localhost:8000/redoc
+**Access Points:**
+- Web Application: http://localhost:9002
+- ML API Server: http://localhost:8000
+- API Documentation: http://localhost:8000/docs
+- Interactive API: http://localhost:8000/redoc
 
-## 📋 **Table of Contents**
+*(Note: The deployed backend and Huggingface ML backend APIs are private. Please contact the maintainer to gain access.)*
 
-- [🎯 Overview](#-overview)
-- [✨ Key Features](#-key-features)  
-- [🛠️ Tech Stack](#️-tech-stack)
-- [🏗️ Architecture](#️-architecture)
-- [📁 Project Structure](#-project-structure)
-- [🔧 Installation Guide](#-installation-guide)
-- [⚙️ Configuration](#️-configuration)
-- [👩‍💻 Development](#-development)
-- [🤖 ML Models & API](#-ml-models--api)
-- [🚀 Deployment](#-deployment)
-- [🧪 Testing](#-testing)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-- [📞 Support](#-support)
+## Table of Contents
 
-## 🎯 **Overview**
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Installation Guide](#installation-guide)
+- [Configuration](#configuration)
+- [Development](#development)
+- [ML Models & API](#ml-models--api)
+- [Deployment](#deployment)
+- [Testing](#-testing)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Support](#-support)
+
+## Overview
 
 FundN3xus is a cutting-edge financial advisory platform that combines modern web technologies with advanced machine learning to provide personalized financial insights. Built with a focus on user experience and data-driven recommendations, FundN3xus helps individuals make informed financial decisions through AI-powered analysis.
 
-### **🌟 What Makes FundN3xus Special**
+### What Makes FundN3xus Special
 
-- **🧠 AI-First Approach**: Four specialized ML models trained on 15,000+ synthetic financial records
-- **📱 Modern UX**: Responsive, intuitive interface built with Next.js and Tailwind CSS  
-- **🔒 Privacy-Focused**: Secure data handling with Firebase authentication and encryption
-- **🌐 Multilingual**: Full English/Hindi support with seamless language switching
-- **⚡ Real-Time**: Instant financial predictions and recommendations
-- **🔬 Production-Ready**: Fully functional ML API with comprehensive documentation
+- AI-First Approach: Four specialized ML models trained on 15,000+ synthetic financial records
+- Modern UX: Responsive, intuitive interface built with Next.js and Tailwind CSS
+- Privacy-Focused: Secure data handling with Firebase authentication and encryption
+- Multilingual: Full English/Hindi support with seamless language switching
+- Real-Time: Instant financial predictions and recommendations
+- Production-Ready: Fully functional ML API with comprehensive documentation
 
-## ✨ **Key Features**
+## Key Features
 
-### 🤖 **AI-Powered Financial Intelligence**
-- **📊 Investment Risk Assessment**: ML-driven risk tolerance analysis with personalized scoring
-- **💰 Affordability Calculator**: Intelligent purchase capacity analysis based on income, expenses, and goals  
-- **🏥 Financial Health Scoring**: Real-time health assessment with actionable improvement recommendations
-- **🎯 Scenario Planning**: AI-powered strategic recommendations for different financial scenarios
-- **💬 Smart Chatbot**: Conversational AI financial advisor with context-aware responses
+### AI-Powered Financial Intelligence
+- Investment Risk Assessment: ML-driven risk tolerance analysis with personalized scoring
+- Affordability Calculator: Intelligent purchase capacity analysis based on income, expenses, and goals
+- Financial Health Scoring: Real-time health assessment with actionable improvement recommendations
+- Scenario Planning: AI-powered strategic recommendations for different financial scenarios
+- Smart Chatbot: Conversational AI financial advisor with context-aware responses
 
-### � **Modern Web Experience**
-- **📈 Interactive Dashboard**: Comprehensive financial overview with dynamic charts and insights
-- **🌍 Multilingual Interface**: Seamless English/Hindi switching with cultural financial context
-- **📱 Responsive Design**: Mobile-first approach ensuring optimal experience across all devices
-- **⚡ Real-Time Updates**: Live financial data processing with instant feedback
-- **🎨 Modern UI**: Clean, intuitive interface built with shadcn/ui components
+### Modern Web Experience
+- Interactive Dashboard: Comprehensive financial overview with dynamic charts and insights
+- Multilingual Interface: Seamless English/Hindi switching with cultural financial context
+- Responsive Design: Mobile-first approach ensuring optimal experience across all devices
+- Real-Time Updates: Live financial data processing with instant feedback
+- Modern UI: Clean, intuitive interface built with shadcn/ui components
 
-### 🔐 **Security & Authentication**
-- **🔒 Firebase Auth**: Secure authentication with Google Sign-In and email/password
-- **🛡️ Data Encryption**: Bank-level security for sensitive financial information
-- **🔑 Environment Security**: Secure API key management and configuration
-- **👤 Privacy Controls**: User-controlled data sharing and privacy settings
+### Security & Authentication
+- Firebase Auth: Secure authentication with Google Sign-In and email/password
+- Data Encryption: Bank-level security for sensitive financial information
+- Environment Security: Secure API key management and configuration
+- Privacy Controls: User-controlled data sharing and privacy settings
 
-### 📊 **Financial Management Tools**
-- **💼 Portfolio Analytics**: Comprehensive investment performance tracking and analysis
-- **📋 Transaction Management**: Automated categorization and expense tracking
-- **🎯 Goal Setting**: Financial target planning with milestone tracking
-- **💎 Net Worth Calculator**: Complete wealth assessment including assets and liabilities
-- **⚖️ Portfolio Rebalancing**: AI-driven optimization suggestions based on risk tolerance
+### Financial Management Tools
+- Portfolio Analytics: Comprehensive investment performance tracking and analysis
+- Transaction Management: Automated categorization and expense tracking
+- Goal Setting: Financial target planning with milestone tracking
+- Net Worth Calculator: Complete wealth assessment including assets and liabilities
+- Portfolio Rebalancing: AI-driven optimization suggestions based on risk tolerance
 
-## 🛠️ **Tech Stack**
+## Tech Stack
 
-### **🖥️ Frontend & UI**
+### Frontend & UI
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **Next.js** | 15.3.3 | React framework with App Router and server-side rendering |
@@ -124,7 +126,7 @@ FundN3xus is a cutting-edge financial advisory platform that combines modern web
 | **React Hook Form** | 7.54+ | Performant forms with easy validation |
 | **Recharts** | 2.15+ | Responsive charts built on D3.js |
 
-### **🤖 Backend & AI**
+### Backend & AI
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **FastAPI** | 0.104.1 | Modern, fast web framework for building ML APIs |
@@ -135,14 +137,14 @@ FundN3xus is a cutting-edge financial advisory platform that combines modern web
 | **Google Genkit** | 1.14+ | AI flow orchestration and prompt management |
 | **Gemini AI** | Latest | Large language model for conversational AI |
 
-### **🗄️ Database & Authentication**
+### Database & Authentication
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **Firebase** | 11.10.0 | Backend-as-a-Service for auth and database |
 | **Firestore** | Latest | NoSQL document database for user data |
 | **Firebase Auth** | Latest | Authentication with multiple providers |
 
-### **🔧 Development & Build Tools**
+### Development & Build Tools
 | Technology | Version | Purpose |
 |------------|---------|---------|
 | **Node.js** | 18+ | JavaScript runtime for build tools and server |
@@ -151,37 +153,34 @@ FundN3xus is a cutting-edge financial advisory platform that combines modern web
 | **Prettier** | Latest | Code formatting and style consistency |
 | **Concurrently** | 8.2.2 | Run multiple commands simultaneously |
 
-## 🏗️ **Architecture**
+## Architecture
 
 ```mermaid
 graph TB
     subgraph "Frontend (Next.js)"
-        A[React Components] --> B[Tailwind UI]
-        A --> C[Context Providers]
-        C --> D[Firebase Auth]
-        A --> E[API Clients]
+      A[React Components] --> B[Tailwind UI]
+      A --> C[Context Providers]
+      C --> D[Firebase Auth]
+      A --> E[API Clients]
     end
-    
-    subgraph "Backend Services"  
-        E --> F[ML API Server]
-        E --> G[Next.js API Routes]
-        F --> H[ML Models]
-        G --> I[Firebase Services]
+    subgraph "Backend Services"
+      E --> F[ML API Server]
+      E --> G[Next.js API Routes]
+      F --> H[ML Models]
+      G --> I[Firebase Services]
     end
-    
     subgraph "Data Layer"
-        H --> J[Trained Models]
-        I --> K[Firestore DB]
-        I --> L[Firebase Auth]
+      H --> J[Trained Models]
+      I --> K[Firestore DB]
+      I --> L[Firebase Auth]
     end
-    
     subgraph "External APIs"
-        E --> M[Google Gemini]
-        G --> N[Email Service]
+      E --> M[Google Gemini]
+      G --> N[Email Service]
     end
 ```
 
-### **🔄 Data Flow**
+### Data Flow
 1. **User Input**: Financial data entered through React forms
 2. **Validation**: Client-side validation with Zod schemas  
 3. **ML Processing**: Data sent to FastAPI backend for predictions
@@ -189,113 +188,103 @@ graph TB
 5. **Storage**: User preferences saved to Firestore
 6. **Visualization**: Results displayed with interactive charts
 
-## 📁 **Project Structure**
+## Project Structure
 
 ```
 FundN3xus/
-├── � README.md                     # Project documentation
-├── 📄 package.json                  # Node.js dependencies and scripts
-├── 📄 next.config.ts                # Next.js configuration
-├── 📄 tailwind.config.ts            # Tailwind CSS configuration  
-├── 📄 tsconfig.json                 # TypeScript configuration
-├── 📄 components.json               # shadcn/ui component configuration
-├── 📄 test_ml_api.py                # ML API testing script
-├── 📄 apphosting.yaml               # Firebase App Hosting config
-├── 📄 postcss.config.mjs            # PostCSS configuration
+├── README.md                     # Project documentation
+├── package.json                  # Node.js dependencies and scripts
+├── next.config.ts                # Next.js configuration
+├── tailwind.config.ts            # Tailwind CSS configuration
+├── tsconfig.json                 # TypeScript configuration
+├── components.json               # shadcn/ui component configuration
+├── apphosting.yaml               # Firebase App Hosting config
+├── postcss.config.mjs            # PostCSS configuration
 │
-├── 📁 src/                          # 🖥️ Frontend Application Source
-│   ├── 📁 app/                      # Next.js App Router
-│   │   ├── 📄 globals.css           # Global styles and CSS variables
-│   │   ├── 📄 layout.tsx            # Root layout with providers
-│   │   ├── 📄 page.tsx              # Landing page component
-│   │   │
-│   │   ├── 📁 (main)/              # Protected main application routes
-│   │   │   ├── � layout.tsx        # Main app layout with sidebar
-│   │   │   ├── �📁 dashboard/        # Financial overview and insights
-│   │   │   ├── 📁 investments/      # Portfolio management tools
-│   │   │   ├── 📁 affordability/    # Purchase analysis calculator
-│   │   │   ├── 📁 scenarios/        # Financial planning scenarios
-│   │   │   ├── 📁 ai-chat/         # AI chatbot interface
-│   │   │   ├── 📁 profile/          # User settings and preferences
-│   │   │   └── 📁 settings/         # App configuration
-│   │   │
-│   │   ├── 📁 api/                  # Server-side API routes
-│   │   │   ├── 📁 ai/              # AI and ML integration endpoints
-│   │   │   ├── 📁 contact/          # Contact form handling
-│   │   │   └── 📁 send-welcome-email/ # Email service integration
-│   │   │
-│   │   ├── 📁 login/                # Authentication pages
-│   │   └── 📁 demo/                 # Demo and testing pages
-│   │
-│   ├── 📁 components/               # 🧩 React Components Library
-│   │   ├── 📁 ui/                   # Base shadcn/ui components
-│   │   │   ├── 📄 button.tsx        # Button component variants
-│   │   │   ├── 📄 card.tsx          # Card layout components
-│   │   │   ├── 📄 form.tsx          # Form input components
-│   │   │   ├── 📄 chart.tsx         # Chart wrapper components
-│   │   │   └── ...                  # Other base UI components
-│   │   │
-│   │   ├── 📁 dashboard/            # Dashboard-specific components
-│   │   │   ├── 📄 command-center-dashboard.tsx
-│   │   │   ├── 📄 financial-health-summary.tsx
-│   │   │   ├── 📄 ml-financial-health-summary.tsx
-│   │   │   ├── 📄 net-worth-card.tsx
-│   │   │   └── 📄 recent-transactions.tsx
-│   │   │
-│   │   ├── 📁 investments/          # Investment management components
-│   │   │   ├── 📄 portfolio-overview.tsx
-│   │   │   ├── 📄 ml-investment-risk-analyzer.tsx
-│   │   │   └── � rebalancing-tool.tsx
-│   │   │
-│   │   ├── �📁 affordability/        # Affordability analysis components
-│   │   │   ├── 📄 affordability-analyzer.tsx
-│   │   │   └── 📄 affordability-client-page.tsx
-│   │   │
-│   │   ├── 📁 scenarios/            # Financial scenario components
-│   │   ├── 📁 profile/              # User profile components
-│   │   ├── 📁 auth/                 # Authentication components
-│   │   ├── 📁 landing/              # Landing page components
-│   │   ├── 📁 layout/               # Layout and navigation components
-│   │   └── 📁 shared/               # Reusable shared components
-│   │
-│   ├── 📁 lib/                      # 🛠️ Utilities and Configuration
-│   │   ├── 📄 utils.ts              # General utility functions
-│   │   ├── 📄 firebase.ts           # Firebase SDK configuration
-│   │   ├── 📄 ml-api.ts             # ML API client and types
-│   │   ├── 📄 gemini.ts             # Google Gemini AI integration
-│   │   ├── 📄 financial-utils.ts    # Financial calculation utilities
-│   │   ├── 📄 types.ts              # TypeScript type definitions
-│   │   └── 📄 mock-data.ts          # Development mock data
-│   │
-│   ├── 📁 ai/                       # 🤖 AI Integration Layer
-│   │   ├── 📄 genkit.ts             # Google Genkit configuration
-│   │   ├── 📄 config.ts             # AI service configuration
-│   │   ├── 📄 dev.ts                # Development AI setup
-│   │   ├── 📄 mcp-service.ts        # Model Context Protocol service
-│   │   │
-│   │   └── 📁 flows/                # AI Flow Definitions
-│   │       ├── � affordability-analysis.ts
-│   │       ├── 📄 analyze-financial-trends.ts
-│   │       ├── 📄 financial-advisor-chatbot.ts
-│   │       ├── 📄 investment-rebalancing-suggestions.ts
-│   │       └── 📄 simulate-financial-scenarios.ts
-│   │
-│   ├── 📁 contexts/                 # ⚡ React Context Providers
-│   │   ├── 📄 auth-context.tsx      # Authentication state management
-│   │   └── 📄 language-context.tsx  # Internationalization context
-│   │
-│   └── 📁 hooks/                    # 🎣 Custom React Hooks
-│       ├── 📄 use-profile.ts        # User profile data hook
-│       ├── 📄 use-mobile.tsx        # Mobile device detection
-│       ├── 📄 use-toast.ts          # Toast notification hook
-│       ├── � use-text-to-speech.ts # Text-to-speech functionality
-│       └── 📄 use-voice-assistant.ts # Voice assistant integration
+├── src/                          # Frontend Application Source
+│   ├── app/                      # Next.js App Router
+│   │   ├── globals.css           # Global styles and CSS variables
+│   │   ├── layout.tsx            # Root layout with providers
+│   │   ├── page.tsx              # Landing page component
+│   │   ├── (main)/               # Protected main application routes
+│   │   │   ├── layout.tsx        # Main app layout with sidebar
+│   │   │   ├── dashboard/        # Financial overview and insights
+│   │   │   ├── investments/      # Portfolio management tools
+│   │   │   ├── affordability/    # Purchase analysis calculator
+│   │   │   ├── scenarios/        # Financial planning scenarios
+│   │   │   ├── ai-chat/          # AI chatbot interface
+│   │   │   ├── profile/          # User settings and preferences
+│   │   │   └── settings/         # App configuration
+│   │   ├── api/                  # Server-side API routes
+│   │   │   ├── ai/               # AI and ML integration endpoints
+│   │   │   ├── contact/          # Contact form handling
+│   │   │   └── send-welcome-email/ # Email service integration
+│   │   ├── login/                # Authentication pages
+│   │   └── demo/                 # Demo and testing pages
+│   ├── components/               # React Components Library
+│   │   ├── ui/                   # Base shadcn/ui components
+│   │   ├── dashboard/            # Dashboard-specific components
+│   │   │   └── command-center-dashboard.tsx
+│   │   ├── investments/          # Investment management components
+│   │   │   ├── investments-client-page.tsx
+│   │   │   ├── portfolio-overview.tsx
+│   │   │   └── rebalancing-tool.tsx
+│   │   ├── affordability/        # Affordability analysis components
+│   │   │   ├── affordability-analyzer.tsx
+│   │   │   └── affordability-client-page.tsx
+│   │   ├── scenarios/            # Financial scenario components
+│   │   ├── profile/              # User profile components
+│   │   ├── auth/                 # Authentication components
+│   │   ├── landing/              # Landing page components
+│   │   ├── layout/               # Layout and navigation components
+│   │   └── shared/               # Reusable shared components
+│   ├── lib/                      # Utilities and Configuration
+│   │   ├── utils.ts              # General utility functions
+│   │   ├── firebase.ts           # Firebase SDK configuration
+│   │   ├── ml-api.ts             # ML API client and types
+│   │   ├── groq.ts               # Groq API integration
+│   │   ├── financial-utils.ts    # Financial calculation utilities
+│   │   ├── types.ts              # TypeScript type definitions
+│   │   └── mock-data.ts          # Development mock data
+│   ├── ai/                       # AI Integration Layer
+│   │   ├── config.ts             # AI service configuration
+│   │   ├── mcp-service.ts        # Model Context Protocol service
+│   │   └── flows/                # AI Flow Definitions
+│   │       ├── affordability-analysis.ts
+│   │       ├── analyze-financial-trends.ts
+│   │       ├── financial-advisor-chatbot.ts
+│   │       ├── investment-rebalancing-suggestions.ts
+│   │       └── simulate-financial-scenarios.ts
+│   ├── contexts/                 # React Context Providers
+│   │   ├── auth-context.tsx      # Authentication state management
+│   │   └── language-context.tsx  # Internationalization context
+│   └── hooks/                    # Custom React Hooks
+│       ├── use-profile.ts        # User profile data hook
+│       ├── use-mobile.tsx        # Mobile device detection
+│       ├── use-toast.ts          # Toast notification hook
+│       ├── use-text-to-speech.ts # Text-to-speech functionality
+│       └── use-voice-assistant.ts # Voice assistant integration
 │
-├── �📁 ml/                           # 🤖 Machine Learning Backend
-│   ├── 📄 server.py                 # FastAPI ML server application
-│   ├── 📄 train_model.py            # ML model training pipeline
-│   ├── 📄 requirements.txt          # Python dependencies
-│   ├── 📄 dataset.csv               # Training dataset (15,000+ records)
+├── ml/                           # Machine Learning Backend
+│   ├── server.py                 # FastAPI ML server application
+│   ├── train_model.py            # ML model training pipeline
+│   ├── requirements.txt          # Python dependencies
+│   ├── dataset.csv               # Training dataset (15,000+ records)
+│   ├── rag_pipeline_pinecone.py  # RAG pipeline
+│   ├── rag_server.py             # RAG server
+│   ├── train_rag_embeddings.py   # RAG embeddings training
+│   ├── models/                   # Trained ML Models
+│   │   ├── investment_risk_model.pkl
+│   │   ├── affordability_model.pkl
+│   │   ├── health_score_model.pkl
+│   │   └── scenario_planner_model.pkl
+│   └── __pycache__/              # Python bytecode cache
+│
+└── public/                       # Static Assets
+  ├── favicon.ico               # Website favicon
+  ├── banner.png                # Main application banner
+  ├── banner2.png               # Secondary banner
+  └── bannerLogin.svg           # Login page banner
 │   ├── � README.md                 # ML backend documentation
 │   │
 │   ├── �📁 models/                   # 🧠 Trained ML Models
@@ -313,30 +302,30 @@ FundN3xus/
     └── 📄 bannerLogin.svg           # Login page banner
 ```
 
-### **📋 Directory Breakdown**
+### Directory Breakdown
 
 | Directory | Purpose | Key Files |
 |-----------|---------|-----------|
-| **`src/app/`** | Next.js App Router pages and API routes | `layout.tsx`, `page.tsx`, API routes |
-| **`src/components/`** | Reusable React components organized by feature | UI components, feature modules |
-| **`src/lib/`** | Utility functions, configurations, and API clients | `ml-api.ts`, `firebase.ts`, `utils.ts` |
-| **`src/ai/`** | AI integration layer with Genkit flows | AI flows, configurations |
-| **`ml/`** | Python ML backend with FastAPI server | `server.py`, trained models |
-| **`public/`** | Static assets served directly | Images, icons, logos |
+| `src/app/` | Next.js App Router pages and API routes | layout.tsx, page.tsx, API routes |
+| `src/components/` | Reusable React components organized by feature | UI components, feature modules |
+| `src/lib/` | Utility functions, configurations, and API clients | ml-api.ts, firebase.ts, utils.ts |
+| `src/ai/` | AI integration layer with Genkit flows | AI flows, configurations |
+| `ml/` | Python ML backend with FastAPI server | server.py, trained models |
+| `public/` | Static assets served directly | Images, icons, logos |
 
-## 🔧 **Installation Guide**
+## Installation Guide
 
-### **📋 Prerequisites**
+### Prerequisites
 
 Before getting started, ensure you have the following installed:
 
 | Tool | Minimum Version | Purpose |
 |------|----------------|---------|
-| **Node.js** | 18.0+ | JavaScript runtime for frontend |
-| **npm/yarn** | 8.0+ / 1.22+ | Package management |
-| **Python** | 3.10+ | ML backend runtime |
-| **pip** | 21.0+ | Python package installer |
-| **Git** | 2.30+ | Version control |
+| Node.js | 18.0+ | JavaScript runtime for frontend |
+| npm/yarn | 8.0+ / 1.22+ | Package management |
+| Python | 3.10+ | ML backend runtime |
+| pip | 21.0+ | Python package installer |
+| Git | 2.30+ | Version control |
 
 ### **🚀 Step-by-Step Setup**
 
