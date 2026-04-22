@@ -197,7 +197,12 @@ def create_feature_dataframe(profile: FinancialProfile) -> pd.DataFrame:
 
 # API Endpoints
 
-@app.get("/health")
+@app.api_route("/", methods=["GET", "HEAD"])
+async def root():
+    """Root endpoint for health checks"""
+    return {"status": "online", "message": "FundN3xus ML API is running"}
+
+@app.api_route("/health", methods=["GET", "HEAD"])
 async def health_check():
     """Health check endpoint"""
     return {
